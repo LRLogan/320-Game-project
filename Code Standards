@@ -1,0 +1,10 @@
+Github standards
+ - Main will be a protected branch so all work must be done on feature branches 
+ - These feature branches will have to be merged into main via PR (pull request)
+ - These PRs will be reviewed by ststem admin to ensure quality and lookd for possible bugs
+ - If you are working on a feature branch for an extended period of time (at least a few days) be sure to update that branch from main whenever you can in order to stay updated
+
+Code standards
+ - Keep var names consistant and descriptave (camelCase format)
+ - Try to limit dependencies on other scripts when you can to keep the code modular
+ - Leave descriptive comments where needed 
