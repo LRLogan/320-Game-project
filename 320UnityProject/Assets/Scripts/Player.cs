@@ -19,15 +19,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float holdToStartCharge = 1f;
     [SerializeField] private float fullChargeTime = 3f;
     [SerializeField] private float gravity = -9.8f;
-
-    [SerializeField] private GameObject interact;
-
     private float jumpHoldTime = 0f;
     private bool isCharging = false;
     private bool jumpButtonPressed = false;
     private bool isGrounded;
-
-    private bool isInteracting = false;
 
     // Player object
     private Rigidbody rb;
@@ -50,7 +45,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Handeling jump input
-
         if(jumpButtonPressed)
         {
             jumpHoldTime += Time.deltaTime;
@@ -75,19 +69,6 @@ public class Player : MonoBehaviour
         {
 
         }
-        Debug.Log("Move input: " + moveInput);
-        if (Input.GetKeyDown("E"))
-        {
-            Debug.Log("Move input: " + moveInput);
-            velocity.y = Mathf.Sqrt(2 * -2f * gravity);
-            float xPosition = transform.position.x;
-            float yPosition = transform.position.y;
-                 GameObject Spawnedball = Instantiate(
-                interact,
-                new Vector3(xPosition, yPosition, transform.position.z),
-                Quaternion.identity);
-        }
-           
 
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
         cController.Move(move * walkSpeed * Time.deltaTime);
@@ -111,9 +92,4 @@ public class Player : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
         Debug.Log("Move input: " + moveInput);
     }
-
-    //public void onInteract(InputAction.CallbackContext context)
-    //{
-     //   isInteracting = true;
-   // }
 }
