@@ -22,9 +22,17 @@ public class interactArea : MonoBehaviour
         if (other.gameObject.GetComponent<interactableObject>() != null)
         {
             interactableObject script = other.gameObject.GetComponent<interactableObject>();
-            playerScript.inventory.Add(other.gameObject);
-            Debug.Log(other.gameObject.name);
-            other.gameObject.transform.position = new Vector3(100, 100, 100);
+            if(script.canPickup)
+            {
+                playerScript.inventory.Add(other.gameObject);
+                Debug.Log(other.gameObject.name);
+                other.gameObject.transform.position = new Vector3(100, 100, 100);
+            }
+            if(script.isEndpoint)
+            {
+
+            }
+       
         }
     }
     
