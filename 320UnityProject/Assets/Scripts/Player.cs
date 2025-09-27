@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float runSpeed = 12f;
-    private float moveAngleOffset = -45f;
+    private float moveAngleOffset = 45f;
 
     [Header("Jumping")]
     [SerializeField] private float jumpForce = 7f;
@@ -19,33 +19,31 @@ public class Player : MonoBehaviour
     [SerializeField] private float stage3Multiplier = 2f;
     [SerializeField] private float holdToStartCharge = 1f;
     [SerializeField] private float fullChargeTime = 3f;
-    [SerializeField] private float gravity = -9.8f;
-    private float jumpHoldTime = 0f;
-    float chargeProgress = 0f;
+    private float jumpStartTime = 0f;
+    private float chargeProgress = 0f;
+    private bool isGrounded = true;
     private bool isCharging = false;
 
     // Player object
     [SerializeField] private PlayerInput playerInput;
     private Rigidbody rb;
-    private CharacterController cController;
     private InputAction jumpAction;
     private Vector3 moveInput;
-    private Vector3 velocity;
 
     // Temp use to display different stages of jump
     private Renderer rend;
+
+    [SerializeField] private LayerMask groundLayer;
 
     private void Awake()
     {
         jumpAction = playerInput.actions["Jump"];
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        cController = GetComponent<CharacterController>();
         rend = GetComponent<Renderer>();
         rend.material.color = Color.green;
     }
@@ -62,25 +60,27 @@ public class Player : MonoBehaviour
         jumpAction.canceled -= OnJumpReleased;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Player movement
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-        cController.Move(move * walkSpeed * Time.deltaTime);
-        velocity.y += gravity * Time.deltaTime;
-        cController.Move(velocity * Time.deltaTime);
+        Vector3 move = moveInput.normalized * walkSpeed;
+        rb.MovePosition(rb.position + move * Time.deltaTime);
 
-        // Jump display
+        // Jump display (only update while charging)
         if (isCharging)
         {
+            float heldDuration = Time.time - jumpStartTime;
+
+            // Adjusted so fullChargeTime = total time to max charge
+            chargeProgress = Mathf.Clamp(heldDuration / fullChargeTime, 0f, 1f);
+
             if (chargeProgress < 0.33f)
             {
                 rend.material.color = Color.yellow;
             }
             else if (chargeProgress < 0.66f)
             {
-                rend.material.color = new Color(1f, 0.5f, 0f);
+                rend.material.color = new Color(1f, 0.5f, 0f); // orange
             }
             else
             {
@@ -89,63 +89,46 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Listener for movement input
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>();
+        Vector2 rawInput = context.ReadValue<Vector2>();
 
-        float radians = moveAngleOffset * Mathf.Deg2Rad;
+        Vector3 localInput = new Vector3(rawInput.x, 0, rawInput.y);
+        Quaternion offsetRot = Quaternion.Euler(0, moveAngleOffset, 0);
+        moveInput = offsetRot * localInput;
 
-        // Create a rotation matrix for 2D vector
-        float cos = Mathf.Cos(radians);
-        float sin = Mathf.Sin(radians);
-
-        // Rotate the moveInput vector
-        Vector2 rotatedInput = new Vector2(
-            moveInput.x * cos - moveInput.y * sin,
-            moveInput.x * sin + moveInput.y * cos
-        );
-
-        moveInput = rotatedInput;
         Debug.Log("Move input: " + moveInput);
     }
 
     void OnJumpStarted(InputAction.CallbackContext ctx)
     {
-        isCharging = true;
-        jumpHoldTime = Time.time;
+        if (isGrounded)
+        {
+            isCharging = true;
+            jumpStartTime = Time.time;
+        }
     }
 
-    /// <summary>
-    /// Handles the jumping logic
-    /// </summary>
-    /// <param name="ctx"></param>
     void OnJumpReleased(InputAction.CallbackContext ctx)
     {
-        jumpHoldTime += Time.deltaTime;
+        if (!isGrounded) return;
 
-        if (jumpHoldTime >= holdToStartCharge) isCharging = true;
+        float heldDuration = Time.time - jumpStartTime;
+        isCharging = false;
+
         float finalJumpForce = jumpForce;
 
-        // Charge jump
-        if (isCharging)
+        if (heldDuration >= holdToStartCharge)
         {
-            
-            chargeProgress = Mathf.Clamp((jumpHoldTime - holdToStartCharge) / fullChargeTime, 0f, 1f);
-            float chargedForce = jumpForce * Mathf.Lerp(1f, stage3Multiplier, chargeProgress);
+            // Adjusted so total charge time = fullChargeTime
+            chargeProgress = Mathf.Clamp(heldDuration / fullChargeTime, 0f, 1f);
 
             if (chargeProgress < 0.33f)
-            {
                 finalJumpForce *= stage1Multiplier;
-            }
             else if (chargeProgress < 0.66f)
-            {
                 finalJumpForce *= stage2Multiplier;
-            }               
             else
-            {
                 finalJumpForce *= stage3Multiplier;
-            }
         }
         Jump(finalJumpForce);
     }
@@ -154,8 +137,25 @@ public class Player : MonoBehaviour
     {
         Debug.Log($"Jump with force: {force}");
         rb.AddForce(Vector3.up * force, ForceMode.Impulse);
-        jumpHoldTime = 0f;
-        isCharging = false;
+        jumpStartTime = 0f;
         rend.material.color = Color.green;
     }
+
+    // Ground check --------------
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (((1 << collision.gameObject.layer) & groundLayer) != 0)
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (((1 << collision.gameObject.layer) & groundLayer) != 0)
+        {
+            isGrounded = false;
+        }
+    }
+    // ---------------------------
 }
