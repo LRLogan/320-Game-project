@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float stage3Multiplier = 2f;
     [SerializeField] private float holdToStartCharge = 1f;
     [SerializeField] private float fullChargeTime = 3f;
+    [SerializeField] private float gravity = -9f;
     private float jumpStartTime = 0f;
     private float chargeProgress = 0f;
     private bool isGrounded = true;
@@ -59,13 +60,16 @@ public class Player : MonoBehaviour
         jumpAction.started -= OnJumpStarted;
         jumpAction.canceled -= OnJumpReleased;
     }
-
-    void Update()
+    private void FixedUpdate()
     {
         // Player movement
         Vector3 move = moveInput.normalized * walkSpeed;
-        rb.MovePosition(rb.position + move * Time.deltaTime);
+        Vector3 newVelocity = new Vector3(move.x, rb.velocity.y, move.z);
+        rb.velocity = newVelocity;
+    }
 
+    void Update()
+    {
         // Jump display (only update while charging)
         if (isCharging)
         {
@@ -109,6 +113,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Hnadels jump logic
     void OnJumpReleased(InputAction.CallbackContext ctx)
     {
         if (!isGrounded) return;
