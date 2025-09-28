@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class interactArea : MonoBehaviour
 {
-    public IsoPlayerMovement playerScript;
+    public Player playerScript;
     // Start is called before the first frame update
     void Start()
     {
