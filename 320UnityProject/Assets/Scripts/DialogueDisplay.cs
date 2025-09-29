@@ -34,7 +34,7 @@ public class DialogueDisplay : MonoBehaviour
     void Update()
     {
         delayTimer = Mathf.Max(0, delayTimer - Time.deltaTime);
-        if (Input.GetMouseButtonDown(0) && delayTimer <= 0)
+        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && delayTimer <= 0)
             NextLine();
     }
 

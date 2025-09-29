@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CanvasResize : MonoBehaviour
 {
     // Default width and height of the Canvas with which this Scene was worked on
-    [SerializeField] float width = 640, height = 480;
+    [SerializeField] float width = 1920, height = 1200;
 
     Rect canvasRect;
 
