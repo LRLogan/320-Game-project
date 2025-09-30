@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class IsoPlayerMovement : MonoBehaviour
@@ -16,6 +18,14 @@ public class IsoPlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public float groundCheckDistance = 0.2f;
 
+    GameObject interactField;
+
+     public List<GameObject> inventory = new List<GameObject>();
+
+    [SerializeField] private GameObject interact;
+    private bool isInteracting = false;
+    int interactTimer = 0;
+    int maxInteractTimer = 10;
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -23,6 +33,8 @@ public class IsoPlayerMovement : MonoBehaviour
     private float jumpHoldTime = 0f;
     private bool isCharging = false;
     private bool jumpButtonHeld = false;
+
+ 
 
     private Renderer rend;
     private Vector3 originalCameraPos;
@@ -36,8 +48,33 @@ public class IsoPlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //Detect jump input
-        jumpButtonHeld = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.JoystickButton0);
+        
+        if (Input.GetKeyDown(KeyCode.E) && isInteracting == false)
+        {
+            
+            float xPosition = transform.position.x;
+            float yPosition = transform.position.y;
+            interactField = Instantiate(
+           interact,
+           new Vector3(xPosition, yPosition, transform.position.z),
+           Quaternion.identity);
+            isInteracting = true;
+          
+            interactTimer = 0;
+        }
+        else if(isInteracting && interactTimer < maxInteractTimer)
+        {
+            interactTimer++;
+        }
+        else if (isInteracting && interactTimer >= maxInteractTimer)
+        {
+            GameObject temp = interactField;
+             interactField = null;
+            Destroy(temp);
+            isInteracting=false;
+        }
+            //Detect jump input
+            jumpButtonHeld = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.JoystickButton0);
 
         if (jumpButtonHeld && isGrounded)
         {
