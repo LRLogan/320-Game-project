@@ -22,7 +22,7 @@ public class interactArea : MonoBehaviour
         //if object is interactible get its script
         if (other.gameObject.GetComponent<interactableObject>() != null)
         {
-          
+         /* 
             interactableObject script = other.gameObject.GetComponent<interactableObject>();
             //if you can pick it up add to inventory
             if(script.canPickup)
@@ -54,7 +54,7 @@ public class interactArea : MonoBehaviour
             {
                 Debug.Log(script.dialogue);
             }
-
+         */
 
         }
     }
