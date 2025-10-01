@@ -31,8 +31,6 @@ public class Player : MonoBehaviour
     int maxInteractTimer = 10;
     GameObject interactField;
 
-    public List<GameObject> inventory = new List<GameObject>();
-
     // Player object
     [SerializeField] private PlayerInput playerInput;
     private Rigidbody rb;
