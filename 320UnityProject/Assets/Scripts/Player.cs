@@ -25,6 +25,14 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;
     private bool isCharging = false;
 
+    [SerializeField] private GameObject interact;
+    private bool isInteracting = false;
+    int interactTimer = 0;
+    int maxInteractTimer = 10;
+    GameObject interactField;
+
+    public List<GameObject> inventory = new List<GameObject>();
+
     // Player object
     [SerializeField] private PlayerInput playerInput;
     private Rigidbody rb;
@@ -91,7 +99,34 @@ public class Player : MonoBehaviour
                 rend.material.color = Color.red;
             }
         }
+        if (Input.GetKeyDown(KeyCode.E) && isInteracting == false)
+        {
+
+            float xPosition = transform.position.x;
+            float yPosition = transform.position.y;
+            interactField = Instantiate(
+           interact,
+           new Vector3(xPosition, yPosition, transform.position.z),
+           Quaternion.identity);
+            isInteracting = true;
+
+            interactTimer = 0;
+        }
+        else if (isInteracting && interactTimer < maxInteractTimer)
+        {
+            interactTimer++;
+        }
+        else if (isInteracting && interactTimer >= maxInteractTimer)
+        {
+            GameObject temp = interactField;
+            interactField = null;
+            Destroy(temp);
+            isInteracting = false;
+        }
+
     }
+
+
 
     public void OnMove(InputAction.CallbackContext context)
     {
