@@ -934,6 +934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 455387839}
   - component: {fileID: 455387840}
+  - component: {fileID: 455387841}
   m_Layer: 0
   m_Name: WarpTrigger
   m_TagString: Untagged
@@ -977,6 +978,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &455387841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455387838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c11c03d302aac8448055e99da5f1195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Dead's GreyBox
 --- !u!4 &472149447 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2983648375225441644, guid: 39a87eea8dd55fa46af68d15bdf8f375, type: 3}
