@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     private Renderer rend;
 
     [SerializeField] private LayerMask groundLayer;
+    private List<GameObject> inventory;
 
     private void Awake()
     {
@@ -198,4 +199,6 @@ public class Player : MonoBehaviour
         }
     }
     // ---------------------------
+
+
 }
