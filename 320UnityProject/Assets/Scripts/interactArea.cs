@@ -5,6 +5,7 @@ using UnityEngine;
 public class interactArea : MonoBehaviour
 {
     public Player playerScript;
+    private bool pickedUp;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class interactArea : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
+        pickedUp = false;
         //if object is interactible get its script
         if (other.gameObject.GetComponent<interactableObject>() != null)
         {
@@ -42,15 +44,17 @@ public class interactArea : MonoBehaviour
                     interactableObject scriptTwo = playerScript.inventory[i].GetComponent<interactableObject>();
                     if (scriptTwo.id == idNeeded)
                     {
+                        Debug.Log(script.endpointDialogue);
                         GameObject temp = playerScript.inventory[i];
                         playerScript.inventory.RemoveAt(i);
                         Destroy(temp);
                         Destroy(other.gameObject);
+                        pickedUp=true;
                     }
                 }
             }
             //if dialogue send it to debug
-            if (script.isDialogue)
+            if (script.isDialogue && !pickedUp)
             {
                 Debug.Log(script.dialogue);
             }
