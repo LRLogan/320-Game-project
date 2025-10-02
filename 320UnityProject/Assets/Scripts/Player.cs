@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     public List<GameObject> inventory;
 
+    public bool isInside = false;
+
     private void Awake()
     {
         jumpAction = playerInput.actions["Jump"];
