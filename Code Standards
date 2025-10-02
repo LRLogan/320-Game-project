@@ -8,5 +8,3 @@ Code standards
  - Keep var names consistant and descriptave (camelCase format)
  - Try to limit dependencies on other scripts when you can to keep the code modular
  - Leave descriptive comments where needed 
-
-* Testing the webhook
