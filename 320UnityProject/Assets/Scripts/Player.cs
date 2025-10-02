@@ -25,11 +25,13 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;
     private bool isCharging = false;
 
+
     [SerializeField] private GameObject interact;
     private bool isInteracting = false;
     int interactTimer = 0;
     int maxInteractTimer = 10;
     GameObject interactField;
+    private InputAction interactAction;
 
     // Player object
     [SerializeField] private PlayerInput playerInput;
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         jumpAction = playerInput.actions["Jump"];
+       
     }
 
     void Start()
@@ -66,6 +69,7 @@ public class Player : MonoBehaviour
     {
         jumpAction.started -= OnJumpStarted;
         jumpAction.canceled -= OnJumpReleased;
+
     }
     private void FixedUpdate()
     {
@@ -98,20 +102,8 @@ public class Player : MonoBehaviour
                 rend.material.color = Color.red;
             }
         }
-        if (Input.GetKeyDown(KeyCode.E) && isInteracting == false)
-        {
-
-            float xPosition = transform.position.x;
-            float yPosition = transform.position.y;
-            interactField = Instantiate(
-           interact,
-           new Vector3(xPosition, yPosition, transform.position.z),
-           Quaternion.identity);
-            isInteracting = true;
-
-            interactTimer = 0;
-        }
-        else if (isInteracting && interactTimer < maxInteractTimer)
+       
+         if (isInteracting && interactTimer < maxInteractTimer)
         {
             interactTimer++;
         }
@@ -135,7 +127,24 @@ public class Player : MonoBehaviour
         Quaternion offsetRot = Quaternion.Euler(0, moveAngleOffset, 0);
         moveInput = offsetRot * localInput;
 
-        Debug.Log("Move input: " + moveInput);
+        //Debug.Log("Move input: " + moveInput);
+    }
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        Debug.Log("Mawdadw");
+        if (isInteracting == false && context.started)
+        {
+
+            float xPosition = transform.position.x;
+            float yPosition = transform.position.y;
+            interactField = Instantiate(
+           interact,
+           new Vector3(xPosition, yPosition, transform.position.z),
+           Quaternion.identity);
+            isInteracting = true;
+
+            interactTimer = 0;
+        }
     }
 
     void OnJumpStarted(InputAction.CallbackContext ctx)

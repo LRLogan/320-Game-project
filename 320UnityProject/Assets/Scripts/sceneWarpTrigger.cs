@@ -18,7 +18,7 @@ public class SceneWarpTrigger : MonoBehaviour
         }
     }
 
-    void LoadScene()
+    public void LoadScene()
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
@@ -29,7 +29,7 @@ public class SceneWarpTrigger : MonoBehaviour
             Debug.LogWarning("Scene name is not set on SceneWarpTrigger.");
         }
     }
-
+    /*
     // Detect when player enters the trigger
     private void OnTriggerEnter(Collider other)
     {
@@ -48,4 +48,5 @@ public class SceneWarpTrigger : MonoBehaviour
             playerInRange = false;
         }
     }
+    */
 }

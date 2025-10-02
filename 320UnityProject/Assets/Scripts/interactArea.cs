@@ -61,6 +61,11 @@ public class interactArea : MonoBehaviour
          
 
         }
-    }
+        if (other.gameObject.GetComponent<SceneWarpTrigger>() != null)
+        {
+            Debug.Log("awdawd");
+            other.gameObject.GetComponent<SceneWarpTrigger>().LoadScene();
+        }
+        }
     
 }
