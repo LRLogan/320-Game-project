@@ -6,8 +6,16 @@ public class SceneWarpTrigger : MonoBehaviour
     [Header("Scene Settings")]
     [Tooltip("Name of the scene to load when player interacts")]
     public string sceneToLoad;
+    [SerializeField] private bool goingInside;
 
     private bool playerInRange = false;
+
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = FindFirstObjectByType<GameManager>();   
+    }
 
     void Update()
     {
