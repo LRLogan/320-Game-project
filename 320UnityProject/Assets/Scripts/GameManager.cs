@@ -10,8 +10,7 @@ public class GameManager : MonoBehaviour
     private GameManager instance;
 
     // Player
-    [SerializeField] Player player;
-
+    public Player player;
 
     private void Awake()
     {
@@ -39,20 +38,29 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void EnterDeadsGreyBox()
+    public void EnterIndoorScene(string sceneName)
     {
-        SceneManager.LoadScene("Dead's Grey Box");
-        player.isInside = true;
+        if (!string.IsNullOrEmpty(sceneName))
+        {
+            player.posBeforeSceneChange = player.transform.position;
+            SceneManager.LoadScene(sceneName);
+            player.isInside = true;
+        }
+        else
+        {
+            Debug.LogWarning("Scene name is not set on SceneWarpTrigger.");
+        }
     }
 
     /// <summary>
     /// Enter the main outside world scene 
     /// </summary>
-    /// <param name="placementPos">position to spawn the player</param>
+    /// <param name="placementPos">position to spawn the player using world cordinates</param>
     public void EnterMainOutside(Vector3 placementPos)
     {
         SceneManager.LoadScene("GrayBox");
 
         // set player location
+        player.transform.position = placementPos;
     }
 }

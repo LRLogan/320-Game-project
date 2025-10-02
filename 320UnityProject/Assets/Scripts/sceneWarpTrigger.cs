@@ -6,27 +6,30 @@ public class SceneWarpTrigger : MonoBehaviour
     [Header("Scene Settings")]
     [Tooltip("Name of the scene to load when player interacts")]
     public string sceneToLoad;
+    [SerializeField] private bool goingInside;
 
     private bool playerInRange = false;
+
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = FindFirstObjectByType<GameManager>();   
+    }
 
     void Update()
     {
         // Check if player is in the trigger zone and presses E
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            LoadScene();
-        }
-    }
-
-    void LoadScene()
-    {
-        if (!string.IsNullOrEmpty(sceneToLoad))
-        {
-            SceneManager.LoadScene(sceneToLoad);
-        }
-        else
-        {
-            Debug.LogWarning("Scene name is not set on SceneWarpTrigger.");
+            if(goingInside)
+            {
+                gameManager.EnterIndoorScene(sceneToLoad);
+            }
+            else
+            {
+                gameManager.EnterMainOutside(gameManager.player.posBeforeSceneChange);
+            }
         }
     }
 
