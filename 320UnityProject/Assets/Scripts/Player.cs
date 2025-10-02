@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;
     private bool isCharging = false;
 
-
+    //interactions
     [SerializeField] private GameObject interact;
     private bool isInteracting = false;
     int interactTimer = 0;
@@ -145,7 +145,6 @@ public class Player : MonoBehaviour
     }
     public void OnInteract(InputAction.CallbackContext context)
     {
-        Debug.Log("Mawdadw");
         if (isInteracting == false && context.started)
         {
 

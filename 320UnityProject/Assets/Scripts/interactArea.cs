@@ -7,6 +7,11 @@ public class interactArea : MonoBehaviour
     public Player playerScript;
     private bool pickedUp;
     // Start is called before the first frame update
+
+    private void Awake()
+    {      
+            DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
         playerScript = FindAnyObjectByType<Player>();
