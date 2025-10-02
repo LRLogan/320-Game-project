@@ -11,5 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prototype scenes/Dead's GreyBox.unity
     guid: ba32b0c943fbe1744b72e89c933ac91f
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: a8a322fdd25554042990753969f6e462, type: 2}
   m_UseUCBPForAssetBundles: 0

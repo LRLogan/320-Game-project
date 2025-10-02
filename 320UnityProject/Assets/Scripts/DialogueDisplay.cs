@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class DialogueDisplay : MonoBehaviour
 {
@@ -16,9 +18,19 @@ public class DialogueDisplay : MonoBehaviour
     [SerializeField] TMP_Text speakerBox;
 
     /// <summary>
-    /// Whether to show the first line as soon as Start is called
+    /// Whether to show the first line as soon as Start is called.
     /// </summary>
     [SerializeField] bool onStart;
+
+    /// <summary>
+    /// Whether to lock player movement while dialogue is being displayed.
+    /// </summary>
+    [SerializeField] bool lockMovement;
+
+    /// <summary>
+    /// Action(s) to perform when dialogue is over.
+    /// </summary>
+    [SerializeField] UnityEvent onEnd;
 
     /// <summary>
     /// List of lines to display in order (for testing).
@@ -32,14 +44,16 @@ public class DialogueDisplay : MonoBehaviour
     /// </summary>
     const float delay = 0.5f;
 
+    public Player playerScript;
     GameObject dialoguePanel;
     GameObject speakerPanel;
-    float delayTimer;
+    float delayTimer = 0;
     int currentLine = -1;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerScript = FindAnyObjectByType<Player>();
         dialoguePanel = dialogueBox.transform.parent.gameObject;
         speakerPanel = speakerBox.transform.parent.gameObject;
 
@@ -53,7 +67,7 @@ public class DialogueDisplay : MonoBehaviour
     void Update()
     {
         delayTimer = Mathf.Max(0, delayTimer - Time.deltaTime);
-        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && delayTimer <= 0)
+        if (Input.GetMouseButtonDown(0) && delayTimer <= 0)
             NextLine();
     }
 
@@ -62,6 +76,9 @@ public class DialogueDisplay : MonoBehaviour
         currentLine++;
         if (currentLine >= 0 && currentLine < lines.Length)
         {
+            if (lockMovement && playerScript.canMove)
+                playerScript.canMove = false;
+
             string line = lines[currentLine];
             if (line.Length > 0)
             {
@@ -86,9 +103,20 @@ public class DialogueDisplay : MonoBehaviour
             else if (dialoguePanel.activeSelf)
                 dialoguePanel.SetActive(false);
         }
-        else if (dialoguePanel.activeSelf)
-            dialoguePanel.SetActive(false);
+        else
+        {
+            if (lockMovement && !playerScript.canMove)
+                playerScript.canMove = true;
+
+            if (dialoguePanel.activeSelf)
+                dialoguePanel.SetActive(false);
+
+            if (currentLine == lines.Length)
+                onEnd.Invoke();
+        }
 
         delayTimer = delay;
     }
+
+    public void LoadScene(int index) => SceneManager.LoadScene(index);
 }

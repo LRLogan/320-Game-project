@@ -6,7 +6,9 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager; 
+    [SerializeField] private GameManager gameManager;
+
+    public bool canMove = true;
 
     // Movement 
     [Header("Movement")]
@@ -87,6 +89,9 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (!canMove)
+            return;
+
         // Player movement
         Vector3 move = moveInput.normalized * walkSpeed;
         Vector3 newVelocity = new Vector3(move.x, rb.velocity.y, move.z);
@@ -117,7 +122,7 @@ public class Player : MonoBehaviour
             }
         }
        
-         if (isInteracting && interactTimer < maxInteractTimer)
+        if (isInteracting && interactTimer < maxInteractTimer)
         {
             interactTimer++;
         }
@@ -135,6 +140,9 @@ public class Player : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!canMove)
+            return;
+
         Vector2 rawInput = context.ReadValue<Vector2>();
 
         Vector3 localInput = new Vector3(rawInput.x, 0, rawInput.y);
@@ -145,6 +153,9 @@ public class Player : MonoBehaviour
     }
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (!canMove)
+            return;
+
         if (isInteracting == false && context.started)
         {
 
@@ -162,6 +173,9 @@ public class Player : MonoBehaviour
 
     void OnJumpStarted(InputAction.CallbackContext ctx)
     {
+        if (!canMove)
+            return;
+
         if (isGrounded)
         {
             isCharging = true;
@@ -172,7 +186,7 @@ public class Player : MonoBehaviour
     // Hnadels jump logic
     void OnJumpReleased(InputAction.CallbackContext ctx)
     {
-        if (!isGrounded) return;
+        if (!canMove || !isGrounded) return;
 
         float heldDuration = Time.time - jumpStartTime;
         isCharging = false;
@@ -196,6 +210,9 @@ public class Player : MonoBehaviour
 
     private void Jump(float force)
     {
+        if (!canMove)
+            return;
+
         Debug.Log($"Jump with force: {force}");
         rb.AddForce(Vector3.up * force, ForceMode.Impulse);
         jumpStartTime = 0f;
