@@ -6,6 +6,8 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager; 
+
     // Movement 
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 5f;
@@ -19,12 +21,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float stage3Multiplier = 2f;
     [SerializeField] private float holdToStartCharge = 1f;
     [SerializeField] private float fullChargeTime = 3f;
-    [SerializeField] private float gravity = -9f;
     private float jumpStartTime = 0f;
     private float chargeProgress = 0f;
     private bool isGrounded = true;
     private bool isCharging = false;
 
+    // Interactions
     [SerializeField] private GameObject interact;
     private bool isInteracting = false;
     int interactTimer = 0;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
 
     // Player object
     [SerializeField] private PlayerInput playerInput;
+    private Player playerInstance;
     private Rigidbody rb;
     private InputAction jumpAction;
     private Vector3 moveInput;
@@ -42,9 +45,21 @@ public class Player : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
     public List<GameObject> inventory;
+    public bool isInside = false;
+    public Vector3 posBeforeSceneChange;
 
     private void Awake()
     {
+        if (playerInstance == null)
+        {
+            playerInstance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (playerInstance != this)
+        {
+            Destroy(gameObject);
+        }
+
         jumpAction = playerInput.actions["Jump"];
     }
 
