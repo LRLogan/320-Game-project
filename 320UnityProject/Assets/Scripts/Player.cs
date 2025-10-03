@@ -96,6 +96,11 @@ public class Player : MonoBehaviour
         Vector3 move = moveInput.normalized * walkSpeed;
         Vector3 newVelocity = new Vector3(move.x, rb.velocity.y, move.z);
         rb.velocity = newVelocity;
+
+        if (newVelocity != Vector3.zero)
+        {
+            transform.forward = newVelocity;
+        }
     }
 
     void Update()
