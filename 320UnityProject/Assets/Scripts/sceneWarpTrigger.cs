@@ -14,7 +14,7 @@ public class SceneWarpTrigger : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindFirstObjectByType<GameManager>();   
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     void Update()
@@ -22,22 +22,17 @@ public class SceneWarpTrigger : MonoBehaviour
         // Check if player is in the trigger zone and presses E
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            LoadScene();
+            if (goingInside)
+            {
+                gameManager.EnterIndoorScene(sceneToLoad);
+            }
+            else
+            {
+                gameManager.EnterMainOutside(gameManager.player.posBeforeSceneChange);
+            }
         }
     }
 
-    public void LoadScene()
-    {
-        if (!string.IsNullOrEmpty(sceneToLoad))
-        {
-            SceneManager.LoadScene(sceneToLoad);
-        }
-        else
-        {
-            Debug.LogWarning("Scene name is not set on SceneWarpTrigger.");
-        }
-    }
-    /*
     // Detect when player enters the trigger
     private void OnTriggerEnter(Collider other)
     {
@@ -56,5 +51,4 @@ public class SceneWarpTrigger : MonoBehaviour
             playerInRange = false;
         }
     }
-    */
 }
