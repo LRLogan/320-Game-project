@@ -33,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.136, y: 0.4, z: 0.009}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.1, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8745852657932036984}
   m_Father: {fileID: 0}
@@ -46,7 +46,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5436913680198418781}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -8545447256379345787, guid: f2f1d55964be1854fbbf7a8af50f306d, type: 3}
 --- !u!23 &4880452118331967822
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -110,8 +110,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.4066784, z: 2.2874718}
+  m_Center: {x: 0, y: -1.4166526, z: -0.21543884}
 --- !u!54 &5329012565179298936
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  canMove: 1
   walkSpeed: 5
   runSpeed: 12
   jumpForce: 7
@@ -225,6 +226,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 93b5e48d-be04-42de-b4f8-eff241556f63
     m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b70dca2b-125c-4eb3-b360-6bfed0fe66cf
+    m_ActionName: 'Gameplay/Interact[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -265,6 +270,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 3813907306120479730}
     m_Modifications:
     - target: {fileID: 2484046541848415642, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484046541848415642, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484046541848415642, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484046541848415642, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 43.92
       objectReference: {fileID: 0}
@@ -304,6 +321,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3854639490721596344, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 4884254766270712396, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
       propertyPath: m_Name
       value: Interact Cube
