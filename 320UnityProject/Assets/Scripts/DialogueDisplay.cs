@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class DialogueDisplay : MonoBehaviour
@@ -67,7 +68,11 @@ public class DialogueDisplay : MonoBehaviour
     void Update()
     {
         delayTimer = Mathf.Max(0, delayTimer - Time.deltaTime);
-        if (Input.GetMouseButtonDown(0) && delayTimer <= 0)
+    }
+
+    public void OnLineChange(InputAction.CallbackContext context)
+    {
+        if (delayTimer <= 0)
             NextLine();
     }
 
@@ -118,5 +123,5 @@ public class DialogueDisplay : MonoBehaviour
         delayTimer = delay;
     }
 
-    public void LoadScene(int index) => SceneManager.LoadScene(index);
+    public void LoadScene(string sceneName) => SceneManager.LoadScene(sceneName);
 }

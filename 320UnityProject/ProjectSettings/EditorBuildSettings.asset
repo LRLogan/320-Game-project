@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Prototype scenes/IntroMonologue.unity
+    guid: 38aac7679b2a48d42ad4df179ff1bc80
+  - enabled: 1
     path: Assets/Scenes/Prototype scenes/GrayBox.unity
     guid: 763dd9fc3c313024fb63798fb69901b9
   - enabled: 1

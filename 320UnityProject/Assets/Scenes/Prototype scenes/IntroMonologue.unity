@@ -195,6 +195,179 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35620615}
   m_CullTransparentMesh: 1
+--- !u!1 &69349179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 69349182}
+  - component: {fileID: 69349181}
+  - component: {fileID: 69349180}
+  - component: {fileID: 69349183}
+  m_Layer: 0
+  m_Name: UIController
+  m_TagString: UIController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &69349180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69349179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd83dadde995fa478252cdd28013968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoBox: {fileID: 0}
+--- !u!114 &69349181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69349179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662c9669254b92140b6ffec2e5ec6198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 1895597314}
+  speakerBox: {fileID: 1699434239}
+  onStart: 1
+  lockMovement: 0
+  onEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 69349181}
+        m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GrayBox
+          m_BoolArgument: 0
+        m_CallState: 2
+  lines:
+  - "YOU>>I\u2019ve always had a passion for helping others."
+  - The Forest is a great place, but sometimes there are frogs that just need a little
+    push in the right direction.
+  - Growing up, I never really had any major struggles, so I always sought to use
+    what little power I had to aid those who needed it.
+  - "Granted, I haven\u2019t actually made much of a difference in anyone\u2019s
+    lives per se, since they were all shy or scared..."
+  - ...and would end up either running away or not noticing me...
+  - "...but that\u2019s exactly why I decided to become a detective!"
+  - "By having some authority in place, everyone will surely know that I\u2019m there
+    for them, and they can talk to me whenever!"
+  - "After all, who doesn\u2019t love having an official at their doorstep watching
+    over them 24/7 and making sure nothing gets out of hand?"
+  - "Investigating evidence! Solving crimes! Making the Forest a better place! That\u2019s
+    the kind of frog I\u2019m gonna be! "
+  - . . .
+  - "Well\u2026 That\u2019s what I thought, until I was stationed..."
+  - ...in practically the middle of nowhere.
+  - "I mean, sure, there\u2019s Lilypad Landing, but their crime rate is literally
+    0%. I\u2019m not kidding."
+  - "According to the Forest Regional Organization of Gumshoes, they\u2019ve never
+    reported a single crime, ever."
+  - "I was supposed to be helping those in need! Bringing justice to the towns! How
+    am I supposed to do that in a place that\u2019s already spotless? "
+  - 'I had never been in more dismay... Until... '
+  - '>>MURDER!!!'
+  - A MURDER HAS HAPPENED!!!
+  - YOU>>I was called to investigate a murder!
+  - "Well, the head says \u201Cthere\u2019s no evidence that\u2019s what it was\u201D,
+    but I\u2019m 1000% confident!"
+  - After all, why else would they have asked me of all frogs to look into it?
+  - "After having spent so much time with no assignment, I didn\u2019t care what
+    the head said\u2014I was going to make the most of this case as I could!"
+  - "Once they\u2019ve seen my strong dedication and hard work, surely the higher-ups
+    will have no choice but to promote me! Surely, right...?"
+  playerScript: {fileID: 0}
+--- !u!4 &69349182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69349179}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &69349183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69349179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 24ef897677a947946835a631c18d351e, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c84853b4-d1b2-4a7d-8f2c-c12ab91fce71
+    m_ActionName: 'Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 93b5e48d-be04-42de-b4f8-eff241556f63
+    m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b70dca2b-125c-4eb3-b360-6bfed0fe66cf
+    m_ActionName: 'Gameplay/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 69349181}
+        m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
+        m_MethodName: OnLineChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ffc3c432-9cf6-478e-95ef-e37ab4351fc2
+    m_ActionName: 'Gameplay/NextLine[/Mouse/leftButton]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!224 &74535757 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8195446258880921988, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
@@ -328,71 +501,13 @@ GameObject:
   - component: {fileID: 1056526368}
   - component: {fileID: 1056526367}
   - component: {fileID: 1056526366}
-  - component: {fileID: 1056526365}
-  - component: {fileID: 1056526369}
   m_Layer: 0
   m_Name: EventSystem
-  m_TagString: UIController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1056526365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056526364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 662c9669254b92140b6ffec2e5ec6198, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 1895597314}
-  speakerBox: {fileID: 1699434239}
-  onStart: 1
-  lockMovement: 0
-  onEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  lines:
-  - "YOU>>I\u2019ve always had a passion for helping others."
-  - The Forest is a great place, but sometimes there are frogs that just need a little
-    push in the right direction.
-  - Growing up, I never really had any major struggles, so I always sought to use
-    what little power I had to aid those who needed it.
-  - "Granted, I haven\u2019t actually made much of a difference in anyone\u2019s
-    lives per se, since they were all shy or scared..."
-  - ...and would end up either running away or not noticing me...
-  - "...but that\u2019s exactly why I decided to become a detective!"
-  - "By having some authority in place, everyone will surely know that I\u2019m there
-    for them, and they can talk to me whenever!"
-  - "After all, who doesn\u2019t love having an official at their doorstep watching
-    over them 24/7 and making sure nothing gets out of hand?"
-  - "Investigating evidence! Solving crimes! Making the Forest a better place! That\u2019s
-    the kind of frog I\u2019m gonna be! "
-  - . . .
-  - "Well\u2026 That\u2019s what I thought, until I was stationed..."
-  - ...in practically the middle of nowhere.
-  - "I mean, sure, there\u2019s Lilypad Landing, but their crime rate is literally
-    0%. I\u2019m not kidding."
-  - "According to the Forest Regional Organization of Gumshoes, they\u2019ve never
-    reported a single crime, ever."
-  - "I was supposed to be helping those in need! Bringing justice to the towns! How
-    am I supposed to do that in a place that\u2019s already spotless? "
-  - 'I had never been in more dismay... Until... '
-  - '>>MURDER!!!'
-  - A MURDER HAS HAPPENED!!!
-  - YOU>>I was called to investigate a murder!
-  - "Well, the head says \u201Cthere\u2019s no evidence that\u2019s what it was\u201D,
-    but I\u2019m 1000% confident!"
-  - After all, why else would they have asked me of all frogs to look into it?
-  - "After having spent so much time with no assignment, I didn\u2019t care what
-    the head said\u2014I was going to make the most of this case as I could!"
-  - "Once they\u2019ve seen my strong dedication and hard work, surely the higher-ups
-    will have no choice but to promote me! Surely, right...?"
-  playerScript: {fileID: 0}
 --- !u!114 &1056526366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,19 +558,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1056526369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056526364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd83dadde995fa478252cdd28013968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  infoBox: {fileID: 0}
 --- !u!1 &1109682008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,5 +1303,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1519218452}
   - {fileID: 1056526368}
+  - {fileID: 69349182}
   - {fileID: 1939259536}
   - {fileID: 1253139082}

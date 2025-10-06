@@ -890,6 +890,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300031455}
   m_CullTransparentMesh: 1
+--- !u!1 &381320490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 381320493}
+  - component: {fileID: 381320492}
+  - component: {fileID: 381320491}
+  m_Layer: 0
+  m_Name: UIController
+  m_TagString: UIController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &381320491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381320490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd83dadde995fa478252cdd28013968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoBox: {fileID: 1593861237}
+--- !u!114 &381320492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381320490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662c9669254b92140b6ffec2e5ec6198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 183597046}
+  speakerBox: {fileID: 183597045}
+  onStart: 1
+  lockMovement: 1
+  onEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  lines:
+  - YOU>>So this must be the victim...
+  - "Guess I\u2019d better look around for some clues."
+  playerScript: {fileID: 0}
+--- !u!4 &381320493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381320490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &399785516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3755,11 +3824,9 @@ GameObject:
   - component: {fileID: 2043946778}
   - component: {fileID: 2043946777}
   - component: {fileID: 2043946776}
-  - component: {fileID: 2043946779}
-  - component: {fileID: 2043946780}
   m_Layer: 0
   m_Name: EventSystem
-  m_TagString: UIController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3814,42 +3881,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2043946779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043946775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 662c9669254b92140b6ffec2e5ec6198, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 183597046}
-  speakerBox: {fileID: 183597045}
-  onStart: 1
-  lockMovement: 1
-  onEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  lines:
-  - YOU>>So this must be the victim...
-  - "Guess I\u2019d better look around for some clues."
-  playerScript: {fileID: 0}
---- !u!114 &2043946780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043946775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd83dadde995fa478252cdd28013968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  infoBox: {fileID: 1593861237}
 --- !u!1 &2065707695
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,6 +4114,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 2066579973}
   - {fileID: 2043946778}
+  - {fileID: 381320493}
   - {fileID: 53828001}
   - {fileID: 1973591590}
   - {fileID: 1607735566}
