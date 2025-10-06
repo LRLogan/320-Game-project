@@ -78,6 +78,9 @@ public class DialogueDisplay : MonoBehaviour
 
     void NextLine()
     {
+        if (currentLine >= lines.Length)
+            return;
+
         currentLine++;
         if (currentLine >= 0 && currentLine < lines.Length)
         {
