@@ -113,11 +113,13 @@ public class interactArea : MonoBehaviour
          
 
         }
+        /*
         if (other.gameObject.GetComponent<SceneWarpTrigger>() != null)
         {
-            Debug.Log("awdawd");
+            Debug.Log("swap trigger found");
             other.gameObject.GetComponent<SceneWarpTrigger>().LoadScene();
         }
+        */
     }
     
     private void InfoSetup(Scene scene, LoadSceneMode mode)
