@@ -10,6 +10,8 @@ public class SceneWarpTrigger : MonoBehaviour
 
     private bool playerInRange = false;
 
+    [SerializeField] Vector3 spawnLocation;
+
     private GameManager gameManager;
 
     private void Start()
@@ -31,6 +33,7 @@ public class SceneWarpTrigger : MonoBehaviour
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
             SceneManager.LoadScene(sceneToLoad);
+
         }
         else
         {
