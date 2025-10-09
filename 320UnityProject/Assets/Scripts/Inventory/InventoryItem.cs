@@ -4,17 +4,13 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Item item;
+    public interactableObject item;
 
     [Header("UI")]
     public Image image;
 
     [HideInInspector] public Transform parentAfterDrag;
 
-    void Start()
-    {
-        InitialiseItem(item);
-    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         image.raycastTarget = false;
@@ -41,10 +37,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.localPosition = Vector3.zero;
     }
 
-    public void InitialiseItem(Item newItem)
+    public void InitialiseItem(interactableObject newItem)
     {
         item = newItem;
-        if (image.sprite != null) { image.sprite = newItem.image; }
+        if (image.sprite != null) { image.sprite = newItem.sprite; }
 
     }
 }

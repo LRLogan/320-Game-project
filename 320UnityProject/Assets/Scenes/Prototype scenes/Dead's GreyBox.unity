@@ -1163,6 +1163,7 @@ MonoBehaviour:
   isDialogue: 1
   dialogue: Theres nothing in the bed
   id: 0
+  sprite: {fileID: 0}
 --- !u!54 &564691530
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1370,6 +1371,7 @@ MonoBehaviour:
   isDialogue: 1
   dialogue: Theres a couple interesting books, but no key
   id: 0
+  sprite: {fileID: 0}
 --- !u!54 &669149969
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1859,6 +1861,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 3625043607559282579, guid: f021c34ed2e50534b9edf40cd857e57d, type: 3}
     - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
       propertyPath: dialogue
       value: Hey theres a key in here. Obtained key.
@@ -2591,6 +2597,7 @@ MonoBehaviour:
   isDialogue: 1
   dialogue: A couple coins, and a empty wrapper.
   id: 0
+  sprite: {fileID: 0}
 --- !u!54 &1380881691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2744,6 +2751,7 @@ MonoBehaviour:
   isDialogue: 1
   dialogue: Appears to be sleeping, but there is no heartbeat.
   id: 0
+  sprite: {fileID: 0}
 --- !u!1 &1466163231
 GameObject:
   m_ObjectHideFlags: 0
