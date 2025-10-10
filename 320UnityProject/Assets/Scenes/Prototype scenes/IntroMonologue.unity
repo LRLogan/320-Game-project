@@ -258,6 +258,7 @@ MonoBehaviour:
           m_StringArgument: GrayBox
           m_BoolArgument: 0
         m_CallState: 2
+  inkScript: {fileID: 4900000, guid: c03cd21d8570a5640b6e0773faaeece2, type: 3}
   lines:
   - "YOU>>I\u2019ve always had a passion for helping others."
   - The Forest is a great place, but sometimes there are frogs that just need a little
@@ -388,6 +389,18 @@ PrefabInstance:
     - target: {fileID: 3855840420703941427, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
       propertyPath: m_text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855840420703941427, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855840420703941427, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855840420703941427, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4093843948648021414, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
       propertyPath: m_Name
