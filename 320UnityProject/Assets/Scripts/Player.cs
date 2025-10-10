@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rend = GetComponent<Renderer>();
         rend.material.color = Color.green;
+        inventory = new List<GameObject>();
     }
 
     private void OnEnable()
@@ -250,10 +251,12 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     public bool AddToInventory(GameObject newObj)
     {
+        Debug.Log("NewOBJ picked up is null: " + newObj == null);
         if (newObj != null)
         {
             inventory.Add(newObj);
-            inventoryUI.RefreshUI(); 
+            inventoryUI.RefreshUI();
+            Debug.Log("Added to inventory: " + newObj);
             return true;
         }
         return false;
