@@ -940,6 +940,7 @@ MonoBehaviour:
   onEnd:
     m_PersistentCalls:
       m_Calls: []
+  inkScript: {fileID: 4900000, guid: f1663b04fbd74a64bb7738cfba602f9f, type: 3}
   lines:
   - YOU>>So this must be the victim...
   - "Guess I\u2019d better look around for some clues."
@@ -2716,6 +2717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93973c171c2e4254d95b0a58a2812d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  door: {fileID: 0}
 --- !u!4 &1434629118
 Transform:
   m_ObjectHideFlags: 0
