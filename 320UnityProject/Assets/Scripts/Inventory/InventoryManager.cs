@@ -4,42 +4,69 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    InventoryManager inventoryUIInstance;
+
+    [SerializeField] private Player player;
     [SerializeField] private GameObject inventoryItemPrefab;
-    private int selectedSlot = -1;
+    [SerializeField] private Transform inventoryGrid; // parent grid layout
 
-    // Fill with all slots in the UI
-    public InventorySlot[] inventorySlots;
+    private List<InventoryItem> uiItems = new List<InventoryItem>();
 
-    private void ChangeSelectedSlot(int newValue)
+    private void Awake()
     {
-        if(selectedSlot >= 0)
+        if (inventoryUIInstance == null)
         {
-            inventorySlots[selectedSlot].Deselect();
+            inventoryUIInstance = this;
+
+            // This will keep the entire canvas
+            DontDestroyOnLoad(gameObject.transform.root.gameObject);
         }
-        inventorySlots[newValue].Select();
-        selectedSlot = newValue;
+        else if (inventoryUIInstance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Searches for a spot in the inventory
-    public bool AddItem(Item item)
+    private void Start()
     {
-        InventorySlot curSlot;
-        InventoryItem itemInSlot;
 
-        for (int i = 0; i < inventorySlots.Length; i++)
-        {
-            curSlot = inventorySlots[i];
-            itemInSlot = curSlot.GetComponentInChildren<InventoryItem>();
-
-            if (itemInSlot == null) { SpawnNewItem(item, curSlot); return true; }
-        }
-        return false;
     }
 
-    private void SpawnNewItem(Item item, InventorySlot slot)
+    public void RefreshUI()
     {
-        GameObject newItem = Instantiate(inventoryItemPrefab, slot.transform);
-        InventoryItem invItem = newItem.GetComponent<InventoryItem>();
-        invItem.InitialiseItem(item);
+        // Clear old UI elements
+        foreach (Transform child in inventoryGrid)
+        {
+            Destroy(child.gameObject);
+        }
+        uiItems.Clear();
+
+        // Create UI item for each GameObject in player's inventory
+        foreach (GameObject obj in player.GetInventory())
+        {
+            interactableObject itemData = obj.GetComponent<interactableObject>();
+            GameObject newUIItem = Instantiate(inventoryItemPrefab, inventoryGrid);
+            InventoryItem uiItemScript = newUIItem.GetComponent<InventoryItem>();
+            uiItemScript.InitialiseItem(itemData);
+
+            uiItems.Add(uiItemScript);
+        }
+    }
+
+    // Method to update Player inventory order based on UI
+    public void SyncInventoryOrder()
+    {
+        player.GetInventory().Clear();
+        foreach (Transform slot in inventoryGrid)
+        {
+            if (slot.childCount > 0)
+            {
+                InventoryItem uiItem = slot.GetChild(0).GetComponent<InventoryItem>();
+                if (uiItem != null && uiItem.item != null)
+                {
+                    player.GetInventory().Add(uiItem.item.gameObject);
+                }
+            }
+        }
     }
 }
