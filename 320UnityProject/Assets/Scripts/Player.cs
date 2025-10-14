@@ -47,7 +47,8 @@ public class Player : MonoBehaviour
     private Renderer rend;
 
     [SerializeField] private LayerMask groundLayer;
-    public List<GameObject> inventory;
+    [SerializeField] private InventoryManager inventoryUI;
+    private  List<GameObject> inventory;
     public bool isInside = false;
     public Vector3 posBeforeSceneChange;
 
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rend = GetComponent<Renderer>();
         rend.material.color = Color.green;
+        inventory = new List<GameObject>();
     }
 
     private void OnEnable()
@@ -242,5 +244,26 @@ public class Player : MonoBehaviour
     }
     // ---------------------------
 
+    /// <summary>
+    /// Uisng a method to access inventory so additional functionality can be added where needed with actual inventory functionality
+    /// </summary>
+    /// <param name="newObj"></param>
+    /// <returns></returns>
+    public bool AddToInventory(GameObject newObj)
+    {
+        Debug.Log("NewOBJ picked up is null: " + newObj == null);
+        if (newObj != null)
+        {
+            inventory.Add(newObj);
+            inventoryUI.RefreshUI();
+            Debug.Log("Added to inventory: " + newObj);
+            return true;
+        }
+        return false;
+    }
 
+    public List<GameObject> GetInventory()
+    {
+        return inventory;
+    }
 }
