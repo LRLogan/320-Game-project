@@ -35,8 +35,8 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
 
         // Getting the different text components in the dialogue pannel ans assinging them 
         TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
-        dpDisplay.dialogueBox = textsInChild[0];
-        dpDisplay.speakerBox = textsInChild[1];
+        dpDisplay.dialogueBox = textsInChild[1];
+        dpDisplay.speakerBox = textsInChild[0];
 
         // Info pannel / UI controller
         GameObject infoPannelInstance = Instantiate(infoPannelPrefab, canvas.transform);
