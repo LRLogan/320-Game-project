@@ -121,10 +121,14 @@ public class DialogueDisplay : MonoBehaviour
                 if (dialogue.StartsWith('<') && dialogue.Contains('>'))
                 {
                     string size = dialogue.Substring(1, dialogue.IndexOf('>') - 1);
-                    dialogue = dialogue.Substring(dialogue.IndexOf('>') + 1);
+                    float sizeF;
+                    if (float.TryParse(size, out sizeF))
+                    {
+                        dialogue = dialogue.Substring(dialogue.IndexOf('>') + 1);
 
-                    dialogueBox.enableAutoSizing = false;
-                    dialogueBox.fontSize = float.Parse(size);
+                        dialogueBox.enableAutoSizing = false;
+                        dialogueBox.fontSize = sizeF;
+                    }
                 }
 
                 speakerBox.text = speaker;

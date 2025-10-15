@@ -43,7 +43,7 @@ public class interactArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (infoPanel)
+        if (infoPanel != null)
         {
             if (infoTimer > 0)
             {
@@ -129,7 +129,7 @@ public class interactArea : MonoBehaviour
     private void InfoSetup()
     {
         infoBox = GameObject.FindWithTag("UIController").GetComponent<UIController>().infoBox;
-        if (!infoBox)
+        if (infoBox == null)
             return;
 
         infoPanel = infoBox.transform.parent.gameObject;
