@@ -74,7 +74,7 @@ public class interactArea : MonoBehaviour
             //if you can pick it up add to inventory
             if(script.canPickup)
             {
-                playerScript.inventory.Add(other.gameObject);
+                playerScript.AddToInventory(other.gameObject);
                 
                 other.gameObject.transform.position = new Vector3(100, 100, 100);
             }
@@ -83,15 +83,15 @@ public class interactArea : MonoBehaviour
             {
                
                 int idNeeded = script.id;
-                for (int i = 0; i < playerScript.inventory.Count; i++)
+                for (int i = 0; i < playerScript.GetInventory().Count; i++)
                 {
                    
-                    interactableObject scriptTwo = playerScript.inventory[i].GetComponent<interactableObject>();
+                    interactableObject scriptTwo = playerScript.GetInventory()[i].GetComponent<interactableObject>();
                     if (scriptTwo.id == idNeeded)
                     {
                         Debug.Log(script.endpointDialogue);
-                        GameObject temp = playerScript.inventory[i];
-                        playerScript.inventory.RemoveAt(i);
+                        GameObject temp = playerScript.GetInventory()[i];
+                        playerScript.GetInventory().RemoveAt(i);
                         Destroy(temp);
                         Destroy(other.gameObject);
                         pickedUp=true;
