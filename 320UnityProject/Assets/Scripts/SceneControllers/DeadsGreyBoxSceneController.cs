@@ -24,11 +24,8 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
             return;
         }
 
+        // Dialogue display 
         GameObject dialogueUIInstance = Instantiate(dialogueUIPrefab, canvas.transform);
-        dialogueUIInstance.layer = LayerMask.NameToLayer("UI");
-        dialogueUIInstance.SetActive(true);
-
-        GameObject infoPannelInstance = Instantiate(infoPannelPrefab, canvas.transform);
         dialogueUIInstance.layer = LayerMask.NameToLayer("UI");
         dialogueUIInstance.SetActive(true);
 
@@ -37,9 +34,16 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
         dpDisplay.lockMovement = true;
 
         // Getting the different text components in the dialogue pannel ans assinging them 
-        TextMeshProUGUI[] textsInChild= dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
-        UIController uiController = eventSystem.GetComponent<UIController>();
+        TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
         dpDisplay.dialogueBox = textsInChild[0];
         dpDisplay.speakerBox = textsInChild[1];
+
+        // Info pannel / UI controller
+        GameObject infoPannelInstance = Instantiate(infoPannelPrefab, canvas.transform);
+        dialogueUIInstance.layer = LayerMask.NameToLayer("UI");
+        dialogueUIInstance.SetActive(true);
+
+        UIController uiController = eventSystem.GetComponent<UIController>();
+        uiController.infoBox = infoPannelInstance.GetComponentInChildren<TextMeshProUGUI>();
     }
 }
