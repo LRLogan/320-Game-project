@@ -45,5 +45,6 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
 
         UIController uiController = eventSystem.GetComponent<UIController>();
         uiController.infoBox = infoPannelInstance.GetComponentInChildren<TextMeshProUGUI>();
+        infoPannelInstance.SetActive(false);
     }
 }
