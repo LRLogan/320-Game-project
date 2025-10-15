@@ -10,7 +10,7 @@ public class SceneWarpTrigger : MonoBehaviour
 
     private bool playerInRange = false;
 
-    [SerializeField] Vector3 spawnLocation;
+    [SerializeField] public Vector3 spawnLocation;
 
     private GameManager gameManager;
 

@@ -143,6 +143,10 @@ public class Player : MonoBehaviour
 
 
 
+    public void MovePlayerTo(Vector3 location)
+    {
+        transform.position = location;  
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         if (!canMove)

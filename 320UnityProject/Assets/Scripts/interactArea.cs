@@ -113,11 +113,21 @@ public class interactArea : MonoBehaviour
          
 
         }
+        //if scene warp send to new scene
         if (other.gameObject.GetComponent<SceneWarpTrigger>() != null)
         {
-            Debug.Log("awdawd");
             other.gameObject.GetComponent<SceneWarpTrigger>().LoadScene();
+            SceneWarpTrigger script = other.gameObject.GetComponent<SceneWarpTrigger>();
+            playerScript.MovePlayerTo(script.spawnLocation);
+
         }
+        if (other.gameObject.GetComponent<RespawnButton>() != null)
+        {
+            other.gameObject.GetComponent<RespawnButton>().Reset();
+           
+
+        }
+
     }
     
     private void InfoSetup(Scene scene, LoadSceneMode mode)
