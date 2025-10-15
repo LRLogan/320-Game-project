@@ -31,6 +31,13 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         {
             InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
             inventoryItem.parentAfterDrag = transform;
+
+            // Sync Player list order
+            InventoryManager inventoryUI = FindAnyObjectByType<InventoryManager>();
+            if (inventoryUI != null)
+            {
+                inventoryUI.SyncInventoryOrder();
+            }
         }
     }
 }

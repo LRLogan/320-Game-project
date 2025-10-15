@@ -10,22 +10,22 @@ public class DialogueDisplay : MonoBehaviour
     /// <summary>
     /// The TMP_Text property of the GameObject that directly displays text.
     /// </summary>
-    [SerializeField] TMP_Text dialogueBox;
+    public TMP_Text dialogueBox;
 
     /// <summary>
     /// The TMP_Text property of the GameObject that directly displays speaker name text.
     /// </summary>
-    [SerializeField] TMP_Text speakerBox;
+    public TMP_Text speakerBox;
 
     /// <summary>
     /// Whether to show the first line as soon as Start is called.
     /// </summary>
-    [SerializeField] bool onStart;
+    public bool onStart;
 
     /// <summary>
     /// Whether to lock player movement while dialogue is being displayed.
     /// </summary>
-    [SerializeField] bool lockMovement;
+    public bool lockMovement;
 
     /// <summary>
     /// Action(s) to perform when dialogue is over.
