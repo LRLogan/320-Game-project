@@ -46,7 +46,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5436913680198418781}
-  m_Mesh: {fileID: -8545447256379345787, guid: f2f1d55964be1854fbbf7a8af50f306d, type: 3}
+  m_Mesh: {fileID: 483112724327190541, guid: 91bf4b01c7dcecc4bb937e3be2b9bc2f, type: 3}
 --- !u!23 &4880452118331967822
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0f586ab13c1feb04d8df9d34d34287fa, type: 2}
+  - {fileID: 2100000, guid: 401135fe9ec41ee4cbadb95f528a2cca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,6 +333,10 @@ PrefabInstance:
       propertyPath: playerScript
       value: 
       objectReference: {fileID: 7635605549341587216}
+    - target: {fileID: 5182998188341126494, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 96ee4e804d87a7b458717f9897171aff, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
