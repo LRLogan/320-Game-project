@@ -7,7 +7,7 @@ TagManager:
   - Ground
   - InteractInfo
   - UIController
-  - UIManager
+  - MAST_Holder
   layers:
   - Default
   - TransparentFX
