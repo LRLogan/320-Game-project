@@ -115,11 +115,17 @@ public class interactArea : MonoBehaviour
         }
         if (other.gameObject.GetComponent<SceneWarpTrigger>() != null)
         {
-            Debug.Log("awdawd");
+            
             other.gameObject.GetComponent<SceneWarpTrigger>().LoadScene();
         }
+        if (other.gameObject.GetComponent<RespawnButton>() != null)
+        {
+
+            other.gameObject.GetComponent<RespawnButton>().Reset();
+        }
+
     }
-    
+
     private void InfoSetup(Scene scene, LoadSceneMode mode)
     {
         InfoSetup();
