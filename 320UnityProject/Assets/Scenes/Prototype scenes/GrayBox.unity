@@ -845,7 +845,11 @@ PrefabInstance:
     - target: {fileID: 4527164479129893941, guid: 3226bc8b93510394f941d6dcfbab74fa, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -8545447256379345787, guid: f2f1d55964be1854fbbf7a8af50f306d, type: 3}
+      objectReference: {fileID: 483112724327190541, guid: 91bf4b01c7dcecc4bb937e3be2b9bc2f, type: 3}
+    - target: {fileID: 4880452118331967822, guid: 3226bc8b93510394f941d6dcfbab74fa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 401135fe9ec41ee4cbadb95f528a2cca, type: 2}
     - target: {fileID: 5436913680198418781, guid: 3226bc8b93510394f941d6dcfbab74fa, type: 3}
       propertyPath: m_Name
       value: Player
