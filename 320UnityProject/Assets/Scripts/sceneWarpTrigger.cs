@@ -11,10 +11,12 @@ public class SceneWarpTrigger : MonoBehaviour
     private bool playerInRange = false;
 
     private GameManager gameManager;
+    private Player player;
 
     private void Start()
     {
-        gameManager = FindFirstObjectByType<GameManager>();   
+        //gameManager = FindFirstObjectByType<GameManager>();   
+        player = FindFirstObjectByType<Player>();
     }
 
     void Update()
@@ -30,6 +32,10 @@ public class SceneWarpTrigger : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
+            if(sceneToLoad != "FrogVille")
+            {
+                player.posBeforeSceneChange = player.transform.position;
+            }
             SceneManager.LoadScene(sceneToLoad);
         }
         else

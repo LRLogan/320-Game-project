@@ -6,7 +6,7 @@ public class InventoryManager : MonoBehaviour
 {
     InventoryManager inventoryUIInstance;
 
-    [SerializeField] private Player player;
+    public Player player;
     [SerializeField] private GameObject inventoryItemPrefab;
     [SerializeField] private Transform inventoryGrid; // parent grid layout
 
