@@ -5,12 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototype scenes/GrayBox.unity
     guid: 763dd9fc3c313024fb63798fb69901b9
   - enabled: 1
+    path: Assets/Scenes/Prototype scenes/FrogVille.unity
+    guid: fd14ed03907037f49ae5c726f54ed805
+  - enabled: 1
     path: Assets/Scenes/Prototype scenes/Dead's GreyBox.unity
     guid: ba32b0c943fbe1744b72e89c933ac91f
+  - enabled: 0
+    path: Assets/Scenes/Prototype scenes/CopyGrayBox.unity
+    guid: 37fd3ab8d0b28844bb9398fc01318026
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a8a322fdd25554042990753969f6e462, type: 2}
   m_UseUCBPForAssetBundles: 0

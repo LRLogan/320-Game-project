@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     /// <param name="placementPos">position to spawn the player using world cordinates</param>
     public void EnterMainOutside(Vector3 placementPos)
     {
-        SceneManager.LoadScene("GrayBox");
+        SceneManager.LoadScene("FrogVille");
 
         // set player location
         player.transform.position = placementPos;

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class Player : MonoBehaviour
 {
@@ -47,7 +46,7 @@ public class Player : MonoBehaviour
     private Renderer rend;
 
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private InventoryManager inventoryUI;
+    public InventoryManager inventoryUI;
     private  List<GameObject> inventory;
     public bool isInside = false;
     public Vector3 posBeforeSceneChange;
