@@ -89,6 +89,7 @@ public class interactArea : MonoBehaviour
                     interactableObject scriptTwo = playerScript.GetInventory()[i].GetComponent<interactableObject>();
                     if (scriptTwo.id == idNeeded)
                     {
+                        InfoText(script.endpointDialogue);
                         Debug.Log(script.endpointDialogue);
                         GameObject temp = playerScript.GetInventory()[i];
                         playerScript.GetInventory().RemoveAt(i);
@@ -101,13 +102,7 @@ public class interactArea : MonoBehaviour
             //if dialogue send it to infoBox and debug
             if (script.isDialogue && !pickedUp)
             {
-                if (infoPanel != null)
-                {
-                    if (!infoPanel.activeSelf)
-                        infoPanel.SetActive(true);
-                    infoBox.text = script.dialogue;
-                    infoTimer = infoTime + infoFadeTime;
-                }
+                InfoText(script.dialogue);
                 Debug.Log(script.dialogue);
             }
          
@@ -141,5 +136,16 @@ public class interactArea : MonoBehaviour
         infoAlpha = infoImage.color.a;
         if (infoPanel.activeSelf)
             infoPanel.SetActive(false);
+    }
+
+    private void InfoText(string text)
+    {
+        if (infoPanel == null)
+            return;
+
+        if (!infoPanel.activeSelf)
+            infoPanel.SetActive(true);
+        infoBox.text = text;
+        infoTimer = infoTime + infoFadeTime;
     }
 }
