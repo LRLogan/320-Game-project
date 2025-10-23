@@ -1,0 +1,51 @@
+name: Test & Build
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    name: Build Unity Project for Windows
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true # use true if your repo has Unity assets tracked by LFS
+
+      # Cache the Unity Library folder for faster builds
+      - name: Cache Library folder
+        uses: actions/cache@v3
+        with:
+          path: 320UnityProject/Library
+          key: Library-${{ hashFiles('320UnityProject/Assets/**', '320UnityProject/Packages/**', '320UnityProject/ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+
+      # Build the project
+      - name: Build project for Windows
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: 320UnityProject
+          targetPlatform: StandaloneWindows64
+          buildName: TMOTOFOT
+          buildsPath: build
+          versioning: None
+
+      # Upload the built artifact
+      - name: Upload Windows Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TMOTOFOT-Windows
+          path: build/StandaloneWindows64
