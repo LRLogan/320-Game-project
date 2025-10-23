@@ -13,6 +13,9 @@ public class PuzzleTracker : MonoBehaviour
         InsertData();
     }
 
+    /// <summary>
+    /// Creates all the puzzles in data at the start of the game 
+    /// </summary>
     private void InsertData()
     {
         string curName = "Buff Frogs letter";

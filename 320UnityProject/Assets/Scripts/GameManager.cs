@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private string startingSceneName;
 
+    // Puzzle / progress tracking
+    private Puzzle curPuzzle;
+    private PuzzleTracker puzzleTracker;    // Attach to this game object 
+
     private void Awake()
     {
         if (instance == null)
@@ -33,7 +37,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        puzzleTracker = GetComponent<PuzzleTracker>();
     }
 
     // Update is called once per frame
@@ -84,9 +88,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    #region Not used for scene transition atm
+    /// <summary>
+    /// This function will be called whenever a scene that can trigger a puzzle is changed to 
+    /// Other puzzle activations like item pickups will be handled in a similar function
+    /// </summary>
+    /// <param name="sceneName"></param>
+    private void PuzzleInitFromSceneCheck(string sceneName)
+    {
+        switch (sceneName)
+        {
+            // Buff frogs letter puzzle will trigger the first time player enters Dead's grey box scene
+            case "Dead's Grey Box":
+                Puzzle checkingPuzzleAt = puzzleTracker.progressList[puzzleTracker.curPuzzle];
+                if (checkingPuzzleAt.puzzleName == "Buff Frogs letter" &&
+                    !checkingPuzzleAt.isStarted)
+                {
+                    checkingPuzzleAt.isStarted = true;
+                    curPuzzle = checkingPuzzleAt;
+                }
+                break;
+        }
+    }
 
-    public void EnterIndoorScene(string sceneName)
+#region Not used for scene transition atm
+
+public void EnterIndoorScene(string sceneName)
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
