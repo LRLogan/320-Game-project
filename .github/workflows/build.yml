@@ -38,7 +38,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           projectPath: 320UnityProject
-          targetPlatform: StandaloneWindows64
+          targetPlatform: StandaloneWindows
           buildName: TMOTOFOT
           buildsPath: build
           versioning: None
@@ -48,4 +48,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: TMOTOFOT-Windows
-          path: build/StandaloneWindows64
+          path: build/StandaloneWindows
