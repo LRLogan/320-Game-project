@@ -10,7 +10,7 @@ public class PuzzleTracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InsertData();
+        //InsertData();
     }
 
     /// <summary>

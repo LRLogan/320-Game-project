@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     public void LoadSave()
     {
         // Get the local JSON file 
-
+        SceneManager.LoadScene(startingSceneName); // THIS LINE IS TEMP WHILE JSON LOGIC IS NOT DONE
         // Assign vars like position from JSON
     }
 
