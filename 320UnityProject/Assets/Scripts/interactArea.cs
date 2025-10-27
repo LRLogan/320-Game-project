@@ -123,6 +123,12 @@ public class interactArea : MonoBehaviour
 
             other.gameObject.GetComponent<RespawnButton>().Reset();
         }
+        
+        if (other.gameObject.GetComponent<MultiBlockPuzzle>() != null)
+        {
+            
+            other.gameObject.GetComponent<MultiBlockPuzzle>().Interacted();
+        }
 
     }
 

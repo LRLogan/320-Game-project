@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     int maxInteractTimer = 10;
     GameObject interactField;
     private InputAction interactAction;
+    private Vector3 direction;
 
     // Player object
     [SerializeField] private PlayerInput playerInput;
@@ -150,11 +151,17 @@ public class Player : MonoBehaviour
             return;
 
         Vector2 rawInput = context.ReadValue<Vector2>();
-
+       
         Vector3 localInput = new Vector3(rawInput.x, 0, rawInput.y);
+        
         Quaternion offsetRot = Quaternion.Euler(0, moveAngleOffset, 0);
         moveInput = offsetRot * localInput;
-
+        if(moveInput != Vector3.zero)
+        {
+            moveInput.Normalize();
+            direction = moveInput;
+        }
+       
         //Debug.Log("Move input: " + moveInput);
     }
     public void OnInteract(InputAction.CallbackContext context)
@@ -169,7 +176,7 @@ public class Player : MonoBehaviour
             float yPosition = transform.position.y;
             interactField = Instantiate(
            interact,
-           new Vector3(xPosition, yPosition, transform.position.z),
+           new Vector3(xPosition + direction.x, yPosition + direction.y, transform.position.z + direction.z),
            Quaternion.identity);
             isInteracting = true;
 
