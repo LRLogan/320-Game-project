@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ink.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class DialogueDisplay : MonoBehaviour
@@ -33,6 +35,14 @@ public class DialogueDisplay : MonoBehaviour
     [SerializeField] UnityEvent onEnd;
 
     /// <summary>
+    /// JSON file containing the lines to display.
+    /// Format as such: [Speaker]>>[Sprite]>>[Dialogue]
+    /// If there is no speaker, simply format as: >>[Sprite]>>[Dialogue]
+    /// If there is no sprite, enter "[Sprite]" as "0"
+    /// </summary>
+    [SerializeField] TextAsset inkScript;
+
+    /// <summary>
     /// List of lines to display in order (for testing).
     /// Format as such: [Speaker]>>[Dialogue]
     /// If there is no speaker, simply format as: >>[Dialogue]
@@ -48,7 +58,11 @@ public class DialogueDisplay : MonoBehaviour
     GameObject dialoguePanel;
     GameObject speakerPanel;
     float delayTimer = 0;
+    Story inkStory;
     int currentLine = -1;
+
+    float size0;
+    bool autoSize0;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +70,11 @@ public class DialogueDisplay : MonoBehaviour
         playerScript = FindAnyObjectByType<Player>();
         dialoguePanel = dialogueBox.transform.parent.gameObject;
         speakerPanel = speakerBox.transform.parent.gameObject;
+
+        inkStory = new Story(inkScript.text);
+
+        size0 = dialogueBox.fontSize;
+        autoSize0 = dialogueBox.enableAutoSizing;
 
         if (onStart)
             NextLine();
@@ -67,19 +86,29 @@ public class DialogueDisplay : MonoBehaviour
     void Update()
     {
         delayTimer = Mathf.Max(0, delayTimer - Time.deltaTime);
-        if (Input.GetMouseButtonDown(0) && delayTimer <= 0)
+    }
+
+    public void OnLineChange(InputAction.CallbackContext context)
+    {
+        if (delayTimer <= 0)
             NextLine();
     }
 
     void NextLine()
     {
+        if (!inkStory.canContinue && inkStory.currentChoices.Count <= 0 && !dialoguePanel.activeSelf)
+            return;
+
+        dialogueBox.fontSize = size0;
+        dialogueBox.enableAutoSizing = autoSize0;
+
         currentLine++;
-        if (currentLine >= 0 && currentLine < lines.Length)
+        if (inkStory.canContinue)
         {
             if (lockMovement && playerScript.canMove)
                 playerScript.canMove = false;
 
-            string line = lines[currentLine];
+            string line = inkStory.Continue();
             if (line.Length > 0)
             {
                 string speaker = speakerBox.text;
@@ -88,6 +117,18 @@ public class DialogueDisplay : MonoBehaviour
                 {
                     speaker = line.Substring(0, line.IndexOf(">>"));
                     dialogue = line.Substring(line.IndexOf(">>") + 2);
+                }
+                if (dialogue.StartsWith('<') && dialogue.Contains('>'))
+                {
+                    string size = dialogue.Substring(1, dialogue.IndexOf('>') - 1);
+                    float sizeF;
+                    if (float.TryParse(size, out sizeF))
+                    {
+                        dialogue = dialogue.Substring(dialogue.IndexOf('>') + 1);
+
+                        dialogueBox.enableAutoSizing = false;
+                        dialogueBox.fontSize = sizeF;
+                    }
                 }
 
                 speakerBox.text = speaker;
@@ -103,6 +144,10 @@ public class DialogueDisplay : MonoBehaviour
             else if (dialoguePanel.activeSelf)
                 dialoguePanel.SetActive(false);
         }
+        else if (inkStory.currentChoices.Count > 0)
+        {
+
+        }
         else
         {
             if (lockMovement && !playerScript.canMove)
@@ -111,12 +156,11 @@ public class DialogueDisplay : MonoBehaviour
             if (dialoguePanel.activeSelf)
                 dialoguePanel.SetActive(false);
 
-            if (currentLine == lines.Length)
-                onEnd.Invoke();
+            onEnd.Invoke();
         }
 
         delayTimer = delay;
     }
 
-    public void LoadScene(int index) => SceneManager.LoadScene(index);
+    public void LoadScene(string sceneName) => SceneManager.LoadScene(sceneName);
 }
