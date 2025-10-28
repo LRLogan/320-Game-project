@@ -61,7 +61,13 @@ public class GameManager : MonoBehaviour
 
         // Create default information JSON file
         playerData = this.gameObject.AddComponent<PlayerData>();
-        
+        return; //TEMP
+
+        // For now if the file already exists remove the file to prevent duplicates
+        if (File.Exists(filePath)) File.Delete(filePath);
+
+        // Post the file with default data to start the game off
+        PostSaveData(playerData);
     }
 
     /// <summary>
