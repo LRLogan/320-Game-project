@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     // Movement 
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 5f;
-    [SerializeField] private float runSpeed = 10f;
     private float moveAngleOffset = 45f;
     private bool isRunning = false;
 
@@ -98,7 +97,7 @@ public class Player : MonoBehaviour
         Vector3 move;
         if (isRunning)
         {
-            move = moveInput.normalized * runSpeed;
+            move = moveInput.normalized * walkSpeed * 1.7f;
         }
         else
         {
