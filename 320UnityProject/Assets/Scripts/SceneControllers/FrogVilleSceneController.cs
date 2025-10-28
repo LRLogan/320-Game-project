@@ -35,4 +35,12 @@ public class FrogVilleSceneController : MonoBehaviour
         inventoryUI.player = playerInstance.GetComponent<Player>();
     }
 
+    /// <summary>
+    /// Actions that need to happen at start time rather than awake
+    /// </summary>
+    private void Start()
+    {
+        inventoryUI.RefreshUI();
+    }
+
 }

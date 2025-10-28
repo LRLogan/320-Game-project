@@ -242,6 +242,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b70dca2b-125c-4eb3-b360-6bfed0fe66cf
     m_ActionName: 'Gameplay/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7956713884062744753}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnSetRun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ebe9c827-d91a-4365-9a3b-81b9a39a1247
+    m_ActionName: 'Gameplay/Run[/Keyboard/shift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
