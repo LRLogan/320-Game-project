@@ -12,8 +12,9 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
     [SerializeField] private GameObject infoPannelPrefab;
     [SerializeField] private EventSystem eventSystem;
     private Canvas canvas;
+    private InventoryManager inventoryUI;
 
-    private void Start()
+    private void Awake()
     {
         // Find the persistent canvas
         canvas = GameObject.Find("Canvas")?.GetComponent<Canvas>();
@@ -46,5 +47,11 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
         UIController uiController = eventSystem.GetComponent<UIController>();
         uiController.infoBox = infoPannelInstance.GetComponentInChildren<TextMeshProUGUI>();
         infoPannelInstance.SetActive(false);
+    }
+
+    private void Start()
+    {
+        inventoryUI = FindFirstObjectByType<InventoryManager>();
+        inventoryUI.RefreshUI();
     }
 }

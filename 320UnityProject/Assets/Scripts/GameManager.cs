@@ -1,9 +1,12 @@
+using JetBrains.Annotations;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Networking;
+using System.IO;
 using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     // Player
     public Player player;
+    private static PlayerData playerData;
 
     [SerializeField] private string startingSceneName;
 
@@ -54,6 +58,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(startingSceneName);
 
         // Create default information JSON file
+        playerData = this.gameObject.AddComponent<PlayerData>();
+        
     }
 
     /// <summary>
@@ -63,7 +69,8 @@ public class GameManager : MonoBehaviour
     {
         // Get the local JSON file 
         SceneManager.LoadScene(startingSceneName); // THIS LINE IS TEMP WHILE JSON LOGIC IS NOT DONE
-        // Assign vars like position from JSON
+
+        GetSaveData(Path.Combine(Application.streamingAssetsPath, "PlayerSaveData"));
     }
 
     private async Task<bool> GetSaveData(string pathToFile)
@@ -79,6 +86,7 @@ public class GameManager : MonoBehaviour
             if(webRequest.result == UnityWebRequest.Result.Success)
             {
                 string data = webRequest.downloadHandler.text;
+                playerData = JsonUtility.FromJson<PlayerData>(data);
                 return true;
             }
             else
@@ -86,6 +94,51 @@ public class GameManager : MonoBehaviour
                 return false;
             }
         }
+    }
+
+    /// <summary>
+    /// Setting up the post request
+    /// </summary>
+    /// <param name="url">where to send the data</param>
+    /// <param name="jsonData">json data</param>
+    /// <returns></returns>
+    private async Task AsyncPostSetUp(string url, string json)
+    {
+        using (UnityWebRequest webRequest = new UnityWebRequest(url, "POST"))
+        {
+            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+            webRequest.uploadHandler = new UploadHandlerRaw(jsonToSend);
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+
+            UnityWebRequestAsyncOperation operation = webRequest.SendWebRequest();
+            while (!operation.isDone)
+                await Task.Yield();
+
+            if (webRequest.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log("POST ERROR: " + webRequest.error);
+            }
+            else
+            {
+                Debug.Log("POST Success");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Starts the corutine for sending json data
+    /// </summary>
+    /// <param name="thisPlayer">the player whos data will be set</param>
+    /// <returns></returns>
+    public async void PostSaveData(PlayerData thisPlayer)
+    {
+        Debug.Log("Called PostSaveData in GameManager");
+        // Serializing data to send back
+        string json = JsonConvert.SerializeObject(thisPlayer);
+        Debug.Log("Json: " + json);
+
+        await AsyncPostSetUp("PATH", json);
     }
 
     /// <summary>
