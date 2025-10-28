@@ -7,5 +7,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerData : MonoBehaviour
 {
-    
+    public Vector3 playerPos;
+    public string curPuzzleName;
+    public string[] inventoryItems;
 }
