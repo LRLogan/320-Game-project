@@ -75,6 +75,7 @@ public class interactArea : MonoBehaviour
             if(script.canPickup)
             {
                 playerScript.AddToInventory(other.gameObject);
+                DontDestroyOnLoad(other.gameObject);
                 
                 other.gameObject.transform.position = new Vector3(100, 100, 100);
             }
@@ -92,6 +93,7 @@ public class interactArea : MonoBehaviour
                         Debug.Log(script.endpointDialogue);
                         GameObject temp = playerScript.GetInventory()[i];
                         playerScript.GetInventory().RemoveAt(i);
+                        Debug.Log($"Destroying {temp.name} in inventory at slot: " + i);
                         Destroy(temp);
                         Destroy(other.gameObject);
                         pickedUp=true;

@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
     public InventoryManager inventoryUI;
-    private  List<GameObject> inventory;
+    [SerializeField] private  List<GameObject> inventory;
     public bool isInside = false;
     public Vector3 posBeforeSceneChange;
 

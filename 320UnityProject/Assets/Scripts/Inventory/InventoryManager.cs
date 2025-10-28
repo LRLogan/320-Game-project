@@ -27,6 +27,7 @@ public class InventoryManager : MonoBehaviour
 
     public void RefreshUI()
     {
+        Debug.Log("Refresh UI called!");
         // Clear old UI items (but not slots)
         foreach (Transform child in inventoryGrid)
         {
