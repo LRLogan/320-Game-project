@@ -11,6 +11,7 @@ public class CameraRotationTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             cameraController.SetCameraTarget(roomOffset, roomRotation);
+            other.GetComponent<Player>().rotateControls = true;
         }
     }
 
@@ -19,6 +20,7 @@ public class CameraRotationTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             cameraController.ResetCamera();
+            other.GetComponent<Player>().rotateControls = false;
         }
     }
 }

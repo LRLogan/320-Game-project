@@ -7,5 +7,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerData : MonoBehaviour
 {
-    
+    public Vector3 playerPos = Vector3.zero;
+    public string curPuzzleName = "NO PUZZLE ADDED";
+    public string[] inventoryItems = new string[10];
 }

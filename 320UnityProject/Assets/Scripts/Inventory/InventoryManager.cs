@@ -23,6 +23,11 @@ public class InventoryManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if(player == null)
+        {
+           // player = GameObject
+ 
+        }
     }
 
     public void RefreshUI()

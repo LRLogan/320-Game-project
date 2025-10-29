@@ -19,7 +19,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         parentAfterDrag = transform.parent;
 
         // Move to top-level canvas so it can follow mouse properly
-        transform.SetParent(transform.root);
+        transform.SetParent(GetComponentInParent<Canvas>().transform, false);
+        transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         transform.SetAsLastSibling();
     }
 
@@ -35,6 +36,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // Place back into whatever slot OnDrop assigned
         transform.SetParent(parentAfterDrag, false);
         transform.localPosition = Vector3.zero;
+        transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
     }
 
     public void InitialiseItem(interactableObject newItem)

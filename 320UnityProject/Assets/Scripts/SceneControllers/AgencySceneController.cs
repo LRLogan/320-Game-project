@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class FrogVilleSceneController : MonoBehaviour
+public class AgencySceneController : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject playerSpawnPoint;
@@ -15,7 +14,7 @@ public class FrogVilleSceneController : MonoBehaviour
 
     private void Awake()
     {
-       
+
         try
         {
             playerInstance = FindAnyObjectByType<Player>().gameObject;
@@ -29,10 +28,9 @@ public class FrogVilleSceneController : MonoBehaviour
             {
                 Debug.Log("Player creation called in scene controller");
                 playerInstance = Instantiate(playerPrefab, playerSpawnPoint.transform.position, Quaternion.identity);
-               
+
             }
         }
-        inventoryUI = FindAnyObjectByType<InventoryManager>();
         playerInstance.GetComponent<Player>().inventoryUI = inventoryUI;
         Debug.Log(playerInstance.name);
         if (camera.GetComponent<sCameraInterior>() != null)
@@ -43,20 +41,14 @@ public class FrogVilleSceneController : MonoBehaviour
         {
             camera.GetComponent<sSimpleCamera>().player = playerInstance.transform;
         }
-       
 
-        interactArea.playerScript = playerInstance.GetComponent<Player>();
+
+        //interactArea.playerScript = playerInstance.GetComponent<Player>();
         inventoryUI.player = playerInstance.GetComponent<Player>();
-       
     }
-
-    /// <summary>
-    /// Actions that need to happen at start time rather than awake
-    /// </summary>
-    private void Start()
+        // Start is called before the first frame update
+    void Start()
     {
         inventoryUI.RefreshUI();
-        playerInstance.GetComponent<Player>().rotateControls = false;
     }
-
 }

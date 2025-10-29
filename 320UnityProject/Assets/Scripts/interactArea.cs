@@ -65,19 +65,24 @@ public class interactArea : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
+        
         pickedUp = false;
         //if object is interactible get its script
         if (other.gameObject.GetComponent<interactableObject>() != null)
         {
          
             interactableObject script = other.gameObject.GetComponent<interactableObject>();
+            script.wasInteracted = true;
             //if you can pick it up add to inventory
             if(script.canPickup)
             {
                 playerScript.AddToInventory(other.gameObject);
                 DontDestroyOnLoad(other.gameObject);
+                if(!script.destroyOnPickup)
+                {
+                    other.gameObject.transform.position = new Vector3(100, 100, 100);
+                }
                 
-                other.gameObject.transform.position = new Vector3(100, 100, 100);
             }
             //if endpoint find item in inventory and remove it
             if(script.isEndpoint)
@@ -104,7 +109,7 @@ public class interactArea : MonoBehaviour
             //if dialogue send it to infoBox and debug
             if (script.isDialogue && !pickedUp)
             {
-                InfoText(script.dialogue);
+               // InfoText(script.dialogue);
                 Debug.Log(script.dialogue);
             }
          
@@ -119,6 +124,22 @@ public class interactArea : MonoBehaviour
         {
 
             other.gameObject.GetComponent<RespawnButton>().Reset();
+        }
+        
+        if (other.gameObject.GetComponent<MultiBlockPuzzle>() != null)
+        {
+           
+            other.gameObject.GetComponent<MultiBlockPuzzle>().Interacted();
+        }
+        if (other.gameObject.GetComponent<findAllPuzzle>() != null)
+        {
+
+            other.gameObject.GetComponent<findAllPuzzle>().Interacted();
+        }
+        if (other.gameObject.GetComponent<DoorUnlock>() != null)
+        {
+
+            other.gameObject.GetComponent<DoorUnlock>().Interact();
         }
 
     }
