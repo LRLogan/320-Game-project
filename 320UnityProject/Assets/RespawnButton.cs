@@ -13,7 +13,7 @@ public class RespawnButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Reset();
+       Reset();
     }
 
     // Update is called once per frame
@@ -24,15 +24,19 @@ public class RespawnButton : MonoBehaviour
 
     public void Reset()
     {
+        
         if (theObject != null)
         {
+            Debug.Log("a");
             Destroy(theObject);
             theObject = Instantiate(puzzleObject
           , position,
           Quaternion.identity);
+            
         }
         else if (!initialized)
         {
+            Debug.Log("b");
             theObject = Instantiate(puzzleObject
           , position,
           Quaternion.identity);

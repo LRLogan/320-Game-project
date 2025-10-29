@@ -154,7 +154,6 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   canMove: 1
   walkSpeed: 5
-  runSpeed: 12
   jumpForce: 7
   stage1Multiplier: 1.2
   stage2Multiplier: 1.6
@@ -166,7 +165,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  inventoryUI: {fileID: 0}
+  inventoryUI: {fileID: 2842328830777408437, guid: 74ac3245214b8f7489e0c1c24b2c0bd2, type: 3}
+  inventory: []
   isInside: 0
   posBeforeSceneChange: {x: 0, y: 0, z: 0}
 --- !u!114 &1880261290455235156

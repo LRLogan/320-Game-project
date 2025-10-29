@@ -15,24 +15,38 @@ public class FrogVilleSceneController : MonoBehaviour
 
     private void Awake()
     {
+       
         try
         {
             playerInstance = FindAnyObjectByType<Player>().gameObject;
+            Debug.Log(playerInstance.GetComponent<Player>().posBeforeSceneChange);
             playerInstance.transform.position = playerInstance.GetComponent<Player>().posBeforeSceneChange;
         }
         catch
         {
+
             if (playerInstance == null)
             {
                 Debug.Log("Player creation called in scene controller");
                 playerInstance = Instantiate(playerPrefab, playerSpawnPoint.transform.position, Quaternion.identity);
+               
             }
-        }
-        
+        }  
         playerInstance.GetComponent<Player>().inventoryUI = inventoryUI;
-        camera.GetComponent<sSimpleCamera>().player = playerInstance.transform;
+        Debug.Log(playerInstance.name);
+        if (camera.GetComponent<sCameraInterior>() != null)
+        {
+            camera.GetComponent<sCameraInterior>().player = playerInstance.transform;
+        }
+        else
+        {
+            camera.GetComponent<sSimpleCamera>().player = playerInstance.transform;
+        }
+       
+
         interactArea.playerScript = playerInstance.GetComponent<Player>();
         inventoryUI.player = playerInstance.GetComponent<Player>();
+
     }
 
     /// <summary>
