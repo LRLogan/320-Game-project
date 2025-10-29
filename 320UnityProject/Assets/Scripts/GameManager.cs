@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     // Puzzle / progress tracking
     private Puzzle curPuzzle;
     private PuzzleTracker puzzleTracker;    // Attach to this game object 
+    private string filePath;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         puzzleTracker = GetComponent<PuzzleTracker>();
+        filePath = Path.Combine(Application.streamingAssetsPath, "PlayerSaveData");
     }
 
     // Update is called once per frame
@@ -59,7 +61,16 @@ public class GameManager : MonoBehaviour
 
         // Create default information JSON file
         playerData = this.gameObject.AddComponent<PlayerData>();
-        
+        return; //TEMP
+
+        // For now if the file already exists remove the file to prevent duplicates
+        if (File.Exists(filePath)) File.Delete(filePath);
+
+        // Assign default values
+        // TODO
+
+        // Post the file with default data to start the game off
+        PostSaveData(playerData);
     }
 
     /// <summary>
@@ -69,8 +80,14 @@ public class GameManager : MonoBehaviour
     {
         // Get the local JSON file 
         SceneManager.LoadScene(startingSceneName); // THIS LINE IS TEMP WHILE JSON LOGIC IS NOT DONE
+        return; // ALSO TEMP SO CODE BELOW DOESNT RUN
 
-        GetSaveData(Path.Combine(Application.streamingAssetsPath, "PlayerSaveData"));
+        // Checks for null file
+        if (File.Exists(filePath))
+            GetSaveData(Path.Combine(Application.streamingAssetsPath, "PlayerSaveData"));
+        else
+            NewGame();
+
     }
 
     private async Task<bool> GetSaveData(string pathToFile)
@@ -138,7 +155,7 @@ public class GameManager : MonoBehaviour
         string json = JsonConvert.SerializeObject(thisPlayer);
         Debug.Log("Json: " + json);
 
-        await AsyncPostSetUp("PATH", json);
+        await AsyncPostSetUp(filePath, json);
     }
 
     /// <summary>
