@@ -65,12 +65,14 @@ public class interactArea : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
+        
         pickedUp = false;
         //if object is interactible get its script
         if (other.gameObject.GetComponent<interactableObject>() != null)
         {
          
             interactableObject script = other.gameObject.GetComponent<interactableObject>();
+            script.wasInteracted = true;
             //if you can pick it up add to inventory
             if(script.canPickup)
             {
@@ -104,7 +106,7 @@ public class interactArea : MonoBehaviour
             //if dialogue send it to infoBox and debug
             if (script.isDialogue && !pickedUp)
             {
-                InfoText(script.dialogue);
+               // InfoText(script.dialogue);
                 Debug.Log(script.dialogue);
             }
          
@@ -123,8 +125,13 @@ public class interactArea : MonoBehaviour
         
         if (other.gameObject.GetComponent<MultiBlockPuzzle>() != null)
         {
-            
+           
             other.gameObject.GetComponent<MultiBlockPuzzle>().Interacted();
+        }
+        if (other.gameObject.GetComponent<findAllPuzzle>() != null)
+        {
+
+            other.gameObject.GetComponent<findAllPuzzle>().Interacted();
         }
 
     }
