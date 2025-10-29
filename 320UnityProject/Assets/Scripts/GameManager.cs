@@ -66,6 +66,9 @@ public class GameManager : MonoBehaviour
         // For now if the file already exists remove the file to prevent duplicates
         if (File.Exists(filePath)) File.Delete(filePath);
 
+        // Assign default values
+        // TODO
+
         // Post the file with default data to start the game off
         PostSaveData(playerData);
     }
