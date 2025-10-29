@@ -173,6 +173,7 @@ public class Player : MonoBehaviour
         Vector3 localInput = new Vector3(rawInput.x, 0, rawInput.y);
         Quaternion offsetRot;
 
+        // Rotate controls when the cam angle switches 
         if (rotateControls)
         {
             offsetRot = Quaternion.Euler(0, moveAngleOffset * 3 - 15, 0);
