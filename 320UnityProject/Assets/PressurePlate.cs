@@ -6,6 +6,7 @@ public class PressurePlate : MonoBehaviour
 {
     private bool entered = false;
     [SerializeField] bool destroy;
+    [SerializeField] GameObject objectDestroy;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,10 @@ public class PressurePlate : MonoBehaviour
             {
                 Destroy(other.gameObject);
                 Destroy(gameObject);
+            }
+            if(objectDestroy != null)
+            {
+                Destroy(objectDestroy);
             }
         }
     }

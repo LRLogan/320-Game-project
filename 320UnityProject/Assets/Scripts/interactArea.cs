@@ -78,8 +78,11 @@ public class interactArea : MonoBehaviour
             {
                 playerScript.AddToInventory(other.gameObject);
                 DontDestroyOnLoad(other.gameObject);
+                if(!script.destroyOnPickup)
+                {
+                    other.gameObject.transform.position = new Vector3(100, 100, 100);
+                }
                 
-                other.gameObject.transform.position = new Vector3(100, 100, 100);
             }
             //if endpoint find item in inventory and remove it
             if(script.isEndpoint)
@@ -132,6 +135,11 @@ public class interactArea : MonoBehaviour
         {
 
             other.gameObject.GetComponent<findAllPuzzle>().Interacted();
+        }
+        if (other.gameObject.GetComponent<DoorUnlock>() != null)
+        {
+
+            other.gameObject.GetComponent<DoorUnlock>().Interact();
         }
 
     }
