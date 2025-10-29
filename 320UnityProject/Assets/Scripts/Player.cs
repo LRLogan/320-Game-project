@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float walkSpeed = 5f;
     private float moveAngleOffset = 45f;
     private bool isRunning = false;
+    public bool rotateControls = false;
 
     [Header("Jumping")]
     [SerializeField] private float jumpForce = 7f;
@@ -169,10 +170,18 @@ public class Player : MonoBehaviour
             return;
 
         Vector2 rawInput = context.ReadValue<Vector2>();
-       
         Vector3 localInput = new Vector3(rawInput.x, 0, rawInput.y);
-        
-        Quaternion offsetRot = Quaternion.Euler(0, moveAngleOffset, 0);
+        Quaternion offsetRot;
+
+        if (rotateControls)
+        {
+            offsetRot = Quaternion.Euler(0, moveAngleOffset * 3 - 15, 0);
+        }
+        else
+        {
+            offsetRot = Quaternion.Euler(0, moveAngleOffset, 0);
+        }
+
         moveInput = offsetRot * localInput;
         if(moveInput != Vector3.zero)
         {
