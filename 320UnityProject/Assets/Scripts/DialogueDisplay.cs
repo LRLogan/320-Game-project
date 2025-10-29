@@ -88,7 +88,7 @@ public class DialogueDisplay : MonoBehaviour
         delayTimer = Mathf.Max(0, delayTimer - Time.deltaTime);
     }
 
-    public void OnLineChange(InputAction.CallbackContext context)
+    public void NextLine(InputAction.CallbackContext context)
     {
         if (delayTimer <= 0)
             NextLine();

@@ -51,6 +51,9 @@ public class Player : MonoBehaviour
     public bool isInside = false;
     public Vector3 posBeforeSceneChange;
 
+    // Dialogue
+    public DialogueDisplay dialogueDisplay;
+
     private void Awake()
     {
         if (playerInstance == null)
@@ -148,6 +151,13 @@ public class Player : MonoBehaviour
             isInteracting = false;
         }
 
+    }
+
+    public void OnNextLine(InputAction.CallbackContext context)
+    {
+        if (!dialogueDisplay)
+            return;
+        dialogueDisplay.NextLine(context);
     }
 
     public void OnSetRun(InputAction.CallbackContext context)

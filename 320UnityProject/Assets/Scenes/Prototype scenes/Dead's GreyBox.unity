@@ -3080,6 +3080,7 @@ MonoBehaviour:
   onEnd:
     m_PersistentCalls:
       m_Calls: []
+  inkScript: {fileID: 4900000, guid: f1663b04fbd74a64bb7738cfba602f9f, type: 3}
   lines:
   - YOU>>So this must be the victim...
   - "Guess I\u2019d better look around for some clues."
