@@ -19,10 +19,11 @@ public class interactArea : MonoBehaviour
     private const float infoFadeTime = 1;
 
     [SerializeField] private GameObject infoPanel;
-    private TMP_Text infoBox;
+    [SerializeField] private TextMeshProUGUI infoBox;
     private Image infoImage;
     private float infoAlpha;
     private float infoTimer = 0;
+    private bool infoTiming = false;
 
     public Player playerScript;
     private bool pickedUp;
@@ -31,11 +32,11 @@ public class interactArea : MonoBehaviour
     private void Awake()
     {      
         DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded += InfoSetup;
+        //SceneManager.sceneLoaded += InfoSetup;
     }
     void Start()
     {
-        InfoSetup();
+        //InfoSetup();
 
         playerScript = FindAnyObjectByType<Player>();
     }
@@ -43,7 +44,7 @@ public class interactArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (infoPanel)
+        if (infoTiming && infoPanel != null)
         {
             if (infoTimer > 0)
             {
@@ -56,9 +57,10 @@ public class interactArea : MonoBehaviour
             }
             else if (infoPanel.activeSelf)
             {
-                infoPanel.SetActive(false);
                 infoImage.color += new Color(0, 0, 0, infoAlpha - infoImage.color.a);
                 infoBox.color += new Color(0, 0, 0, 1 - infoBox.color.a);
+                infoPanel.SetActive(false);
+                infoTiming = false;
             }
         }
     }
@@ -146,19 +148,18 @@ public class interactArea : MonoBehaviour
 
     private void InfoSetup(Scene scene, LoadSceneMode mode)
     {
-        InfoSetup();
+        InfoSetup(null);
     }
-    private void InfoSetup()
+    public void InfoSetup(GameObject infoPanelInstance)
     {
-        infoBox = GameObject.FindWithTag("UIController").GetComponent<UIController>().infoBox;
-        if (!infoBox)
+        infoPanel = infoPanelInstance;
+        if (infoPanel == null)
             return;
 
-        infoPanel = infoBox.transform.parent.gameObject;
+        infoBox = infoPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         infoImage = infoPanel.GetComponent<Image>();
         infoAlpha = infoImage.color.a;
-        if (infoPanel.activeSelf)
-            infoPanel.SetActive(false);
+        infoPanel.SetActive(false);
     }
 
     private void InfoText(string text)
@@ -166,9 +167,9 @@ public class interactArea : MonoBehaviour
         if (infoPanel == null)
             return;
 
-        if (!infoPanel.activeSelf)
-            infoPanel.SetActive(true);
+        infoPanel.SetActive(true);
         infoBox.text = text;
         infoTimer = infoTime + infoFadeTime;
+        infoTiming = true;
     }
 }
