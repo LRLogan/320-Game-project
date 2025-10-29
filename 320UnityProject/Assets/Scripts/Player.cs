@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     // Movement 
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 5f;
-    [SerializeField] private float runSpeed = 12f;
     private float moveAngleOffset = 45f;
+    private bool isRunning = false;
 
     [Header("Jumping")]
     [SerializeField] private float jumpForce = 7f;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
     public InventoryManager inventoryUI;
-    private  List<GameObject> inventory;
+    [SerializeField] private  List<GameObject> inventory;
     public bool isInside = false;
     public Vector3 posBeforeSceneChange;
 
@@ -95,7 +95,15 @@ public class Player : MonoBehaviour
             return;
 
         // Player movement
-        Vector3 move = moveInput.normalized * walkSpeed;
+        Vector3 move;
+        if (isRunning)
+        {
+            move = moveInput.normalized * walkSpeed * 1.7f;
+        }
+        else
+        {
+            move = moveInput.normalized * walkSpeed;
+        }
         Vector3 newVelocity = new Vector3(move.x, rb.velocity.y, move.z);
         rb.velocity = newVelocity;
 
@@ -143,7 +151,17 @@ public class Player : MonoBehaviour
 
     }
 
-
+    public void OnSetRun(InputAction.CallbackContext context)
+    {
+        if(context.started || context.performed)
+        {
+            isRunning = true;
+        }
+        else
+        {
+            isRunning = false;
+        }
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {

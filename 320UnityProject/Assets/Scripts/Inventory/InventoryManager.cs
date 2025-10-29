@@ -17,8 +17,6 @@ public class InventoryManager : MonoBehaviour
         if (inventoryUIInstance == null)
         {
             inventoryUIInstance = this;
-
-            // This will keep the entire canvas
             DontDestroyOnLoad(gameObject.transform.root.gameObject);
         }
         else if (inventoryUIInstance != this)
@@ -27,36 +25,64 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-
-    }
-
     public void RefreshUI()
     {
-        // Clear old UI elements
+        Debug.Log("Refresh UI called!");
+        // Clear old UI items (but not slots)
         foreach (Transform child in inventoryGrid)
         {
-            Destroy(child.gameObject);
+            if (!child.GetComponent<InventorySlot>())
+            {
+                Destroy(child.gameObject);
+            }
+            else
+            {
+                // Clear any items inside slots before repopulating
+                foreach (Transform item in child)
+                {
+                    Destroy(item.gameObject);
+                }
+            }
         }
+
         uiItems.Clear();
 
         // Create UI item for each GameObject in player's inventory
         foreach (GameObject obj in player.GetInventory())
         {
             interactableObject itemData = obj.GetComponent<interactableObject>();
-            GameObject newUIItem = Instantiate(inventoryItemPrefab, inventoryGrid);
-            InventoryItem uiItemScript = newUIItem.GetComponent<InventoryItem>();
-            uiItemScript.InitialiseItem(itemData);
+            Transform emptySlot = GetFirstEmptySlot();
 
-            uiItems.Add(uiItemScript);
+            if (emptySlot != null)
+            {
+                GameObject newUIItem = Instantiate(inventoryItemPrefab, emptySlot);
+                InventoryItem uiItemScript = newUIItem.GetComponent<InventoryItem>();
+                uiItemScript.InitialiseItem(itemData);
+                uiItems.Add(uiItemScript);
+            }
+            else
+            {
+                Debug.LogWarning("No empty inventory slot available!");
+            }
         }
     }
 
-    // Method to update Player inventory order based on UI
+    private Transform GetFirstEmptySlot()
+    {
+        foreach (Transform slot in inventoryGrid)
+        {
+            if (slot.GetComponent<InventorySlot>() && slot.childCount == 0)
+            {
+                return slot;
+            }
+        }
+        return null; // No empty slot
+    }
+
     public void SyncInventoryOrder()
     {
         player.GetInventory().Clear();
+
         foreach (Transform slot in inventoryGrid)
         {
             if (slot.childCount > 0)

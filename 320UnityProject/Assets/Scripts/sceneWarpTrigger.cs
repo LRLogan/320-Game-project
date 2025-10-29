@@ -12,11 +12,13 @@ public class SceneWarpTrigger : MonoBehaviour
 
     private GameManager gameManager;
     private Player player;
+    private InventoryManager inventoryManager;
 
     private void Start()
     {
         //gameManager = FindFirstObjectByType<GameManager>();   
         player = FindFirstObjectByType<Player>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();  
     }
 
     void Update()
