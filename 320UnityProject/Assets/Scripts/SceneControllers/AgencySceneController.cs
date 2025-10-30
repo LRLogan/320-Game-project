@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AgencySceneController : MonoBehaviour
 {
@@ -11,9 +12,12 @@ public class AgencySceneController : MonoBehaviour
     [SerializeField] private InventoryManager inventoryUI;
     [SerializeField] private Camera camera;
     [SerializeField] private interactArea interactArea;
+    [SerializeField] private GameObject pauseMenu;
+    private GameManager gameManager;
 
     private void Awake()
     {
+        gameManager = FindAnyObjectByType<GameManager>();
 
         try
         {
@@ -45,6 +49,12 @@ public class AgencySceneController : MonoBehaviour
 
         //interactArea.playerScript = playerInstance.GetComponent<Player>();
         inventoryUI.player = playerInstance.GetComponent<Player>();
+
+        // Setting up the quit game om click
+        gameManager.pauseMenu = pauseMenu;
+        InputAction openMenuAction = playerInstance.GetComponent<PlayerInput>().actions["OpenMenu"];
+
+        openMenuAction.performed += gameManager.OnOpenMenu;
     }
         // Start is called before the first frame update
     void Start()

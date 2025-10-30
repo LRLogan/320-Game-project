@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
     private Puzzle curPuzzle;
     private PuzzleTracker puzzleTracker;    // Attach to this game object 
     private string filePath;
+
+    public GameObject pauseMenu;
+    private bool pauseMenuActive = false;
 
     private void Awake()
     {
@@ -180,9 +184,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-#region Not used for scene transition atm
+    public void OnOpenMenu(InputAction.CallbackContext context)
+    {
+        pauseMenuActive = !pauseMenuActive;
+        pauseMenu.SetActive(pauseMenuActive);
+    }
 
-public void EnterIndoorScene(string sceneName)
+    #region Not used for scene transition atm
+
+    public void EnterIndoorScene(string sceneName)
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
