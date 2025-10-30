@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class DeadsGreyBoxSceneController : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueUIPrefab;
-    [SerializeField] private GameObject infoPannelPrefab;
     [SerializeField] private EventSystem eventSystem;
     private Canvas canvas;
     private InventoryManager inventoryUI;
@@ -39,14 +38,6 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
         dpDisplay.dialogueBox = textsInChild[1];
         dpDisplay.speakerBox = textsInChild[0];
 
-        // Info pannel / UI controller
-        GameObject infoPannelInstance = Instantiate(infoPannelPrefab, canvas.transform);
-        dialogueUIInstance.layer = LayerMask.NameToLayer("UI");
-        dialogueUIInstance.SetActive(true);
-
-        UIController uiController = eventSystem.GetComponent<UIController>();
-        uiController.infoBox = infoPannelInstance.GetComponentInChildren<TextMeshProUGUI>();
-        infoPannelInstance.SetActive(false);
     }
 
     private void Start()
