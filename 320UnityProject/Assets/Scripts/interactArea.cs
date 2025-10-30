@@ -111,7 +111,7 @@ public class interactArea : MonoBehaviour
             //if dialogue send it to infoBox and debug
             if (script.isDialogue && !pickedUp)
             {
-               // InfoText(script.dialogue);
+                InfoText(script.dialogue);
                 Debug.Log(script.dialogue);
             }
          
