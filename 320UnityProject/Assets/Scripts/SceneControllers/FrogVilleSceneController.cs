@@ -12,6 +12,7 @@ public class FrogVilleSceneController : MonoBehaviour
     [SerializeField] private InventoryManager inventoryUI;
     [SerializeField] private Camera camera;
     [SerializeField] private interactArea interactArea;
+    public static bool firstLoad = true;
 
     private void Awake()
     {
@@ -19,8 +20,16 @@ public class FrogVilleSceneController : MonoBehaviour
         try
         {
             playerInstance = FindAnyObjectByType<Player>().gameObject;
-            Debug.Log(playerInstance.GetComponent<Player>().posBeforeSceneChange);
-            playerInstance.transform.position = playerInstance.GetComponent<Player>().posBeforeSceneChange;
+
+            if (firstLoad)
+            {
+                playerInstance.transform.position = playerSpawnPoint.transform.position;
+                firstLoad = false;
+            }
+            else
+            {
+                playerInstance.transform.position = playerInstance.GetComponent<Player>().posInOverworldBeforeSceneChange;
+            }
         }
         catch
         {

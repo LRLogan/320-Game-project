@@ -39,7 +39,8 @@ public class SceneWarpTrigger : MonoBehaviour
             {
                 if (sceneToLoad != "FrogVille")
                 {
-                    player.posBeforeSceneChange = player.transform.position;
+                    player.posInOverworldBeforeSceneChange = player.transform.position;
+                    Debug.Log($"Setting prev pos: {player.posInOverworldBeforeSceneChange}");     
                 }
                 player.posBeforeSceneChange = positionToLoad;
                 SceneManager.LoadScene(sceneToLoad);
