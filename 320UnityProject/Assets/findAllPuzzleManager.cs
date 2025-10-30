@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class findAllPuzzleManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class findAllPuzzleManager : MonoBehaviour
     [SerializeField] int size;
     public int numberInteracted = 0;
     [SerializeField] interactableObject clothes;
+    [SerializeField] UnityEvent onFound;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,11 @@ public class findAllPuzzleManager : MonoBehaviour
         if(numberInteracted >= size)
         {
             clothes.canPickup = true;
+            if (!clothes.isEvent)
+            {
+                clothes.isEvent = true;
+                onFound.Invoke();
+            }
         }
     }
 

@@ -57,8 +57,10 @@ public class DialogueDisplay : MonoBehaviour
     public Player playerScript;
     GameObject dialoguePanel;
     GameObject speakerPanel;
+    GameObject infoPanel;
     float delayTimer = 0;
     Story inkStory;
+    bool paused = false;
     int currentLine = -1;
 
     float size0;
@@ -70,6 +72,7 @@ public class DialogueDisplay : MonoBehaviour
         playerScript = FindAnyObjectByType<Player>();
         dialoguePanel = dialogueBox.transform.parent.gameObject;
         speakerPanel = speakerBox.transform.parent.gameObject;
+        infoPanel = GetComponent<UIController>().infoBox.transform.parent.gameObject;
 
         inkStory = new Story(inkScript.text);
 
@@ -96,7 +99,7 @@ public class DialogueDisplay : MonoBehaviour
 
     void NextLine()
     {
-        if (!inkStory.canContinue && inkStory.currentChoices.Count <= 0 && !dialoguePanel.activeSelf)
+        if (paused || (!inkStory.canContinue && inkStory.currentChoices.Count <= 0 && !dialoguePanel.activeSelf))
             return;
 
         dialogueBox.fontSize = size0;
@@ -140,26 +143,53 @@ public class DialogueDisplay : MonoBehaviour
                 if (!dialoguePanel.activeSelf)
                     dialoguePanel.SetActive(true);
                 dialogueBox.text = dialogue;
+
+                if (infoPanel.activeSelf)
+                    infoPanel.SetActive(false);
             }
             else if (dialoguePanel.activeSelf)
                 dialoguePanel.SetActive(false);
         }
         else if (inkStory.currentChoices.Count > 0)
         {
+            List<Choice> choices = inkStory.currentChoices;
+            if (choices.Count == 1 && choices[0].text == "0")
+            {
+                HideDialogue();
+                paused = true;
+            }
+            else
+            {
 
+            }
         }
         else
         {
-            if (lockMovement && !playerScript.canMove)
-                playerScript.canMove = true;
-
-            if (dialoguePanel.activeSelf)
-                dialoguePanel.SetActive(false);
+            HideDialogue();
 
             onEnd.Invoke();
         }
 
         delayTimer = delay;
+    }
+
+    void HideDialogue()
+    {
+        if (lockMovement && !playerScript.canMove)
+            playerScript.canMove = true;
+
+        if (dialoguePanel.activeSelf)
+            dialoguePanel.SetActive(false);
+    }
+
+    public void ChooseChoiceIndex(int index)
+    {
+        if (inkStory.currentChoices.Count <= 0)
+            return;
+
+        paused = false;
+        inkStory.ChooseChoiceIndex(index);
+        NextLine();
     }
 
     public void LoadScene(string sceneName) => SceneManager.LoadScene(sceneName);

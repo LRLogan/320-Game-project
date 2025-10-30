@@ -253,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 24963110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.6, y: 6.01, z: 4.92}
+  m_LocalPosition: {x: -17.6, y: 6, z: 4.92}
   m_LocalScale: {x: 0.2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -314,8 +314,49 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4505061064924364444, guid: e017ab7d4685dd549af610bcc5c53c20, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 64336015}
   m_SourcePrefab: {fileID: 100100000, guid: e017ab7d4685dd549af610bcc5c53c20, type: 3}
+--- !u!1 &64336014 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4505061064924364444, guid: e017ab7d4685dd549af610bcc5c53c20, type: 3}
+  m_PrefabInstance: {fileID: 64336013}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &64336015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64336014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662c9669254b92140b6ffec2e5ec6198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 0}
+  speakerBox: {fileID: 0}
+  onStart: 0
+  lockMovement: 0
+  onEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  inkScript: {fileID: 4900000, guid: 9fb30a71747196c4fb4a3a7328e1fda5, type: 3}
+  lines: []
+  playerScript: {fileID: 0}
+--- !u!114 &64336018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6511680066849145292, guid: e017ab7d4685dd549af610bcc5c53c20, type: 3}
+  m_PrefabInstance: {fileID: 64336013}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64336014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &94849184
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +392,9 @@ MonoBehaviour:
   camera: {fileID: 1124417053}
   interactArea: {fileID: 4906939340352541852, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
   pauseMenu: {fileID: 1861610662}
+  dialogueUIPrefab: {fileID: 4093843948648021414, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
+  infoPannelPrefab: {fileID: 6645276890318459487, guid: 51b4f4206bcc56c49a44f5ce7b98b561, type: 3}
+  eventSystem: {fileID: 64336018}
 --- !u!4 &94849186
 Transform:
   m_ObjectHideFlags: 0
@@ -965,6 +1009,26 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 0
   dialogue: hi
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 64336015}
+        m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
+        m_MethodName: ChooseChoiceIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 1
   sprite: {fileID: 21300000, guid: 399b33698c62e2e468f1197a607b7f66, type: 3}
@@ -1207,6 +1271,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: {fileID: 1617102607}
+  onUnlock:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 64336015}
+        m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
+        m_MethodName: ChooseChoiceIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &635303422
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1450,6 +1529,14 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: Some old cartoon is playing
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 1
   sprite: {fileID: 0}
@@ -1528,6 +1615,21 @@ MonoBehaviour:
   cameraController: {fileID: 1124417050}
   roomOffset: {x: -2, y: 6, z: 4}
   roomRotation: {x: 45, y: 120, z: 0}
+  onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 64336015}
+        m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
+        m_MethodName: ChooseChoiceIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &682447430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2219,7 +2321,7 @@ Transform:
   m_GameObject: {fileID: 788437102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -22.92, y: 7.46, z: 2.47}
+  m_LocalPosition: {x: -22.92, y: 6, z: 2.47}
   m_LocalScale: {x: 0.2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2434,6 +2536,14 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: After Everything Its still you
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 1
   sprite: {fileID: 0}
@@ -2543,6 +2653,21 @@ MonoBehaviour:
   size: 4
   numberInteracted: 0
   clothes: {fileID: 523668127}
+  onFound:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 64336015}
+        m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
+        m_MethodName: ChooseChoiceIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &973223645
 Transform:
   m_ObjectHideFlags: 0
@@ -3011,6 +3136,14 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: Theres nothing there
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 1
   sprite: {fileID: 0}
@@ -3304,6 +3437,14 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: nothing
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 1
   sprite: {fileID: 0}
@@ -3718,6 +3859,34 @@ PrefabInstance:
       propertyPath: objectDestroy
       value: 
       objectReference: {fileID: 788437102}
+    - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 64336015}
+    - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChooseChoiceIndex
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8910685907261047068, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
       propertyPath: m_Name
       value: PressurePlate
@@ -4765,6 +4934,26 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 0
   dialogue: hi
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 1
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 64336015}
+        m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
+        m_MethodName: ChooseChoiceIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   wasInteracted: 0
   id: 1
   sprite: {fileID: 0}
@@ -4877,7 +5066,7 @@ Transform:
   m_GameObject: {fileID: 1880793474}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.52, y: 7.79, z: 0.16}
+  m_LocalPosition: {x: -11.52, y: 6, z: 0.16}
   m_LocalScale: {x: 0.2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5788,6 +5977,14 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: hey there
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 1
   sprite: {fileID: 0}

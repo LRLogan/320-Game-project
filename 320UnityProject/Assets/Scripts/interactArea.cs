@@ -105,6 +105,9 @@ public class interactArea : MonoBehaviour
                         Destroy(temp);
                         Destroy(other.gameObject);
                         pickedUp=true;
+
+                        if (script.isEndpointEvent)
+                            script.onEndpoint.Invoke();
                     }
                 }
             }
@@ -114,8 +117,9 @@ public class interactArea : MonoBehaviour
                 InfoText(script.dialogue);
                 Debug.Log(script.dialogue);
             }
-         
 
+            if (script.isEvent)
+                script.onInteract.Invoke();
         }
         if (other.gameObject.GetComponent<SceneWarpTrigger>() != null)
         {
