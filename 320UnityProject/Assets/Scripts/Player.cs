@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
     [SerializeField] private  List<GameObject> inventory;
     public bool isInside = false;
     public Vector3 posBeforeSceneChange;
+    public Vector3 posInOverworldBeforeSceneChange;
 
     // Dialogue
     public DialogueDisplay dialogueDisplay;
