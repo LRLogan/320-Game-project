@@ -165,10 +165,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  inventoryUI: {fileID: 2842328830777408437, guid: 74ac3245214b8f7489e0c1c24b2c0bd2, type: 3}
+  inventoryUI: {fileID: 0}
   inventory: []
   isInside: 0
   posBeforeSceneChange: {x: 0, y: 0, z: 0}
+  dialogueDisplay: {fileID: 0}
 --- !u!114 &1880261290455235156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +259,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ebe9c827-d91a-4365-9a3b-81b9a39a1247
     m_ActionName: 'Gameplay/Run[/Keyboard/shift]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7956713884062744753}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnNextLine
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 19bb6756-c939-433b-9436-f27faec9eb02
+    m_ActionName: 'Gameplay/NextLine[/Mouse/leftButton,/Keyboard/enter]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
