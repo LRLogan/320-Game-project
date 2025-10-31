@@ -6235,7 +6235,7 @@ MonoBehaviour:
   isEndpoint: 0
   endpointDialogue: 
   isDialogue: 1
-  dialogue: hey there
+  dialogue: There's nothing on the table
   isEvent: 0
   onInteract:
     m_PersistentCalls:
