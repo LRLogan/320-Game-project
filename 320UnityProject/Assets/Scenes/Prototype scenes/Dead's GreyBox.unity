@@ -525,53 +525,6 @@ Transform:
   - {fileID: 285663186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 136.397, z: 0}
---- !u!1 &93297589
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 93297591}
-  - component: {fileID: 93297590}
-  m_Layer: 0
-  m_Name: SceneController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &93297590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93297589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce5f8a1f5c906964c9a5dc824053c180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueUIPrefab: {fileID: 4093843948648021414, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
-  infoPannelPrefab: {fileID: 6645276890318459487, guid: 51b4f4206bcc56c49a44f5ce7b98b561, type: 3}
-  eventSystem: {fileID: 2043946777}
---- !u!4 &93297591
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93297589}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.0500002, y: 5.679212, z: 6.634787}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &188645920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -811,6 +764,14 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: A couple coins, and a empty wrapper.
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 0
   sprite: {fileID: 0}
@@ -1230,6 +1191,14 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: There's only a stuffed toy on the bed
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 0
   sprite: {fileID: 0}
@@ -1391,6 +1360,14 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: Theres a couple interesting books, but no key
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 0
   sprite: {fileID: 0}
@@ -2332,6 +2309,14 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: A couple coins, and a empty wrapper.
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 0
   sprite: {fileID: 0}
@@ -2488,6 +2473,14 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: Appears to be sleeping, but there is no heartbeat.
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
   wasInteracted: 0
   id: 0
   sprite: {fileID: 0}
@@ -3387,4 +3380,4 @@ SceneRoots:
   - {fileID: 1165918067}
   - {fileID: 1046326757}
   - {fileID: 1465377629}
-  - {fileID: 93297591}
+  - {fileID: 14891216}
