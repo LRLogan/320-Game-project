@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7956713884062744753, guid: 6c7bf31f25ba3cf4a810a49fde0f7e2e, type: 3}
   m_PrefabInstance: {fileID: 9111104983323226431}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 9111104983323226432}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff17419f83d34804a84f2ee9ad42d9cb, type: 3}
@@ -1942,6 +1942,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1880261290455235156, guid: 6c7bf31f25ba3cf4a810a49fde0f7e2e, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880261290455235156, guid: 6c7bf31f25ba3cf4a810a49fde0f7e2e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 00908cbc-da57-4501-a963-c06f57b5b160
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880261290455235156, guid: 6c7bf31f25ba3cf4a810a49fde0f7e2e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: 'Gameplay/OpenMenu[/Keyboard/tab]'
+      objectReference: {fileID: 0}
     - target: {fileID: 6210911344382872104, guid: 6c7bf31f25ba3cf4a810a49fde0f7e2e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1957,8 +1969,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6210911344382872104, guid: 6c7bf31f25ba3cf4a810a49fde0f7e2e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9111104983323226433}
   m_SourcePrefab: {fileID: 100100000, guid: 6c7bf31f25ba3cf4a810a49fde0f7e2e, type: 3}
+--- !u!1 &9111104983323226432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6210911344382872104, guid: 6c7bf31f25ba3cf4a810a49fde0f7e2e, type: 3}
+  m_PrefabInstance: {fileID: 9111104983323226431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9111104983323226433
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9111104983323226432}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a793684e80edd74b9bf244ae460fbfa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
