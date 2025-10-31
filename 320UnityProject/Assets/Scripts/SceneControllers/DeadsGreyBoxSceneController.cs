@@ -38,6 +38,22 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
         dpDisplay.dialogueBox = textsInChild[1];
         dpDisplay.speakerBox = textsInChild[0];
 
+        // Section of code that was not in main (Checking if we still need this)
+        // Info pannel / UI controller
+        /*
+        GameObject infoPannelInstance = Instantiate(infoPannelPrefab, canvas.transform);
+        infoPannelInstance.layer = LayerMask.NameToLayer("UI");
+        infoPannelInstance.SetActive(true);
+
+        UIController uiController = eventSystem.GetComponent<UIController>();
+        uiController.infoBox = infoPannelInstance.GetComponentInChildren<TextMeshProUGUI>();
+
+        // Player dialogue reference
+        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        player.dialogueDisplay = dpDisplay;
+        player.transform.GetChild(0).GetComponent<interactArea>().InfoSetup(infoPannelInstance);
+        //infoPannelInstance.SetActive(false);
+        */
     }
 
     private void Start()
