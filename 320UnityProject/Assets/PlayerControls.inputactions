@@ -45,9 +45,15 @@
                     "name": "NextLine",
                     "type": "Button",
                     "id": "19bb6756-c939-433b-9436-f27faec9eb02",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "OpenMenu",
                     "type": "Button",
-                    "id": "00908cbc-da57-4501-a963-c06f57b5b160",
+                    "id": "5bc33532-1f30-4d60-aca1-2bdf91760489",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -206,8 +212,13 @@
                     "processors": "",
                     "groups": "",
                     "action": "NextLine",
-                    "id": "2e6ca89b-fdb2-4ad5-aba3-751fa9c9aa16",
-                    "path": "<Keyboard>/tab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17c57b6c-c5df-4c90-813f-b103627a3196",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

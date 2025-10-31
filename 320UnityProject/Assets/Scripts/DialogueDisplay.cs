@@ -72,7 +72,7 @@ public class DialogueDisplay : MonoBehaviour
         playerScript = FindAnyObjectByType<Player>();
         dialoguePanel = dialogueBox.transform.parent.gameObject;
         speakerPanel = speakerBox.transform.parent.gameObject;
-        infoPanel = GetComponent<UIController>().infoBox.transform.parent.gameObject;
+        //infoPanel = GetComponent<UIController>().infoBox.transform.parent.gameObject;
 
         inkStory = new Story(inkScript.text);
 
@@ -144,8 +144,8 @@ public class DialogueDisplay : MonoBehaviour
                     dialoguePanel.SetActive(true);
                 dialogueBox.text = dialogue;
 
-                if (infoPanel.activeSelf)
-                    infoPanel.SetActive(false);
+                //if (infoPanel.activeSelf)
+                    //infoPanel.SetActive(false);
             }
             else if (dialoguePanel.activeSelf)
                 dialoguePanel.SetActive(false);
