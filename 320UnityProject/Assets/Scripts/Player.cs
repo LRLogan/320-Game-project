@@ -178,7 +178,10 @@ public class Player : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         if (!canMove)
+        {
+            moveInput = Vector3.zero;
             return;
+        }
 
         Vector2 rawInput = context.ReadValue<Vector2>();
         Vector3 localInput = new Vector3(rawInput.x, 0, rawInput.y);
