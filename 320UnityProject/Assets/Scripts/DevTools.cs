@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class DevTools : MonoBehaviour
 {
     private DevTools instance;
+    private bool devToolsActive = false;
     private string[] textInput = null;
+    private Player player;
 
     [SerializeField] private TMP_InputField inputField;
 
@@ -30,12 +32,24 @@ public class DevTools : MonoBehaviour
     void Start()
     {
         inputField.onEndEdit.AddListener(HandleInputSubmit);
+        inputField.onSelect.AddListener(OnSelectField);
+        inputField.onDeselect.AddListener(OnDeselectField);
+
+        player = FindAnyObjectByType<Player>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnSelectField(string text)
     {
-        
+        devToolsActive = true;
+        player.canMove = !devToolsActive;
+        //Debug.Log("Input Field Selected - Dev Tools Active: " + devToolsActive);
+    }
+
+    private void OnDeselectField(string text)
+    {
+        devToolsActive = false;
+        player.canMove = !devToolsActive;
+        //Debug.Log("Input Field Deselected - Dev Tools Active: " + devToolsActive);
     }
 
     private void HandleInputSubmit(string text)
