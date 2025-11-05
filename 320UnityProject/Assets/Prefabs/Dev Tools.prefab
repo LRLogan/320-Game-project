@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 7151800206413877584}
+  baseItemPrefab: {fileID: 7356486725916629054, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
 --- !u!1 &8822181950615095404
 GameObject:
   m_ObjectHideFlags: 0
