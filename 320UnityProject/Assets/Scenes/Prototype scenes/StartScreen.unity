@@ -887,6 +887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   startingSceneName: DectectiveAgency
+  pauseMenu: {fileID: 0}
 --- !u!4 &1277864443
 Transform:
   m_ObjectHideFlags: 0
