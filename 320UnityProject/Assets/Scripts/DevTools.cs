@@ -13,6 +13,7 @@ public class DevTools : MonoBehaviour
     private Player player;
 
     [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private GameObject baseItemPrefab;
 
 
     private void Awake()
@@ -67,7 +68,7 @@ public class DevTools : MonoBehaviour
 
             // Give item
             case "item":
-                DevGiveItem();
+                DevGiveItem(int.Parse(textInput[1]));
                 break;
 
             default:
@@ -92,8 +93,10 @@ public class DevTools : MonoBehaviour
         }
     }
 
-    private void DevGiveItem()
+    private void DevGiveItem(int id)
     {
-
+        GameObject newItem = Instantiate(baseItemPrefab);
+        newItem.GetComponent<interactableObject>().id = id;
+        player.AddToInventory(newItem);
     }
 }
