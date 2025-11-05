@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class DevTools : MonoBehaviour
 {
     private DevTools instance;
-    private bool devToolsActive;
     private string[] textInput = null;
 
     [SerializeField] private TMP_InputField inputField;
@@ -47,12 +46,18 @@ public class DevTools : MonoBehaviour
         // Checking value to apply the correct command
         switch (textInput[0])
         {
+            // Load scene
             case "scene":
                 DevLoadScene(textInput[1]);
                 break;
 
+            // Give item
+            case "item":
+                DevGiveItem();
+                break;
+
             default:
-                Debug.Log($"{textInput} command not recognized");
+                Debug.LogWarning($"{textInput} command not recognized");
                 break;
         }
 
@@ -63,6 +68,18 @@ public class DevTools : MonoBehaviour
 
     private void DevLoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        try
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        catch
+        {
+            Debug.LogWarning($"{sceneName} not found as a scene");
+        }
+    }
+
+    private void DevGiveItem()
+    {
+
     }
 }
