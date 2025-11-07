@@ -20,6 +20,16 @@ public class DialogueDisplay : MonoBehaviour
     public TMP_Text speakerBox;
 
     /// <summary>
+    /// The Transform under which to instantiate choice buttons as children.
+    /// </summary>
+    public Transform choiceParent;
+
+    /// <summary>
+    /// The prefab object for a button displayed during a choice.
+    /// </summary>
+    public GameObject choicePrefab;
+
+    /// <summary>
     /// Whether to show the first line as soon as Start is called.
     /// </summary>
     public bool onStart;
@@ -54,12 +64,18 @@ public class DialogueDisplay : MonoBehaviour
     /// </summary>
     const float delay = 0.5f;
 
+    /// <summary>
+    /// The vertical space between the centers of displayed choice buttons.
+    /// </summary>
+    const float choiceDistance = 60;
+
     public Player playerScript;
     GameObject dialoguePanel;
     GameObject speakerPanel;
     GameObject infoPanel;
     float delayTimer = 0;
     Story inkStory;
+    bool choosing = false;
     bool paused = false;
     int currentLine = -1;
 
@@ -99,7 +115,7 @@ public class DialogueDisplay : MonoBehaviour
 
     void NextLine()
     {
-        if (paused || (!inkStory.canContinue && inkStory.currentChoices.Count <= 0 && !dialoguePanel.activeSelf))
+        if (choosing || paused || (!inkStory.canContinue && inkStory.currentChoices.Count <= 0 && !dialoguePanel.activeSelf))
             return;
 
         dialogueBox.fontSize = size0;
@@ -160,7 +176,15 @@ public class DialogueDisplay : MonoBehaviour
             }
             else
             {
-
+                int choiceCount = choices.Count;
+                float topPos = choiceDistance * (choiceCount - 1) / 2;
+                Vector2 parentPos = choiceParent.position;
+                for (int i = 0; i < choiceCount; i++)
+                {
+                    Transform choice = Instantiate(choicePrefab, parentPos + Vector2.up * (topPos - choiceDistance * i),
+                        Quaternion.identity, choiceParent).transform;
+                }
+                choosing = true;
             }
         }
         else
@@ -187,6 +211,7 @@ public class DialogueDisplay : MonoBehaviour
         if (inkStory.currentChoices.Count <= 0)
             return;
 
+        choosing = false;
         paused = false;
         inkStory.ChooseChoiceIndex(index);
         NextLine();
