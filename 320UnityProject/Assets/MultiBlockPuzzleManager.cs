@@ -11,6 +11,8 @@ public class MultiBlockPuzzleManager : MonoBehaviour
     [SerializeField] string dialogueString;
     [SerializeField] bool item;
     [SerializeField] GameObject objectGiven;
+    [SerializeField] bool destroy;
+    [SerializeField] GameObject objectDestroy;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,11 +33,19 @@ public class MultiBlockPuzzleManager : MonoBehaviour
             if (correctNumbers[0] == orderSelect[0] && correctNumbers[1] == orderSelect[1] && correctNumbers[2] == orderSelect[2])
             {
                 Debug.Log("yay");
-                Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-                if (player != null)
+                if(item)
                 {
-                    player.AddToInventory(objectGiven);
+                    Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+                    if (player != null)
+                    {
+                        player.AddToInventory(objectGiven);
+                    }
                 }
+                if(destroy)
+                {
+                    Destroy(objectDestroy);
+                }
+                
             }
             else
             {
