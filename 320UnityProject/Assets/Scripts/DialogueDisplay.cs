@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DialogueDisplay : MonoBehaviour
 {
@@ -18,6 +19,16 @@ public class DialogueDisplay : MonoBehaviour
     /// The TMP_Text property of the GameObject that directly displays speaker name text.
     /// </summary>
     public TMP_Text speakerBox;
+
+    /// <summary>
+    /// Image sprite to be shown when there is a displayed speaker name.
+    /// </summary>
+    public Sprite speakerSprite;
+
+    /// <summary>
+    /// Image sprite to be shown when there is no displayed speaker name.
+    /// </summary>
+    public Sprite noSpeakerSprite;
 
     /// <summary>
     /// The Transform under which to instantiate choice buttons as children.
@@ -62,7 +73,7 @@ public class DialogueDisplay : MonoBehaviour
     /// <summary>
     /// The delay, in seconds, between "next line" inputs (to prevent accidental skipping)
     /// </summary>
-    const float delay = 0.5f;
+    const float delay = 0.25f;
 
     /// <summary>
     /// The vertical space between the centers of displayed choice buttons.
@@ -72,7 +83,8 @@ public class DialogueDisplay : MonoBehaviour
     public Player playerScript;
     GameObject dialoguePanel;
     GameObject speakerPanel;
-    GameObject infoPanel;
+    Image panelImage;
+    //GameObject infoPanel;
     float delayTimer = 0;
     Story inkStory;
     bool choosing = false;
@@ -88,6 +100,7 @@ public class DialogueDisplay : MonoBehaviour
         playerScript = FindAnyObjectByType<Player>();
         dialoguePanel = dialogueBox.transform.parent.gameObject;
         speakerPanel = speakerBox.transform.parent.gameObject;
+        panelImage = dialoguePanel.GetComponent<Image>();
         //infoPanel = GetComponent<UIController>().infoBox.transform.parent.gameObject;
 
         inkStory = new Story(inkScript.text);
@@ -152,9 +165,15 @@ public class DialogueDisplay : MonoBehaviour
 
                 speakerBox.text = speaker;
                 if (speaker.Length == 0)
+                {
                     speakerPanel.SetActive(false);
+                    panelImage.sprite = noSpeakerSprite;
+                }
                 else if (!speakerPanel.activeSelf)
+                {
                     speakerPanel.SetActive(true);
+                    panelImage.sprite = speakerSprite;
+                }
 
                 if (!dialoguePanel.activeSelf)
                     dialoguePanel.SetActive(true);
@@ -183,6 +202,11 @@ public class DialogueDisplay : MonoBehaviour
                 {
                     Transform choice = Instantiate(choicePrefab, parentPos + Vector2.up * (topPos - choiceDistance * i),
                         Quaternion.identity, choiceParent).transform;
+                    choice.GetChild(0).GetComponent<TextMeshProUGUI>().text = choices[i].text;
+
+                    ChoiceButton choiceData = choice.GetComponent<ChoiceButton>();
+                    choiceData.dialogueDisplay = this;
+                    choiceData.choiceIndex = i;
                 }
                 choosing = true;
             }
@@ -213,6 +237,8 @@ public class DialogueDisplay : MonoBehaviour
 
         choosing = false;
         paused = false;
+        for (int i = choiceParent.childCount - 1; i >= 0; i--)
+            Destroy(choiceParent.GetChild(i).gameObject);
         inkStory.ChooseChoiceIndex(index);
         NextLine();
     }

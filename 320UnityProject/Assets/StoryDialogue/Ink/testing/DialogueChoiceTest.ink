@@ -1,11 +1,14 @@
-Hi this is a test
+>>Hi this is a test
 blah blah blah
 Idk lol
 choose something
 
-+ I choose you! -> speak
-+ ok -> speak
-+ [click] -> click
++ I choose you!
+    -> speak
++ ok
+    -> speak
++ [click]
+    -> click
 
 === speak ===
 yay ok cool
@@ -18,16 +21,19 @@ let's do something else
 -> two
 
 === two ===
-* [sing a song] -> song
-* ok what is it -> bye
-* [- silence -] -> bye
+* [sing a song]
+    -> song
+* ok what is it
+    -> bye
+* [- silence -]
+    -> bye
 
 === song ===
-ABCDEFG
+YOU>>ABCDEFG
 HIJKLMNOP
 QRS TUV
 WX Y and Z
-no more singing for you
+>>no more singing for you
 -> END
 
 === bye ===
