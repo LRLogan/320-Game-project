@@ -84,7 +84,7 @@ public class DialogueDisplay : MonoBehaviour
     GameObject dialoguePanel;
     GameObject speakerPanel;
     Image panelImage;
-    //GameObject infoPanel;
+    public GameObject infoPanel;
     float delayTimer = 0;
     Story inkStory;
     bool choosing = false;
@@ -179,8 +179,8 @@ public class DialogueDisplay : MonoBehaviour
                     dialoguePanel.SetActive(true);
                 dialogueBox.text = dialogue;
 
-                //if (infoPanel.activeSelf)
-                    //infoPanel.SetActive(false);
+                if (infoPanel != null && infoPanel.activeSelf)
+                    infoPanel.SetActive(false);
             }
             else if (dialoguePanel.activeSelf)
                 dialoguePanel.SetActive(false);
