@@ -19,6 +19,7 @@ public class AgencySceneController : MonoBehaviour
 
     [SerializeField] private GameObject dialogueUIPrefab;
     [SerializeField] private GameObject infoPannelPrefab;
+    [SerializeField] private GameObject choiceParentPrefab;
     [SerializeField] private EventSystem eventSystem;
     private Canvas canvas;
 
@@ -70,6 +71,9 @@ public class AgencySceneController : MonoBehaviour
             dpDisplay.onStart = true;
             dpDisplay.lockMovement = true;
 
+            GameObject choiceParent = Instantiate(choiceParentPrefab, canvas.transform);
+            dpDisplay.choiceParent = choiceParent.transform;
+
             // Getting the different text components in the dialogue pannel ans assinging them 
             TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
             dpDisplay.dialogueBox = textsInChild[1];
@@ -82,6 +86,7 @@ public class AgencySceneController : MonoBehaviour
 
             UIController uiController = eventSystem.GetComponent<UIController>();
             uiController.infoBox = infoPannelInstance.GetComponentInChildren<TextMeshProUGUI>();
+            dpDisplay.infoPanel = infoPannelInstance;
 
             // Player dialogue reference
             playerInstance.GetComponent<Player>().dialogueDisplay = dpDisplay;
