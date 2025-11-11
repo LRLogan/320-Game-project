@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class DeadsGreyBoxSceneController : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueUIPrefab;
+    [SerializeField] private GameObject choiceParentPrefab;
     [SerializeField] private EventSystem eventSystem;
     private Canvas canvas;
     private InventoryManager inventoryUI;
@@ -32,6 +33,9 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
         DialogueDisplay dpDisplay = eventSystem.GetComponent<DialogueDisplay>();
         dpDisplay.onStart = true;
         dpDisplay.lockMovement = true;
+
+        GameObject choiceParent = Instantiate(choiceParentPrefab, canvas.transform);
+        dpDisplay.choiceParent = choiceParent.transform;
 
         // Getting the different text components in the dialogue pannel ans assinging them 
         TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();

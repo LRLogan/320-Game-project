@@ -455,8 +455,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 0}
   speakerBox: {fileID: 0}
-  speakerSprite: {fileID: 0}
-  noSpeakerSprite: {fileID: 0}
+  speakerSprite: {fileID: 21300000, guid: 3c60a14a6931c1d4e9e7aaa94dc2cadd, type: 3}
+  noSpeakerSprite: {fileID: 21300000, guid: 4783cd083fe4bda4fbfdb3d26bf2fa17, type: 3}
   choiceParent: {fileID: 0}
   choicePrefab: {fileID: 0}
   onStart: 0
@@ -515,6 +515,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1861610662}
   dialogueUIPrefab: {fileID: 4093843948648021414, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
   infoPannelPrefab: {fileID: 6645276890318459487, guid: 51b4f4206bcc56c49a44f5ce7b98b561, type: 3}
+  choiceParentPrefab: {fileID: 4045703632978157169, guid: 2ff43316bce107744b16a302560809d6, type: 3}
   eventSystem: {fileID: 64336018}
 --- !u!4 &94849186
 Transform:
