@@ -467,6 +467,7 @@ MonoBehaviour:
   inkScript: {fileID: 4900000, guid: 9fb30a71747196c4fb4a3a7328e1fda5, type: 3}
   lines: []
   playerScript: {fileID: 0}
+  infoPanel: {fileID: 0}
 --- !u!114 &64336018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6511680066849145292, guid: e017ab7d4685dd549af610bcc5c53c20, type: 3}
@@ -5007,7 +5008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
       propertyPath: sceneToLoad
-      value: FrogVille
+      value: LilypadLand
       objectReference: {fileID: 0}
     - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
       propertyPath: positionToLoad.x
