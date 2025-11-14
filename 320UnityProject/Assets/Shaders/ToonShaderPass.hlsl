@@ -274,4 +274,38 @@ float3 Fragment(Varyings IN) : SV_Target
         
     return surfaceColor * finalLighting;
 }
+// ------------------------------------------------------------
+// Outline Support
+// ------------------------------------------------------------
+
+// Add these to your CBUFFER if not already present
+float4 _OutlineColor;
+float _OutlineThickness;
+
+// Outline vertex extrusion
+Varyings OutlineVertex(Attributes IN)
+{
+    Varyings OUT = (Varyings)0;
+
+    UNITY_SETUP_INSTANCE_ID(IN);
+    UNITY_TRANSFER_INSTANCE_ID(IN, OUT);
+    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(OUT);
+
+    float3 positionWS = mul(unity_ObjectToWorld, IN.positionOS).xyz;
+    float3 normalWS = normalize(TransformObjectToWorldNormal(IN.normalOS));
+
+    // Extrude along normal
+    positionWS += normalWS * _OutlineThickness;
+
+    OUT.positionHCS = TransformWorldToHClip(positionWS);
+    OUT.uv = IN.uv;
+
+    return OUT;
+}
+
+// Simple unlit outline fragment
+float4 OutlineFragment(Varyings IN) : SV_Target
+{
+    return _OutlineColor;
+}
 #endif

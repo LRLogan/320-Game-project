@@ -19,6 +19,8 @@
             _RimSharpness ("Rim Sharpness", Float) = 16.0
             [HDR] _RimColor ("Rim Color", Color) = (1.0, 1.0, 1.0)
             [HDR] _WorldColor ("World Color", Color) = (0.1, 0.1, 0.1)
+            [OutlineColor] _OutlineColor("Outline Color", Color) = (0,0,0,1)
+            [OutlineThickness] _OutlineThickness("Outline Thickness", Range(0,0.1)) = 0.02
         }
         
         
@@ -140,6 +142,23 @@
                 
                 #include "ToonShaderPass.hlsl"
                 
+                ENDHLSL
+            }
+
+            Pass
+            {
+                Name "Outline"
+                Tags { "LightMode" = "SRPDefaultUnlit" }
+
+                Cull Front          // Draw backfaces to create silhouette
+                ZWrite On
+                ZTest LEqual
+                Blend SrcAlpha OneMinusSrcAlpha
+
+                HLSLPROGRAM
+                #pragma vertex OutlineVertex
+                #pragma fragment OutlineFragment
+                #include "ToonShaderPass.hlsl"
                 ENDHLSL
             }
         }
