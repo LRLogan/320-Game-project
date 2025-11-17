@@ -74,6 +74,10 @@ public class AgencySceneController : MonoBehaviour
             GameObject choiceParent = Instantiate(choiceParentPrefab, canvas.transform);
             dpDisplay.choiceParent = choiceParent.transform;
 
+            dpDisplay.gameManager = gameManager;
+            if (gameManager.ContainsDialogue(dpDisplay.inkScript))
+                dpDisplay.alreadySeen = true;
+
             // Getting the different text components in the dialogue pannel ans assinging them 
             TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
             dpDisplay.dialogueBox = textsInChild[1];

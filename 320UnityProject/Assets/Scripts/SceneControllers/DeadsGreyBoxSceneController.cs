@@ -8,6 +8,8 @@ using UnityEngine.UI;
 /// </summary>
 public class DeadsGreyBoxSceneController : MonoBehaviour
 {
+    private GameManager gameManager;
+
     [SerializeField] private GameObject dialogueUIPrefab;
     [SerializeField] private GameObject choiceParentPrefab;
     [SerializeField] private EventSystem eventSystem;
@@ -16,6 +18,8 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = FindAnyObjectByType<GameManager>();
+
         // Find the persistent canvas
         canvas = GameObject.Find("Canvas")?.GetComponent<Canvas>();
 
@@ -36,6 +40,10 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
 
         GameObject choiceParent = Instantiate(choiceParentPrefab, canvas.transform);
         dpDisplay.choiceParent = choiceParent.transform;
+
+        dpDisplay.gameManager = gameManager;
+        if (gameManager.ContainsDialogue(dpDisplay.inkScript))
+            dpDisplay.alreadySeen = true;
 
         // Getting the different text components in the dialogue pannel ans assinging them 
         TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
