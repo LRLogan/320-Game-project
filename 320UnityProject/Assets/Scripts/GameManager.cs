@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     // Puzzle / progress tracking
     private Puzzle curPuzzle;
     private PuzzleTracker puzzleTracker;    // Attach to this game object 
+    private List<TextAsset> seenDialogue;
     private string filePath;
 
     public GameObject pauseMenu;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         puzzleTracker = GetComponent<PuzzleTracker>();
+        seenDialogue = new List<TextAsset>();
         filePath = Path.Combine(Application.streamingAssetsPath, "PlayerSaveData");
     }
 
@@ -183,6 +185,13 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    public void RegisterDialogue(TextAsset dialogue)
+    {
+        if (!seenDialogue.Contains(dialogue))
+            seenDialogue.Add(dialogue);
+    }
+    public bool ContainsDialogue(TextAsset dialogue) => seenDialogue.Contains(dialogue);
 
     public void OnOpenMenu(InputAction.CallbackContext context)
     {

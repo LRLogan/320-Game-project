@@ -61,7 +61,7 @@ public class DialogueDisplay : MonoBehaviour
     /// If there is no speaker, simply format as: >>[Sprite]>>[Dialogue]
     /// If there is no sprite, enter "[Sprite]" as "0"
     /// </summary>
-    [SerializeField] TextAsset inkScript;
+    [SerializeField] public TextAsset inkScript;
 
     /// <summary>
     /// List of lines to display in order (for testing).
@@ -79,6 +79,9 @@ public class DialogueDisplay : MonoBehaviour
     /// The vertical space between the centers of displayed choice buttons.
     /// </summary>
     const float choiceDistance = 60;
+
+    public GameManager gameManager;
+    public bool alreadySeen = false;
 
     public Player playerScript;
     GameObject dialoguePanel;
@@ -128,6 +131,12 @@ public class DialogueDisplay : MonoBehaviour
 
     void NextLine()
     {
+        if (alreadySeen)
+        {
+            dialoguePanel.SetActive(false);
+            return;
+        }
+
         if (choosing || paused || (!inkStory.canContinue && inkStory.currentChoices.Count <= 0 && !dialoguePanel.activeSelf))
             return;
 
@@ -215,6 +224,7 @@ public class DialogueDisplay : MonoBehaviour
         {
             HideDialogue();
 
+            gameManager.RegisterDialogue(inkScript);
             onEnd.Invoke();
         }
 
