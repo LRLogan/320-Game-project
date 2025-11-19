@@ -19,10 +19,11 @@ public class interactArea : MonoBehaviour
     private const float infoFadeTime = 1;
 
     [SerializeField] private GameObject infoPanel;
-    private TMP_Text infoBox;
+    [SerializeField] private TextMeshProUGUI infoBox;
     private Image infoImage;
     private float infoAlpha;
     private float infoTimer = 0;
+    private bool infoTiming = false;
 
     public Player playerScript;
     private bool pickedUp;
@@ -31,11 +32,11 @@ public class interactArea : MonoBehaviour
     private void Awake()
     {      
         DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded += InfoSetup;
+        //SceneManager.sceneLoaded += InfoSetup;
     }
     void Start()
     {
-        InfoSetup();
+        //InfoSetup();
 
         playerScript = FindAnyObjectByType<Player>();
     }
@@ -43,7 +44,7 @@ public class interactArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (infoPanel)
+        if (infoTiming && infoPanel != null)
         {
             if (infoTimer > 0)
             {
@@ -56,27 +57,34 @@ public class interactArea : MonoBehaviour
             }
             else if (infoPanel.activeSelf)
             {
-                infoPanel.SetActive(false);
                 infoImage.color += new Color(0, 0, 0, infoAlpha - infoImage.color.a);
                 infoBox.color += new Color(0, 0, 0, 1 - infoBox.color.a);
+                infoPanel.SetActive(false);
+                infoTiming = false;
             }
         }
     }
    
     private void OnTriggerEnter(Collider other)
     {
+        
         pickedUp = false;
         //if object is interactible get its script
         if (other.gameObject.GetComponent<interactableObject>() != null)
         {
          
             interactableObject script = other.gameObject.GetComponent<interactableObject>();
+            script.wasInteracted = true;
             //if you can pick it up add to inventory
             if(script.canPickup)
             {
                 playerScript.AddToInventory(other.gameObject);
+                DontDestroyOnLoad(other.gameObject);
+                if(!script.destroyOnPickup)
+                {
+                    other.gameObject.transform.position = new Vector3(100, 100, 100);
+                }
                 
-                other.gameObject.transform.position = new Vector3(100, 100, 100);
             }
             //if endpoint find item in inventory and remove it
             if(script.isEndpoint)
@@ -89,51 +97,83 @@ public class interactArea : MonoBehaviour
                     interactableObject scriptTwo = playerScript.GetInventory()[i].GetComponent<interactableObject>();
                     if (scriptTwo.id == idNeeded)
                     {
+                        InfoText(script.endpointDialogue);
                         Debug.Log(script.endpointDialogue);
                         GameObject temp = playerScript.GetInventory()[i];
                         playerScript.GetInventory().RemoveAt(i);
+                        Debug.Log($"Destroying {temp.name} in inventory at slot: " + i);
                         Destroy(temp);
                         Destroy(other.gameObject);
                         pickedUp=true;
+
+                        if (script.isEndpointEvent)
+                            script.onEndpoint.Invoke();
                     }
                 }
             }
             //if dialogue send it to infoBox and debug
             if (script.isDialogue && !pickedUp)
             {
-                if (infoPanel != null)
-                {
-                    if (!infoPanel.activeSelf)
-                        infoPanel.SetActive(true);
-                    infoBox.text = script.dialogue;
-                    infoTimer = infoTime + infoFadeTime;
-                }
+                InfoText(script.dialogue);
                 Debug.Log(script.dialogue);
             }
-         
 
+            if (script.isEvent)
+                script.onInteract.Invoke();
         }
         if (other.gameObject.GetComponent<SceneWarpTrigger>() != null)
         {
-            Debug.Log("awdawd");
+            
             other.gameObject.GetComponent<SceneWarpTrigger>().LoadScene();
         }
+        if (other.gameObject.GetComponent<RespawnButton>() != null)
+        {
+
+            other.gameObject.GetComponent<RespawnButton>().Reset();
+        }
+        
+        if (other.gameObject.GetComponent<MultiBlockPuzzle>() != null)
+        {
+           
+            other.gameObject.GetComponent<MultiBlockPuzzle>().Interacted();
+        }
+        if (other.gameObject.GetComponent<findAllPuzzle>() != null)
+        {
+
+            other.gameObject.GetComponent<findAllPuzzle>().Interacted();
+        }
+        if (other.gameObject.GetComponent<DoorUnlock>() != null)
+        {
+
+            other.gameObject.GetComponent<DoorUnlock>().Interact();
+        }
+
     }
-    
+
     private void InfoSetup(Scene scene, LoadSceneMode mode)
     {
-        InfoSetup();
+        InfoSetup(null);
     }
-    private void InfoSetup()
+    public void InfoSetup(GameObject infoPanelInstance)
     {
-        infoBox = GameObject.FindWithTag("UIController").GetComponent<UIController>().infoBox;
-        if (!infoBox)
+        infoPanel = infoPanelInstance;
+        if (infoPanel == null)
             return;
 
-        infoPanel = infoBox.transform.parent.gameObject;
+        infoBox = infoPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         infoImage = infoPanel.GetComponent<Image>();
         infoAlpha = infoImage.color.a;
-        if (infoPanel.activeSelf)
-            infoPanel.SetActive(false);
+        infoPanel.SetActive(false);
+    }
+
+    private void InfoText(string text)
+    {
+        if (infoPanel == null)
+            return;
+
+        infoPanel.SetActive(true);
+        infoBox.text = text;
+        infoTimer = infoTime + infoFadeTime;
+        infoTiming = true;
     }
 }

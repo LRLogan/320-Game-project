@@ -8,13 +8,18 @@ using UnityEngine.UI;
 /// </summary>
 public class DeadsGreyBoxSceneController : MonoBehaviour
 {
+    private GameManager gameManager;
+
     [SerializeField] private GameObject dialogueUIPrefab;
-    [SerializeField] private GameObject infoPannelPrefab;
+    [SerializeField] private GameObject choiceParentPrefab;
     [SerializeField] private EventSystem eventSystem;
     private Canvas canvas;
+    private InventoryManager inventoryUI;
 
-    private void Start()
+    private void Awake()
     {
+        gameManager = FindAnyObjectByType<GameManager>();
+
         // Find the persistent canvas
         canvas = GameObject.Find("Canvas")?.GetComponent<Canvas>();
 
@@ -24,11 +29,8 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
             return;
         }
 
+        // Dialogue display 
         GameObject dialogueUIInstance = Instantiate(dialogueUIPrefab, canvas.transform);
-        dialogueUIInstance.layer = LayerMask.NameToLayer("UI");
-        dialogueUIInstance.SetActive(true);
-
-        GameObject infoPannelInstance = Instantiate(infoPannelPrefab, canvas.transform);
         dialogueUIInstance.layer = LayerMask.NameToLayer("UI");
         dialogueUIInstance.SetActive(true);
 
@@ -36,10 +38,39 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
         dpDisplay.onStart = true;
         dpDisplay.lockMovement = true;
 
+        GameObject choiceParent = Instantiate(choiceParentPrefab, canvas.transform);
+        dpDisplay.choiceParent = choiceParent.transform;
+
+        dpDisplay.gameManager = gameManager;
+        if (gameManager.ContainsDialogue(dpDisplay.inkScript))
+            dpDisplay.alreadySeen = true;
+
         // Getting the different text components in the dialogue pannel ans assinging them 
-        TextMeshProUGUI[] textsInChild= dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
+        dpDisplay.dialogueBox = textsInChild[1];
+        dpDisplay.speakerBox = textsInChild[0];
+
+        // Section of code that was not in main (Checking if we still need this)
+        // Info pannel / UI controller
+        /*
+        GameObject infoPannelInstance = Instantiate(infoPannelPrefab, canvas.transform);
+        infoPannelInstance.layer = LayerMask.NameToLayer("UI");
+        infoPannelInstance.SetActive(true);
+
         UIController uiController = eventSystem.GetComponent<UIController>();
-        dpDisplay.dialogueBox = textsInChild[0];
-        dpDisplay.speakerBox = textsInChild[1];
+        uiController.infoBox = infoPannelInstance.GetComponentInChildren<TextMeshProUGUI>();
+        */
+        // Player dialogue reference
+        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        player.dialogueDisplay = dpDisplay;
+        //player.transform.GetChild(0).GetComponent<interactArea>().InfoSetup(infoPannelInstance);
+        //infoPannelInstance.SetActive(false);
+        
+    }
+
+    private void Start()
+    {
+        inventoryUI = FindFirstObjectByType<InventoryManager>();
+        inventoryUI.RefreshUI();
     }
 }

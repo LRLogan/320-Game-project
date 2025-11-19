@@ -11,10 +11,15 @@ public class SceneWarpTrigger : MonoBehaviour
     private bool playerInRange = false;
 
     private GameManager gameManager;
-
+    private Player player;
+    private InventoryManager inventoryManager;
+    [SerializeField] Vector3 positionToLoad;
+    public bool locked = false;
     private void Start()
     {
-        gameManager = FindFirstObjectByType<GameManager>();   
+        //gameManager = FindFirstObjectByType<GameManager>();   
+        player = FindFirstObjectByType<Player>();
+        inventoryManager = FindFirstObjectByType<InventoryManager>();  
     }
 
     void Update()
@@ -30,7 +35,18 @@ public class SceneWarpTrigger : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
-            SceneManager.LoadScene(sceneToLoad);
+            if(!locked)
+            {
+                if (sceneToLoad != "LilypadLand")
+                {
+                    player.posInOverworldBeforeSceneChange = player.transform.position;
+                    Debug.Log($"Setting prev pos: {player.posInOverworldBeforeSceneChange}");     
+                }
+                player.posBeforeSceneChange = positionToLoad;
+                SceneManager.LoadScene(sceneToLoad);
+            }
+           
+            
         }
         else
         {

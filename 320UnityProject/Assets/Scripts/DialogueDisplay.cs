@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ink.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DialogueDisplay : MonoBehaviour
 {
@@ -16,6 +19,26 @@ public class DialogueDisplay : MonoBehaviour
     /// The TMP_Text property of the GameObject that directly displays speaker name text.
     /// </summary>
     public TMP_Text speakerBox;
+
+    /// <summary>
+    /// Image sprite to be shown when there is a displayed speaker name.
+    /// </summary>
+    public Sprite speakerSprite;
+
+    /// <summary>
+    /// Image sprite to be shown when there is no displayed speaker name.
+    /// </summary>
+    public Sprite noSpeakerSprite;
+
+    /// <summary>
+    /// The Transform under which to instantiate choice buttons as children.
+    /// </summary>
+    public Transform choiceParent;
+
+    /// <summary>
+    /// The prefab object for a button displayed during a choice.
+    /// </summary>
+    public GameObject choicePrefab;
 
     /// <summary>
     /// Whether to show the first line as soon as Start is called.
@@ -33,6 +56,14 @@ public class DialogueDisplay : MonoBehaviour
     [SerializeField] UnityEvent onEnd;
 
     /// <summary>
+    /// JSON file containing the lines to display.
+    /// Format as such: [Speaker]>>[Sprite]>>[Dialogue]
+    /// If there is no speaker, simply format as: >>[Sprite]>>[Dialogue]
+    /// If there is no sprite, enter "[Sprite]" as "0"
+    /// </summary>
+    [SerializeField] public TextAsset inkScript;
+
+    /// <summary>
     /// List of lines to display in order (for testing).
     /// Format as such: [Speaker]>>[Dialogue]
     /// If there is no speaker, simply format as: >>[Dialogue]
@@ -42,13 +73,29 @@ public class DialogueDisplay : MonoBehaviour
     /// <summary>
     /// The delay, in seconds, between "next line" inputs (to prevent accidental skipping)
     /// </summary>
-    const float delay = 0.5f;
+    const float delay = 0.25f;
+
+    /// <summary>
+    /// The vertical space between the centers of displayed choice buttons.
+    /// </summary>
+    const float choiceDistance = 60;
+
+    public GameManager gameManager;
+    public bool alreadySeen = false;
 
     public Player playerScript;
     GameObject dialoguePanel;
     GameObject speakerPanel;
+    Image panelImage;
+    public GameObject infoPanel;
     float delayTimer = 0;
+    Story inkStory;
+    bool choosing = false;
+    bool paused = false;
     int currentLine = -1;
+
+    float size0;
+    bool autoSize0;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +103,13 @@ public class DialogueDisplay : MonoBehaviour
         playerScript = FindAnyObjectByType<Player>();
         dialoguePanel = dialogueBox.transform.parent.gameObject;
         speakerPanel = speakerBox.transform.parent.gameObject;
+        panelImage = dialoguePanel.GetComponent<Image>();
+        //infoPanel = GetComponent<UIController>().infoBox.transform.parent.gameObject;
+
+        inkStory = new Story(inkScript.text);
+
+        size0 = dialogueBox.fontSize;
+        autoSize0 = dialogueBox.enableAutoSizing;
 
         if (onStart)
             NextLine();
@@ -67,19 +121,35 @@ public class DialogueDisplay : MonoBehaviour
     void Update()
     {
         delayTimer = Mathf.Max(0, delayTimer - Time.deltaTime);
-        if (Input.GetMouseButtonDown(0) && delayTimer <= 0)
+    }
+
+    public void NextLine(InputAction.CallbackContext context)
+    {
+        if (delayTimer <= 0)
             NextLine();
     }
 
     void NextLine()
     {
+        if (alreadySeen)
+        {
+            dialoguePanel.SetActive(false);
+            return;
+        }
+
+        if (choosing || paused || (!inkStory.canContinue && inkStory.currentChoices.Count <= 0 && !dialoguePanel.activeSelf))
+            return;
+
+        dialogueBox.fontSize = size0;
+        dialogueBox.enableAutoSizing = autoSize0;
+
         currentLine++;
-        if (currentLine >= 0 && currentLine < lines.Length)
+        if (inkStory.canContinue)
         {
             if (lockMovement && playerScript.canMove)
                 playerScript.canMove = false;
 
-            string line = lines[currentLine];
+            string line = inkStory.Continue();
             if (line.Length > 0)
             {
                 string speaker = speakerBox.text;
@@ -89,34 +159,99 @@ public class DialogueDisplay : MonoBehaviour
                     speaker = line.Substring(0, line.IndexOf(">>"));
                     dialogue = line.Substring(line.IndexOf(">>") + 2);
                 }
+                if (dialogue.StartsWith('<') && dialogue.Contains('>'))
+                {
+                    string size = dialogue.Substring(1, dialogue.IndexOf('>') - 1);
+                    float sizeF;
+                    if (float.TryParse(size, out sizeF))
+                    {
+                        dialogue = dialogue.Substring(dialogue.IndexOf('>') + 1);
+
+                        dialogueBox.enableAutoSizing = false;
+                        dialogueBox.fontSize = sizeF;
+                    }
+                }
 
                 speakerBox.text = speaker;
                 if (speaker.Length == 0)
+                {
                     speakerPanel.SetActive(false);
+                    panelImage.sprite = noSpeakerSprite;
+                }
                 else if (!speakerPanel.activeSelf)
+                {
                     speakerPanel.SetActive(true);
+                    panelImage.sprite = speakerSprite;
+                }
 
                 if (!dialoguePanel.activeSelf)
                     dialoguePanel.SetActive(true);
                 dialogueBox.text = dialogue;
+
+                if (infoPanel != null && infoPanel.activeSelf)
+                    infoPanel.SetActive(false);
             }
             else if (dialoguePanel.activeSelf)
                 dialoguePanel.SetActive(false);
         }
+        else if (inkStory.currentChoices.Count > 0)
+        {
+            List<Choice> choices = inkStory.currentChoices;
+            if (choices.Count == 1 && choices[0].text == "0")
+            {
+                HideDialogue();
+                paused = true;
+            }
+            else
+            {
+                int choiceCount = choices.Count;
+                float topPos = choiceDistance * (choiceCount - 1) / 2;
+                Vector2 parentPos = choiceParent.position;
+                for (int i = 0; i < choiceCount; i++)
+                {
+                    Transform choice = Instantiate(choicePrefab, parentPos + Vector2.up * (topPos - choiceDistance * i),
+                        Quaternion.identity, choiceParent).transform;
+                    choice.GetChild(0).GetComponent<TextMeshProUGUI>().text = choices[i].text;
+
+                    ChoiceButton choiceData = choice.GetComponent<ChoiceButton>();
+                    choiceData.dialogueDisplay = this;
+                    choiceData.choiceIndex = i;
+                }
+                choosing = true;
+            }
+        }
         else
         {
-            if (lockMovement && !playerScript.canMove)
-                playerScript.canMove = true;
+            HideDialogue();
 
-            if (dialoguePanel.activeSelf)
-                dialoguePanel.SetActive(false);
-
-            if (currentLine == lines.Length)
-                onEnd.Invoke();
+            gameManager.RegisterDialogue(inkScript);
+            onEnd.Invoke();
         }
 
         delayTimer = delay;
     }
 
-    public void LoadScene(int index) => SceneManager.LoadScene(index);
+    void HideDialogue()
+    {
+        if (lockMovement && !playerScript.canMove)
+            playerScript.canMove = true;
+
+        if (dialoguePanel.activeSelf)
+            dialoguePanel.SetActive(false);
+    }
+
+    public void ChooseChoiceIndex(int index)
+    {
+        if (inkStory.currentChoices.Count <= 0)
+            return;
+
+        choosing = false;
+        paused = false;
+        for (int i = choiceParent.childCount - 1; i >= 0; i--)
+            Destroy(choiceParent.GetChild(i).gameObject);
+        inkStory.ChooseChoiceIndex(index);
+        NextLine();
+    }
+
+    public void LoadScene(string sceneName) => SceneManager.LoadScene(sceneName);
 }

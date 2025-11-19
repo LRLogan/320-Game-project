@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - InteractInfo
   - UIController
+  - MAST_Holder
+  - PuzzleObject1
   layers:
   - Default
   - TransparentFX
