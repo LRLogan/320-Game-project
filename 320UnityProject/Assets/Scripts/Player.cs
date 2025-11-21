@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     // Movement 
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 5f;
+    private float northSouthMovementCorrection = 1.32f;
     private float moveAngleOffset = 45f;
     private bool isRunning = false;
     public bool rotateControls = false;
@@ -101,14 +102,25 @@ public class Player : MonoBehaviour
 
         // Player movement
         Vector3 move;
+        float speedMod = walkSpeed;
+
+        // Checking for speed correction
+        //Debug.Log($"{Mathf.Round(moveInput.normalized.x)}, {Mathf.Round(moveInput.normalized.y)}, {Mathf.Round(moveInput.normalized.z)}");
+        if ((Mathf.Round(moveInput.normalized.x) == 1 && Mathf.Round(moveInput.normalized.z) == 1) ||
+            (Mathf.Round(moveInput.normalized.x) == -1 && Mathf.Round(moveInput.normalized.z) == -1))
+        {
+            speedMod *= northSouthMovementCorrection;
+        }
+
         if (isRunning)
         {
-            move = moveInput.normalized * walkSpeed * 1.7f;
+            move = moveInput.normalized * speedMod * 1.7f;
         }
         else
         {
-            move = moveInput.normalized * walkSpeed;
+            move = moveInput.normalized * speedMod;
         }
+
         Vector3 newVelocity = new Vector3(move.x, rb.velocity.y, move.z);
         rb.velocity = newVelocity;
 
