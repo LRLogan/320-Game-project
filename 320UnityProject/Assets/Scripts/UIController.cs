@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
     /// <summary>
     /// The TMP_Text property of the GameObject that directly displays info text.
     /// </summary>
-    [SerializeField] public TMP_Text infoBox;
+    public TMP_Text infoBox;
 
     // Start is called before the first frame update
     void Start()

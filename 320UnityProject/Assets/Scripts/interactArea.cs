@@ -100,7 +100,7 @@ public class interactArea : MonoBehaviour
                         InfoText(script.endpointDialogue);
                         Debug.Log(script.endpointDialogue);
                         GameObject temp = playerScript.GetInventory()[i];
-                        playerScript.GetInventory().RemoveAt(i);
+                        playerScript.RemoveFromInventoryAtIndex(i);
                         Debug.Log($"Destroying {temp.name} in inventory at slot: " + i);
                         Destroy(temp);
                         Destroy(other.gameObject);

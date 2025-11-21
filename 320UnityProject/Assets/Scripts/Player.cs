@@ -310,6 +310,28 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    public bool RemoveFromInventory(GameObject obj)
+    {
+        if(obj != null)
+        {
+            inventory.Remove(obj);
+            inventoryUI.RefreshUI();
+            return true;
+        }
+        return false;
+    }
+
+    public bool RemoveFromInventoryAtIndex(int index)
+    {
+        if (index >= 0 && index < inventory.Count)
+        {
+            inventory.RemoveAt(index);
+            inventoryUI.RefreshUI();
+            return true;
+        }
+        return false;
+    }
+
     public List<GameObject> GetInventory()
     {
         return inventory;
