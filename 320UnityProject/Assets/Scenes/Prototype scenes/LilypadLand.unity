@@ -6221,7 +6221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e987e0ccd85ba44a5a26f454bd83e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canPickup: 0
+  canPickup: 1
   destroyOnPickup: 0
   isEndpoint: 0
   endpointDialogue: 
@@ -6236,7 +6236,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   wasInteracted: 0
-  id: 1
+  id: 3
   sprite: {fileID: 0}
 --- !u!54 &405296140
 Rigidbody:

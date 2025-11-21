@@ -58,8 +58,10 @@ public class MultiBlockPuzzleManager : MonoBehaviour
         }
         
 
-
-
+    }
+    public void Interacted()
+    {
+        numberInteracted = 0;
     }
 
 }

@@ -147,6 +147,11 @@ public class interactArea : MonoBehaviour
 
             other.gameObject.GetComponent<DoorUnlock>().Interact();
         }
+        if (other.gameObject.GetComponent<MultiBlockPuzzleManager>() != null)
+        {
+
+            other.gameObject.GetComponent<MultiBlockPuzzleManager>().Interacted();
+        }
 
     }
 
