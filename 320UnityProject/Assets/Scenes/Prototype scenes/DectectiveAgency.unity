@@ -466,6 +466,8 @@ MonoBehaviour:
       m_Calls: []
   inkScript: {fileID: 4900000, guid: 9fb30a71747196c4fb4a3a7328e1fda5, type: 3}
   lines: []
+  gameManager: {fileID: 0}
+  alreadySeen: 0
   playerScript: {fileID: 0}
   infoPanel: {fileID: 0}
 --- !u!114 &64336018 stripped
@@ -5662,7 +5664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091851683628310904, guid: 5ef00fe0f0da513419f60a7c5e5bbbe1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8873637854770264853, guid: 5ef00fe0f0da513419f60a7c5e5bbbe1, type: 3}
       propertyPath: m_Pivot.x
