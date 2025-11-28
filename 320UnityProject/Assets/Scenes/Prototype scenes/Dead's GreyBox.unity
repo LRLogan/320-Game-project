@@ -1732,8 +1732,44 @@ PrefabInstance:
       value: chestObject
       objectReference: {fileID: 0}
     - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
+      propertyPath: isEndpointEvent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
       propertyPath: endpointDialogue
       value: used the key. Found a letter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6661306661222431264}
+    - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChoosePathString
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: letter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7395938312844855585, guid: 31d4563691855eb4b87918050a68da59, type: 3}
       propertyPath: m_Constraints
@@ -3405,6 +3441,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6790864b4f1ae054ca9f45a664bb8d02, type: 3}
+--- !u!114 &6661306661222431264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9016890536702456913, guid: 6790864b4f1ae054ca9f45a664bb8d02, type: 3}
+  m_PrefabInstance: {fileID: 6661306661222431263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662c9669254b92140b6ffec2e5ec6198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

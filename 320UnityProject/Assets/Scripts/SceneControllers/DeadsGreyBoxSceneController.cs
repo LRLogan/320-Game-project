@@ -42,8 +42,7 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
         dpDisplay.choiceParent = choiceParent.transform;
 
         dpDisplay.gameManager = gameManager;
-        if (gameManager.ContainsDialogue(dpDisplay.inkScript))
-            dpDisplay.alreadySeen = true;
+        dpDisplay.alreadySeen = gameManager.ContainsDialogue(dpDisplay.inkScript);
 
         // Getting the different text components in the dialogue pannel ans assinging them 
         TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();

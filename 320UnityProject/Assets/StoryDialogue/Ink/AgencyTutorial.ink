@@ -81,13 +81,13 @@ That's where you're going to be stationed!
 
 YOU>>But isn't Lilypad Landing the town with a 0% crime rate?
 
-TOADSHOE>>Well, we still need someone to report population statistics, don't we?
-So who better than you to look into the recent death?
+TOADSHOE>>Well, apparently a mysterious death recently occurred there, and we aren't quite sure what the situation is.
+So who better than you to look into it?
 
 YOU>>A <i>murder</i>...?
 
 TOADSHOE>>There is no proof that this is a case of murder.
-We just need you to collect data.
+But who knows, maybe you'll find something that we couldn't?
 
 YOU>>Hmmmm, <i>okay......</i>
 

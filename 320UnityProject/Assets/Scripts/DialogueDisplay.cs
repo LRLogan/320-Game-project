@@ -81,7 +81,8 @@ public class DialogueDisplay : MonoBehaviour
     const float choiceDistance = 60;
 
     public GameManager gameManager;
-    public bool alreadySeen = false;
+    public int alreadySeen = -1;
+    int seeing = -1;
 
     public Player playerScript;
     GameObject dialoguePanel;
@@ -131,10 +132,17 @@ public class DialogueDisplay : MonoBehaviour
 
     void NextLine()
     {
-        if (alreadySeen)
+        if (alreadySeen >= Mathf.Max(0, inkStory.currentChoices.Count - 1))
         {
             dialoguePanel.SetActive(false);
             return;
+        }
+
+        if (seeing < 0)
+        {
+            seeing = alreadySeen + 1;
+            if (inkStory.currentChoices.Count > 0)
+                inkStory.ChooseChoiceIndex(seeing);
         }
 
         if (choosing || paused || (!inkStory.canContinue && inkStory.currentChoices.Count <= 0 && !dialoguePanel.activeSelf))
@@ -197,7 +205,7 @@ public class DialogueDisplay : MonoBehaviour
         else if (inkStory.currentChoices.Count > 0)
         {
             List<Choice> choices = inkStory.currentChoices;
-            if (choices.Count == 1 && choices[0].text == "0")
+            if (choices[0].text == "0")
             {
                 HideDialogue();
                 paused = true;
@@ -224,7 +232,7 @@ public class DialogueDisplay : MonoBehaviour
         {
             HideDialogue();
 
-            gameManager.RegisterDialogue(inkScript);
+            gameManager.RegisterDialogue(inkScript, seeing);
             onEnd.Invoke();
         }
 
@@ -250,6 +258,17 @@ public class DialogueDisplay : MonoBehaviour
         for (int i = choiceParent.childCount - 1; i >= 0; i--)
             Destroy(choiceParent.GetChild(i).gameObject);
         inkStory.ChooseChoiceIndex(index);
+        NextLine();
+    }
+
+    public void ChoosePathString(string path)
+    {
+        seeing = -1;
+        choosing = false;
+        paused = false;
+        for (int i = choiceParent.childCount - 1; i >= 0; i--)
+            Destroy(choiceParent.GetChild(i).gameObject);
+        inkStory.ChoosePathString(path);
         NextLine();
     }
 

@@ -467,7 +467,7 @@ MonoBehaviour:
   inkScript: {fileID: 4900000, guid: 9fb30a71747196c4fb4a3a7328e1fda5, type: 3}
   lines: []
   gameManager: {fileID: 0}
-  alreadySeen: 0
+  alreadySeen: -1
   playerScript: {fileID: 0}
   infoPanel: {fileID: 0}
 --- !u!114 &64336018 stripped
@@ -983,14 +983,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 64336015}
         m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
-        m_MethodName: ChooseChoiceIndex
-        m_Mode: 3
+        m_MethodName: ChoosePathString
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: keys
           m_BoolArgument: 0
         m_CallState: 2
   isEndpointEvent: 0
@@ -2710,14 +2710,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 64336015}
         m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
-        m_MethodName: ChooseChoiceIndex
-        m_Mode: 3
+        m_MethodName: ChoosePathString
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: remember
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!4 &973223645
@@ -4543,7 +4543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4555,11 +4555,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChooseChoiceIndex
+      value: ChoosePathString
       objectReference: {fileID: 0}
     - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: DialogueDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: storage_door
       objectReference: {fileID: 0}
     - target: {fileID: 7685249071450483770, guid: d2681751ed0e59c489d4ddc7c647ab44, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -7399,9 +7403,21 @@ PrefabInstance:
       value: Door1
       objectReference: {fileID: 0}
     - target: {fileID: 799228954589078042, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 799228954589078042, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
       propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 64336015}
+    - target: {fileID: 799228954589078042, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChoosePathString
+      objectReference: {fileID: 0}
+    - target: {fileID: 799228954589078042, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
+      propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: storage
+      objectReference: {fileID: 0}
     - target: {fileID: 5444824671652310955, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.52
@@ -7460,9 +7476,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1124417050}
     - target: {fileID: 689097347558772711, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 689097347558772711, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 689097347558772711, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 64336015}
+    - target: {fileID: 689097347558772711, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 689097347558772711, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChoosePathString
+      objectReference: {fileID: 0}
+    - target: {fileID: 689097347558772711, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 689097347558772711, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: storage_storage
+      objectReference: {fileID: 0}
+    - target: {fileID: 689097347558772711, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2783402992089816728, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
       propertyPath: m_LocalScale.y
       value: 18.70808

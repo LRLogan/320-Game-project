@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // Puzzle / progress tracking
     private Puzzle curPuzzle;
     private PuzzleTracker puzzleTracker;    // Attach to this game object 
-    private List<TextAsset> seenDialogue;
+    private Dictionary<TextAsset, int> seenDialogue;
     private string filePath;
 
     public GameObject pauseMenu;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         puzzleTracker = GetComponent<PuzzleTracker>();
-        seenDialogue = new List<TextAsset>();
+        seenDialogue = new Dictionary<TextAsset, int>();
         filePath = Path.Combine(Application.streamingAssetsPath, "PlayerSaveData");
     }
 
@@ -186,12 +186,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RegisterDialogue(TextAsset dialogue)
+    public void RegisterDialogue(TextAsset dialogue, int index = 0)
     {
-        if (!seenDialogue.Contains(dialogue))
-            seenDialogue.Add(dialogue);
+        if (index < 0)
+            return;
+
+        if (!seenDialogue.ContainsKey(dialogue))
+            seenDialogue.Add(dialogue, index);
+        if (seenDialogue[dialogue] < index)
+            seenDialogue[dialogue] = index;
     }
-    public bool ContainsDialogue(TextAsset dialogue) => seenDialogue.Contains(dialogue);
+    public int ContainsDialogue(TextAsset dialogue)
+    {
+        if (seenDialogue.ContainsKey(dialogue))
+            return seenDialogue[dialogue];
+        return -1;
+    }
 
     public void OnOpenMenu(InputAction.CallbackContext context)
     {
