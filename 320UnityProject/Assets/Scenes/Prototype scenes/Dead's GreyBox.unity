@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueUIPrefab: {fileID: 4093843948648021414, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
+  infoPannelPrefab: {fileID: 6645276890318459487, guid: 51b4f4206bcc56c49a44f5ce7b98b561, type: 3}
   choiceParentPrefab: {fileID: 4045703632978157169, guid: 2ff43316bce107744b16a302560809d6, type: 3}
   eventSystem: {fileID: 2043946777}
 --- !u!4 &14891216

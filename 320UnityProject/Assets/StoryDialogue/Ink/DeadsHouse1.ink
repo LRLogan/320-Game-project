@@ -1,5 +1,5 @@
-* [0] -> first_look
-* [1] -> search
++ [0] -> first_look
++ [1] -> search
 
 === first_look ===
 YOU>>So this must be the victim...

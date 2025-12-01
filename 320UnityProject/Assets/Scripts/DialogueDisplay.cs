@@ -88,7 +88,24 @@ public class DialogueDisplay : MonoBehaviour
     GameObject dialoguePanel;
     GameObject speakerPanel;
     Image panelImage;
+    
+    /// <summary>
+    /// The number of seconds infoPanel is visible until it starts fading out.
+    /// </summary>
+    private const float infoTime = 2;
+
+    /// <summary>
+    /// The number of seconds it takes for infoPanel to completely disappear once it starts fading out.
+    /// </summary>
+    private const float infoFadeTime = 1;
+
     public GameObject infoPanel;
+    private TextMeshProUGUI infoBox;
+    private Image infoImage;
+    private float infoAlpha;
+    private float infoTimer = 0;
+    private bool infoTiming = false;
+
     float delayTimer = 0;
     Story inkStory;
     bool choosing = false;
@@ -122,6 +139,26 @@ public class DialogueDisplay : MonoBehaviour
     void Update()
     {
         delayTimer = Mathf.Max(0, delayTimer - Time.deltaTime);
+
+        if (infoTiming && infoPanel != null)
+        {
+            if (infoTimer > 0)
+            {
+                infoTimer = Mathf.Max(0, infoTimer - Time.deltaTime);
+                if (infoTimer <= infoFadeTime)
+                {
+                    infoImage.color -= new Color(0, 0, 0, Time.deltaTime * infoAlpha / infoFadeTime);
+                    infoBox.color -= new Color(0, 0, 0, Time.deltaTime / infoFadeTime);
+                }
+            }
+            else if (infoPanel.activeSelf)
+            {
+                infoImage.color += new Color(0, 0, 0, infoAlpha - infoImage.color.a);
+                infoBox.color += new Color(0, 0, 0, 1 - infoBox.color.a);
+                infoPanel.SetActive(false);
+                infoTiming = false;
+            }
+        }
     }
 
     public void NextLine(InputAction.CallbackContext context)
@@ -132,7 +169,7 @@ public class DialogueDisplay : MonoBehaviour
 
     void NextLine()
     {
-        if (alreadySeen >= Mathf.Max(0, inkStory.currentChoices.Count - 1))
+        if ((seeing < 0 && alreadySeen >= Mathf.Max(0, inkStory.currentChoices.Count - 1)) || (seeing >= 0 && alreadySeen >= seeing))
         {
             dialoguePanel.SetActive(false);
             return;
@@ -270,6 +307,31 @@ public class DialogueDisplay : MonoBehaviour
             Destroy(choiceParent.GetChild(i).gameObject);
         inkStory.ChoosePathString(path);
         NextLine();
+    }
+
+    public void InfoSetup(GameObject infoPanelInstance)
+    {
+        infoPanel = infoPanelInstance;
+        if (infoPanel == null)
+            return;
+
+        infoBox = infoPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        infoImage = infoPanel.GetComponent<Image>();
+        infoAlpha = infoImage.color.a;
+        infoPanel.SetActive(false);
+    }
+
+    public void InfoText(string text)
+    {
+        if (infoPanel == null)
+            return;
+
+        infoPanel.SetActive(true);
+        infoImage.color += new Color(0, 0, 0, infoAlpha - infoImage.color.a);
+        infoBox.color += new Color(0, 0, 0, 1 - infoBox.color.a);
+        infoBox.text = text;
+        infoTimer = infoTime + infoFadeTime;
+        infoTiming = true;
     }
 
     public void LoadScene(string sceneName) => SceneManager.LoadScene(sceneName);
