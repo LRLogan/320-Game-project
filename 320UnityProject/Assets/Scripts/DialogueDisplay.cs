@@ -118,6 +118,8 @@ public class DialogueDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SceneManager.sceneUnloaded += DestroyPanels;
+
         playerScript = FindAnyObjectByType<Player>();
         dialoguePanel = dialogueBox.transform.parent.gameObject;
         speakerPanel = speakerBox.transform.parent.gameObject;
@@ -178,6 +180,7 @@ public class DialogueDisplay : MonoBehaviour
         if (seeing < 0)
         {
             seeing = alreadySeen + 1;
+            Debug.Log("seeing: " + seeing);
             if (inkStory.currentChoices.Count > 0)
                 inkStory.ChooseChoiceIndex(seeing);
         }
@@ -188,13 +191,15 @@ public class DialogueDisplay : MonoBehaviour
         dialogueBox.fontSize = size0;
         dialogueBox.enableAutoSizing = autoSize0;
 
-        currentLine++;
+        //currentLine++;
         if (inkStory.canContinue)
         {
             if (lockMovement && playerScript.canMove)
                 playerScript.canMove = false;
 
             string line = inkStory.Continue();
+
+            Debug.Log("line: " + line);
             if (line.Length > 0)
             {
                 string speaker = speakerBox.text;
@@ -300,7 +305,9 @@ public class DialogueDisplay : MonoBehaviour
 
     public void ChoosePathString(string path)
     {
-        seeing = -1;
+        int pathIndex;
+        if (int.TryParse(path.Substring(0, 1), out pathIndex))
+            seeing = pathIndex;
         choosing = false;
         paused = false;
         for (int i = choiceParent.childCount - 1; i >= 0; i--)
@@ -332,6 +339,16 @@ public class DialogueDisplay : MonoBehaviour
         infoBox.text = text;
         infoTimer = infoTime + infoFadeTime;
         infoTiming = true;
+    }
+
+    void DestroyPanels(Scene scene)
+    {
+        if (dialoguePanel != null)
+            Destroy(dialoguePanel);
+        if (infoPanel != null)
+            Destroy(infoPanel);
+        if (choiceParent != null)
+            Destroy(choiceParent.gameObject);
     }
 
     public void LoadScene(string sceneName) => SceneManager.LoadScene(sceneName);
