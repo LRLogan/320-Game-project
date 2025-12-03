@@ -2,6 +2,7 @@
 + [1] -> search
 
 === first_look ===
++ testing -> letter
 YOU>>So this must be the victim...
 
 VIGILANT FROG>>No weapons or causes of death in sight, nor any leads to look into.

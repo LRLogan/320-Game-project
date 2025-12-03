@@ -183,6 +183,7 @@ public class DialogueDisplay : MonoBehaviour
             Debug.Log("seeing: " + seeing);
             if (inkStory.currentChoices.Count > 0)
                 inkStory.ChooseChoiceIndex(seeing);
+                //inkStory.ChoosePath(inkStory.currentChoices[seeing].path);
         }
 
         if (choosing || paused || (!inkStory.canContinue && inkStory.currentChoices.Count <= 0 && !dialoguePanel.activeSelf))

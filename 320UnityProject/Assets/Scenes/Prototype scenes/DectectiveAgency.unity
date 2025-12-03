@@ -7508,8 +7508,16 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2783402992089816728, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10.9236
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783402992089816728, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
       propertyPath: m_LocalScale.y
-      value: 18.70808
+      value: 24.70808
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783402992089816728, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10.76012
       objectReference: {fileID: 0}
     - target: {fileID: 2783402992089816728, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
       propertyPath: m_LocalPosition.x
