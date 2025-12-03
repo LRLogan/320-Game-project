@@ -55,6 +55,10 @@ public class Player : MonoBehaviour
     public Vector3 posBeforeSceneChange;
     public Vector3 posInOverworldBeforeSceneChange;
 
+  
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip footsteps;
+   
     // Dialogue
     public DialogueDisplay dialogueDisplay;
 
@@ -72,6 +76,7 @@ public class Player : MonoBehaviour
 
         jumpAction = playerInput.actions["Jump"];
        
+        audioSource.clip = footsteps;
     }
 
     void Start()
@@ -128,6 +133,12 @@ public class Player : MonoBehaviour
         {
             transform.forward = newVelocity;
         }
+
+
+
+
+       
+        
     }
 
     void Update()
@@ -195,6 +206,10 @@ public class Player : MonoBehaviour
             return;
         }
 
+        
+
+       
+      
         Vector2 rawInput = context.ReadValue<Vector2>();
         Vector3 localInput = new Vector3(rawInput.x, 0, rawInput.y);
         Quaternion offsetRot;
@@ -212,8 +227,16 @@ public class Player : MonoBehaviour
         moveInput = offsetRot * localInput;
         if(moveInput != Vector3.zero)
         {
+            
+                audioSource.Play();
+         
             moveInput.Normalize();
             direction = moveInput;
+           
+        }
+        else
+        {
+            audioSource.Stop();
         }
        
         //Debug.Log("Move input: " + moveInput);

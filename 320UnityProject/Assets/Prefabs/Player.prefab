@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7956713884062744753}
   - component: {fileID: 1880261290455235156}
   - component: {fileID: 5742770704116848072}
+  - component: {fileID: 7262890134887879170}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -154,6 +155,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   canMove: 1
   walkSpeed: 5
+  rotateControls: 0
   jumpForce: 7
   stage1Multiplier: 1.2
   stage2Multiplier: 1.6
@@ -169,6 +171,9 @@ MonoBehaviour:
   inventory: []
   isInside: 0
   posBeforeSceneChange: {x: 0, y: 0, z: 0}
+  posInOverworldBeforeSceneChange: {x: 0, y: 0, z: 0}
+  audioSource: {fileID: 7262890134887879170}
+  footsteps: {fileID: 8300000, guid: a4b88b8dfda1d72499fb4b392e937b2d, type: 3}
   dialogueDisplay: {fileID: 0}
 --- !u!114 &1880261290455235156
 MonoBehaviour:
@@ -275,6 +280,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 19bb6756-c939-433b-9436-f27faec9eb02
     m_ActionName: 'Gameplay/NextLine[/Mouse/leftButton,/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5bc33532-1f30-4d60-aca1-2bdf91760489
+    m_ActionName: 'Gameplay/OpenMenu[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -306,6 +315,103 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &7262890134887879170
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210911344382872104}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &4324368524258623139
 PrefabInstance:
   m_ObjectHideFlags: 0
