@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class SceneWarpTrigger : MonoBehaviour
@@ -15,6 +16,7 @@ public class SceneWarpTrigger : MonoBehaviour
     private InventoryManager inventoryManager;
     [SerializeField] Vector3 positionToLoad;
     public bool locked = false;
+    [SerializeField] public UnityEvent lockedEvent;
     private void Start()
     {
         //gameManager = FindFirstObjectByType<GameManager>();   
@@ -35,18 +37,19 @@ public class SceneWarpTrigger : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
-            if(!locked)
+            if (!locked)
             {
                 if (sceneToLoad != "LilypadLand")
                 {
                     player.posInOverworldBeforeSceneChange = player.transform.position;
-                    Debug.Log($"Setting prev pos: {player.posInOverworldBeforeSceneChange}");     
+                    Debug.Log($"Setting prev pos: {player.posInOverworldBeforeSceneChange}");
                 }
                 player.posBeforeSceneChange = positionToLoad;
+                player.dialogueDisplay.DestroyPanels();
                 SceneManager.LoadScene(sceneToLoad);
             }
-           
-            
+            else
+                lockedEvent.Invoke();
         }
         else
         {

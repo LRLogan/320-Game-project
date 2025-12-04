@@ -8,7 +8,9 @@ using UnityEngine.UI;
 
 public class interactArea : MonoBehaviour
 {
-    /// <summary>
+    public DialogueDisplay dialogueDisplay;
+
+    /* /// <summary>
     /// The number of seconds infoPanel is visible until it starts fading out.
     /// </summary>
     private const float infoTime = 2;
@@ -23,7 +25,7 @@ public class interactArea : MonoBehaviour
     private Image infoImage;
     private float infoAlpha;
     private float infoTimer = 0;
-    private bool infoTiming = false;
+    private bool infoTiming = false; */
 
     public Player playerScript;
     private bool pickedUp;
@@ -44,25 +46,7 @@ public class interactArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (infoTiming && infoPanel != null)
-        {
-            if (infoTimer > 0)
-            {
-                infoTimer = Mathf.Max(0, infoTimer - Time.deltaTime);
-                if (infoTimer <= infoFadeTime)
-                {
-                    infoImage.color -= new Color(0, 0, 0, Time.deltaTime * infoAlpha / infoFadeTime);
-                    infoBox.color -= new Color(0, 0, 0, Time.deltaTime / infoFadeTime);
-                }
-            }
-            else if (infoPanel.activeSelf)
-            {
-                infoImage.color += new Color(0, 0, 0, infoAlpha - infoImage.color.a);
-                infoBox.color += new Color(0, 0, 0, 1 - infoBox.color.a);
-                infoPanel.SetActive(false);
-                infoTiming = false;
-            }
-        }
+        
     }
    
     private void OnTriggerEnter(Collider other)
@@ -97,7 +81,7 @@ public class interactArea : MonoBehaviour
                     interactableObject scriptTwo = playerScript.GetInventory()[i].GetComponent<interactableObject>();
                     if (scriptTwo.id == idNeeded)
                     {
-                        InfoText(script.endpointDialogue);
+                        dialogueDisplay.InfoText(script.endpointDialogue);
                         Debug.Log(script.endpointDialogue);
                         GameObject temp = playerScript.GetInventory()[i];
                         playerScript.RemoveFromInventoryAtIndex(i);
@@ -114,7 +98,7 @@ public class interactArea : MonoBehaviour
             //if dialogue send it to infoBox and debug
             if (script.isDialogue && !pickedUp)
             {
-                InfoText(script.dialogue);
+                dialogueDisplay.InfoText(script.dialogue);
                 Debug.Log(script.dialogue);
             }
 
@@ -150,7 +134,7 @@ public class interactArea : MonoBehaviour
 
     }
 
-    private void InfoSetup(Scene scene, LoadSceneMode mode)
+    /* private void InfoSetup(Scene scene, LoadSceneMode mode)
     {
         InfoSetup(null);
     }
@@ -175,5 +159,5 @@ public class interactArea : MonoBehaviour
         infoBox.text = text;
         infoTimer = infoTime + infoFadeTime;
         infoTiming = true;
-    }
+    } */
 }

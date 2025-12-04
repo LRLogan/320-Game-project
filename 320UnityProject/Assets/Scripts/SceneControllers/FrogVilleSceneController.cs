@@ -1,6 +1,9 @@
+using FischlWorks_FogWar;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class FrogVilleSceneController : MonoBehaviour
@@ -13,10 +16,25 @@ public class FrogVilleSceneController : MonoBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private interactArea interactArea;
     public static bool firstLoad = true;
+    private GameManager gameManager;
+
+    [SerializeField] private GameObject dialogueUIPrefab;
+    [SerializeField] private GameObject infoPannelPrefab;
+    [SerializeField] private GameObject choiceParentPrefab;
+    [SerializeField] private EventSystem eventSystem;
+    private Canvas canvas;
+
+    [SerializeField] private csFogWar fogWar;
+
+    private const int autopsyValue = 0;
+    private const int letterValue = 1;
+    [SerializeField] private TextAsset letterScript;
+    [SerializeField] private SceneWarpTrigger[] villageDoors;
 
     private void Awake()
     {
-       
+        gameManager = FindAnyObjectByType<GameManager>();
+
         try
         {
             playerInstance = FindAnyObjectByType<Player>().gameObject;
@@ -52,11 +70,64 @@ public class FrogVilleSceneController : MonoBehaviour
         {
             camera.GetComponent<sSimpleCamera>().player = playerInstance.transform;
         }
-       
+
+        // Find the persistent canvas
+        canvas = GameObject.Find("Canvas")?.GetComponent<Canvas>();
+
+        if (canvas == null)
+            Debug.LogWarning("No PersistentCanvas found! Make sure one exists before loading this scene.");
+        else
+        {
+            // Dialogue display
+            GameObject dialogueUIInstance = Instantiate(dialogueUIPrefab, canvas.transform);
+            dialogueUIInstance.layer = LayerMask.NameToLayer("UI");
+            dialogueUIInstance.SetActive(true);
+
+            DialogueDisplay dpDisplay = eventSystem.GetComponent<DialogueDisplay>();
+            dpDisplay.onStart = false;
+            dpDisplay.lockMovement = true;
+
+            GameObject choiceParent = Instantiate(choiceParentPrefab, canvas.transform);
+            dpDisplay.choiceParent = choiceParent.transform;
+
+            dpDisplay.gameManager = gameManager;
+            dpDisplay.alreadySeen = gameManager.ContainsDialogue(dpDisplay.inkScript);
+
+            // Getting the different text components in the dialogue pannel and assigning them
+            TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
+            dpDisplay.dialogueBox = textsInChild[1];
+            dpDisplay.speakerBox = textsInChild[0];
+
+            // Info pannel / UI controller
+            GameObject infoPannelInstance = Instantiate(infoPannelPrefab, canvas.transform);
+            infoPannelInstance.layer = LayerMask.NameToLayer("UI");
+            infoPannelInstance.SetActive(true);
+
+            UIController uiController = eventSystem.GetComponent<UIController>();
+            uiController.infoBox = infoPannelInstance.GetComponentInChildren<TextMeshProUGUI>();
+            dpDisplay.InfoSetup(infoPannelInstance);
+
+            // Player dialogue reference
+            playerInstance.GetComponent<Player>().dialogueDisplay = dpDisplay;
+            playerInstance.transform.GetChild(0).GetComponent<interactArea>().dialogueDisplay = dpDisplay;
+
+            // Check if doors need to be locked
+            if (gameManager.ContainsDialogue(dpDisplay.inkScript) < autopsyValue)
+            {
+                foreach (SceneWarpTrigger door in villageDoors)
+                    door.locked = true;
+            }
+
+            if (gameManager.ContainsDialogue(letterScript) < letterValue)
+                dpDisplay.pathChoice = 0;
+            else
+                dpDisplay.pathChoice = 1;
+        }
 
         interactArea.playerScript = playerInstance.GetComponent<Player>();
         inventoryUI.player = playerInstance.GetComponent<Player>();
-       
+
+        fogWar.AddFogRevealer(new csFogWar.FogRevealer(playerInstance.transform, 20, false));
     }
 
     /// <summary>

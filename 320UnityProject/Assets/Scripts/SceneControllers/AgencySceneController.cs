@@ -75,8 +75,7 @@ public class AgencySceneController : MonoBehaviour
             dpDisplay.choiceParent = choiceParent.transform;
 
             dpDisplay.gameManager = gameManager;
-            if (gameManager.ContainsDialogue(dpDisplay.inkScript))
-                dpDisplay.alreadySeen = true;
+            dpDisplay.alreadySeen = gameManager.ContainsDialogue(dpDisplay.inkScript);
 
             // Getting the different text components in the dialogue pannel ans assinging them 
             TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
@@ -90,11 +89,12 @@ public class AgencySceneController : MonoBehaviour
 
             UIController uiController = eventSystem.GetComponent<UIController>();
             uiController.infoBox = infoPannelInstance.GetComponentInChildren<TextMeshProUGUI>();
-            dpDisplay.infoPanel = infoPannelInstance;
+            dpDisplay.InfoSetup(infoPannelInstance);
 
             // Player dialogue reference
             playerInstance.GetComponent<Player>().dialogueDisplay = dpDisplay;
-            playerInstance.transform.GetChild(0).GetComponent<interactArea>().InfoSetup(infoPannelInstance);
+            playerInstance.transform.GetChild(0).GetComponent<interactArea>().dialogueDisplay = dpDisplay;
+            //playerInstance.transform.GetChild(0).GetComponent<interactArea>().InfoSetup(infoPannelInstance);
         }
 
         //interactArea.playerScript = playerInstance.GetComponent<Player>();

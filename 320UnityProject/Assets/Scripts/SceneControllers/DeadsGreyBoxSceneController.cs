@@ -11,6 +11,7 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
     private GameManager gameManager;
 
     [SerializeField] private GameObject dialogueUIPrefab;
+    [SerializeField] private GameObject infoPannelPrefab;
     [SerializeField] private GameObject choiceParentPrefab;
     [SerializeField] private EventSystem eventSystem;
     private Canvas canvas;
@@ -42,8 +43,7 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
         dpDisplay.choiceParent = choiceParent.transform;
 
         dpDisplay.gameManager = gameManager;
-        if (gameManager.ContainsDialogue(dpDisplay.inkScript))
-            dpDisplay.alreadySeen = true;
+        dpDisplay.alreadySeen = gameManager.ContainsDialogue(dpDisplay.inkScript);
 
         // Getting the different text components in the dialogue pannel ans assinging them 
         TextMeshProUGUI[] textsInChild = dialogueUIInstance.GetComponentsInChildren<TextMeshProUGUI>();
@@ -52,20 +52,23 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
 
         // Section of code that was not in main (Checking if we still need this)
         // Info pannel / UI controller
-        /*
+        
         GameObject infoPannelInstance = Instantiate(infoPannelPrefab, canvas.transform);
         infoPannelInstance.layer = LayerMask.NameToLayer("UI");
         infoPannelInstance.SetActive(true);
+        dpDisplay.InfoSetup(infoPannelInstance);
 
+        /*
         UIController uiController = eventSystem.GetComponent<UIController>();
         uiController.infoBox = infoPannelInstance.GetComponentInChildren<TextMeshProUGUI>();
         */
         // Player dialogue reference
         Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
         player.dialogueDisplay = dpDisplay;
+        player.transform.GetChild(0).GetComponent<interactArea>().dialogueDisplay = dpDisplay;
         //player.transform.GetChild(0).GetComponent<interactArea>().InfoSetup(infoPannelInstance);
         //infoPannelInstance.SetActive(false);
-        
+
     }
 
     private void Start()

@@ -81,13 +81,33 @@ public class DialogueDisplay : MonoBehaviour
     const float choiceDistance = 60;
 
     public GameManager gameManager;
-    public bool alreadySeen = false;
+    public int alreadySeen = -1;
+    int seeing = -1;
+
+    public int pathChoice = -1;
 
     public Player playerScript;
     GameObject dialoguePanel;
     GameObject speakerPanel;
     Image panelImage;
+    
+    /// <summary>
+    /// The number of seconds infoPanel is visible until it starts fading out.
+    /// </summary>
+    private const float infoTime = 2;
+
+    /// <summary>
+    /// The number of seconds it takes for infoPanel to completely disappear once it starts fading out.
+    /// </summary>
+    private const float infoFadeTime = 1;
+
     public GameObject infoPanel;
+    private TextMeshProUGUI infoBox;
+    private Image infoImage;
+    private float infoAlpha;
+    private float infoTimer = 0;
+    private bool infoTiming = false;
+
     float delayTimer = 0;
     Story inkStory;
     bool choosing = false;
@@ -100,6 +120,8 @@ public class DialogueDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //SceneManager.sceneUnloaded += DestroyPanels;
+
         playerScript = FindAnyObjectByType<Player>();
         dialoguePanel = dialogueBox.transform.parent.gameObject;
         speakerPanel = speakerBox.transform.parent.gameObject;
@@ -121,6 +143,26 @@ public class DialogueDisplay : MonoBehaviour
     void Update()
     {
         delayTimer = Mathf.Max(0, delayTimer - Time.deltaTime);
+
+        if (infoTiming && infoPanel != null)
+        {
+            if (infoTimer > 0)
+            {
+                infoTimer = Mathf.Max(0, infoTimer - Time.deltaTime);
+                if (infoTimer <= infoFadeTime)
+                {
+                    infoImage.color -= new Color(0, 0, 0, Time.deltaTime * infoAlpha / infoFadeTime);
+                    infoBox.color -= new Color(0, 0, 0, Time.deltaTime / infoFadeTime);
+                }
+            }
+            else if (infoPanel.activeSelf)
+            {
+                infoImage.color += new Color(0, 0, 0, infoAlpha - infoImage.color.a);
+                infoBox.color += new Color(0, 0, 0, 1 - infoBox.color.a);
+                infoPanel.SetActive(false);
+                infoTiming = false;
+            }
+        }
     }
 
     public void NextLine(InputAction.CallbackContext context)
@@ -131,10 +173,34 @@ public class DialogueDisplay : MonoBehaviour
 
     void NextLine()
     {
-        if (alreadySeen)
+        if (seeing >= 0 && alreadySeen >= seeing)
         {
             dialoguePanel.SetActive(false);
             return;
+        }
+        string line = "-1";
+        //Debug.Log("seeing: " + seeing);
+        if (seeing < 0)
+        {
+            seeing = alreadySeen + 1;
+            Debug.Log("seeing: " + seeing);
+
+            if (alreadySeen >= Mathf.Max(0, inkStory.currentChoices.Count - 1))
+            {
+                dialoguePanel.SetActive(false);
+                return;
+            }
+
+            if (inkStory.canContinue)
+                line = inkStory.Continue();
+            if (line == "0\n")
+            {
+                Debug.Log("testing");
+                line = "-1";
+                inkStory.ContinueMaximally();
+                inkStory.ChooseChoiceIndex(seeing);
+            }
+                //inkStory.ChoosePath(inkStory.currentChoices[seeing].path);
         }
 
         if (choosing || paused || (!inkStory.canContinue && inkStory.currentChoices.Count <= 0 && !dialoguePanel.activeSelf))
@@ -143,13 +209,16 @@ public class DialogueDisplay : MonoBehaviour
         dialogueBox.fontSize = size0;
         dialogueBox.enableAutoSizing = autoSize0;
 
-        currentLine++;
+        //currentLine++;
         if (inkStory.canContinue)
         {
             if (lockMovement && playerScript.canMove)
                 playerScript.canMove = false;
 
-            string line = inkStory.Continue();
+            if (line == "-1")
+                line = inkStory.Continue();
+
+            Debug.Log("line: " + line);
             if (line.Length > 0)
             {
                 string speaker = speakerBox.text;
@@ -197,7 +266,7 @@ public class DialogueDisplay : MonoBehaviour
         else if (inkStory.currentChoices.Count > 0)
         {
             List<Choice> choices = inkStory.currentChoices;
-            if (choices.Count == 1 && choices[0].text == "0")
+            if (choices[0].text == "0")
             {
                 HideDialogue();
                 paused = true;
@@ -224,7 +293,8 @@ public class DialogueDisplay : MonoBehaviour
         {
             HideDialogue();
 
-            gameManager.RegisterDialogue(inkScript);
+            alreadySeen = Mathf.Max(alreadySeen, seeing);
+            gameManager.RegisterDialogue(inkScript, seeing);
             onEnd.Invoke();
         }
 
@@ -251,6 +321,58 @@ public class DialogueDisplay : MonoBehaviour
             Destroy(choiceParent.GetChild(i).gameObject);
         inkStory.ChooseChoiceIndex(index);
         NextLine();
+    }
+
+    public void ChoosePathString(string path)
+    {
+        int pathIndex;
+        if (int.TryParse(path.Substring(0, 1), out pathIndex))
+            seeing = pathIndex;
+        else if (path.StartsWith('n') && path.Length >= 2 && int.TryParse(path.Substring(1, 1), out pathIndex))
+            seeing = -pathIndex;
+        choosing = false;
+        paused = false;
+        for (int i = choiceParent.childCount - 1; i >= 0; i--)
+            Destroy(choiceParent.GetChild(i).gameObject);
+        inkStory.ChoosePathString(path);
+        if (pathChoice >= 0 && inkStory.currentChoices.Count > 0)
+            inkStory.ChooseChoiceIndex(pathChoice);
+        NextLine();
+    }
+
+    public void InfoSetup(GameObject infoPanelInstance)
+    {
+        infoPanel = infoPanelInstance;
+        if (infoPanel == null)
+            return;
+
+        infoBox = infoPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        infoImage = infoPanel.GetComponent<Image>();
+        infoAlpha = infoImage.color.a;
+        infoPanel.SetActive(false);
+    }
+
+    public void InfoText(string text)
+    {
+        if (dialoguePanel.activeSelf || infoPanel == null)
+            return;
+
+        infoPanel.SetActive(true);
+        infoImage.color += new Color(0, 0, 0, infoAlpha - infoImage.color.a);
+        infoBox.color += new Color(0, 0, 0, 1 - infoBox.color.a);
+        infoBox.text = text;
+        infoTimer = infoTime + infoFadeTime;
+        infoTiming = true;
+    }
+
+    public void DestroyPanels()
+    {
+        if (dialoguePanel != null)
+            Destroy(dialoguePanel);
+        if (infoPanel != null)
+            Destroy(infoPanel);
+        if (choiceParent != null)
+            Destroy(choiceParent.gameObject);
     }
 
     public void LoadScene(string sceneName) => SceneManager.LoadScene(sceneName);
