@@ -1766,7 +1766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
       propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: letter
+      value: 1letter
       objectReference: {fileID: 0}
     - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
       propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1895,6 +1895,9 @@ MonoBehaviour:
   goingInside: 0
   positionToLoad: {x: 0, y: 0, z: 0}
   locked: 0
+  lockedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1182978863
 BoxCollider:
   m_ObjectHideFlags: 0

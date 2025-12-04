@@ -1,3 +1,4 @@
+using FischlWorks_FogWar;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,7 +24,11 @@ public class FrogVilleSceneController : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     private Canvas canvas;
 
-    [SerializeField] private int autopsyValue;
+    [SerializeField] private csFogWar fogWar;
+
+    private const int autopsyValue = 0;
+    private const int letterValue = 1;
+    [SerializeField] private TextAsset letterScript;
     [SerializeField] private SceneWarpTrigger[] villageDoors;
 
     private void Awake()
@@ -112,11 +117,17 @@ public class FrogVilleSceneController : MonoBehaviour
                 foreach (SceneWarpTrigger door in villageDoors)
                     door.locked = true;
             }
+
+            if (gameManager.ContainsDialogue(letterScript) < letterValue)
+                dpDisplay.pathChoice = 0;
+            else
+                dpDisplay.pathChoice = 1;
         }
 
         interactArea.playerScript = playerInstance.GetComponent<Player>();
         inventoryUI.player = playerInstance.GetComponent<Player>();
-       
+
+        fogWar.AddFogRevealer(new csFogWar.FogRevealer(playerInstance.transform, 20, false));
     }
 
     /// <summary>

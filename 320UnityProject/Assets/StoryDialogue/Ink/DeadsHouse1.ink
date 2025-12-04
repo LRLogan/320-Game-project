@@ -21,9 +21,9 @@ Guess I'd better look around for some clues...
 -> END
 
 === 1search ===
-+ [0] -> letter
++ [0] -> 1letter
 
-=== letter ===
+=== 1letter ===
 YOU>>A letter...?
 Let's see...
 

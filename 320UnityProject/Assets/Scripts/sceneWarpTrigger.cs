@@ -16,7 +16,7 @@ public class SceneWarpTrigger : MonoBehaviour
     private InventoryManager inventoryManager;
     [SerializeField] Vector3 positionToLoad;
     public bool locked = false;
-    [SerializeField] private UnityEvent lockedEvent;
+    [SerializeField] public UnityEvent lockedEvent;
     private void Start()
     {
         //gameManager = FindFirstObjectByType<GameManager>();   
@@ -45,6 +45,7 @@ public class SceneWarpTrigger : MonoBehaviour
                     Debug.Log($"Setting prev pos: {player.posInOverworldBeforeSceneChange}");
                 }
                 player.posBeforeSceneChange = positionToLoad;
+                player.dialogueDisplay.DestroyPanels();
                 SceneManager.LoadScene(sceneToLoad);
             }
             else

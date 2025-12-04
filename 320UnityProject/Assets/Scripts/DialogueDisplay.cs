@@ -84,6 +84,8 @@ public class DialogueDisplay : MonoBehaviour
     public int alreadySeen = -1;
     int seeing = -1;
 
+    public int pathChoice = -1;
+
     public Player playerScript;
     GameObject dialoguePanel;
     GameObject speakerPanel;
@@ -118,7 +120,7 @@ public class DialogueDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.sceneUnloaded += DestroyPanels;
+        //SceneManager.sceneUnloaded += DestroyPanels;
 
         playerScript = FindAnyObjectByType<Player>();
         dialoguePanel = dialogueBox.transform.parent.gameObject;
@@ -291,6 +293,7 @@ public class DialogueDisplay : MonoBehaviour
         {
             HideDialogue();
 
+            alreadySeen = Mathf.Max(alreadySeen, seeing);
             gameManager.RegisterDialogue(inkScript, seeing);
             onEnd.Invoke();
         }
@@ -325,11 +328,15 @@ public class DialogueDisplay : MonoBehaviour
         int pathIndex;
         if (int.TryParse(path.Substring(0, 1), out pathIndex))
             seeing = pathIndex;
+        else if (path.StartsWith('n') && path.Length >= 2 && int.TryParse(path.Substring(1, 1), out pathIndex))
+            seeing = -pathIndex;
         choosing = false;
         paused = false;
         for (int i = choiceParent.childCount - 1; i >= 0; i--)
             Destroy(choiceParent.GetChild(i).gameObject);
         inkStory.ChoosePathString(path);
+        if (pathChoice >= 0 && inkStory.currentChoices.Count > 0)
+            inkStory.ChooseChoiceIndex(pathChoice);
         NextLine();
     }
 
@@ -347,7 +354,7 @@ public class DialogueDisplay : MonoBehaviour
 
     public void InfoText(string text)
     {
-        if (infoPanel == null)
+        if (dialoguePanel.activeSelf || infoPanel == null)
             return;
 
         infoPanel.SetActive(true);
@@ -358,7 +365,7 @@ public class DialogueDisplay : MonoBehaviour
         infoTiming = true;
     }
 
-    void DestroyPanels(Scene scene)
+    public void DestroyPanels()
     {
         if (dialoguePanel != null)
             Destroy(dialoguePanel);
