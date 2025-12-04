@@ -3430,6 +3430,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4900000, guid: f1663b04fbd74a64bb7738cfba602f9f, type: 3}
     - target: {fileID: 9016890536702456913, guid: 6790864b4f1ae054ca9f45a664bb8d02, type: 3}
+      propertyPath: choicePrefab
+      value: 
+      objectReference: {fileID: 3856283038282802624, guid: 677ba264c0e591f46822e829268723f2, type: 3}
+    - target: {fileID: 9016890536702456913, guid: 6790864b4f1ae054ca9f45a664bb8d02, type: 3}
       propertyPath: speakerSprite
       value: 
       objectReference: {fileID: 21300000, guid: 3c60a14a6931c1d4e9e7aaa94dc2cadd, type: 3}

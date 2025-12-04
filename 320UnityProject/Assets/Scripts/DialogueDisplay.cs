@@ -171,18 +171,33 @@ public class DialogueDisplay : MonoBehaviour
 
     void NextLine()
     {
-        if ((seeing < 0 && alreadySeen >= Mathf.Max(0, inkStory.currentChoices.Count - 1)) || (seeing >= 0 && alreadySeen >= seeing))
+        if (seeing >= 0 && alreadySeen >= seeing)
         {
             dialoguePanel.SetActive(false);
             return;
         }
-
+        string line = "-1";
+        //Debug.Log("seeing: " + seeing);
         if (seeing < 0)
         {
             seeing = alreadySeen + 1;
             Debug.Log("seeing: " + seeing);
-            if (inkStory.currentChoices.Count > 0)
+
+            if (alreadySeen >= Mathf.Max(0, inkStory.currentChoices.Count - 1))
+            {
+                dialoguePanel.SetActive(false);
+                return;
+            }
+
+            if (inkStory.canContinue)
+                line = inkStory.Continue();
+            if (line == "0\n")
+            {
+                Debug.Log("testing");
+                line = "-1";
+                inkStory.ContinueMaximally();
                 inkStory.ChooseChoiceIndex(seeing);
+            }
                 //inkStory.ChoosePath(inkStory.currentChoices[seeing].path);
         }
 
@@ -198,7 +213,8 @@ public class DialogueDisplay : MonoBehaviour
             if (lockMovement && playerScript.canMove)
                 playerScript.canMove = false;
 
-            string line = inkStory.Continue();
+            if (line == "-1")
+                line = inkStory.Continue();
 
             Debug.Log("line: " + line);
             if (line.Length > 0)

@@ -23,6 +23,9 @@ public class FrogVilleSceneController : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     private Canvas canvas;
 
+    [SerializeField] private int autopsyValue;
+    [SerializeField] private SceneWarpTrigger[] villageDoors;
+
     private void Awake()
     {
         gameManager = FindAnyObjectByType<GameManager>();
@@ -102,6 +105,13 @@ public class FrogVilleSceneController : MonoBehaviour
             // Player dialogue reference
             playerInstance.GetComponent<Player>().dialogueDisplay = dpDisplay;
             playerInstance.transform.GetChild(0).GetComponent<interactArea>().dialogueDisplay = dpDisplay;
+
+            // Check if doors need to be locked
+            if (gameManager.ContainsDialogue(dpDisplay.inkScript) < autopsyValue)
+            {
+                foreach (SceneWarpTrigger door in villageDoors)
+                    door.locked = true;
+            }
         }
 
         interactArea.playerScript = playerInstance.GetComponent<Player>();

@@ -8019,6 +8019,38 @@ PrefabInstance:
       propertyPath: sceneToLoad
       value: VillageHouse2
       objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8051805830699530867}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChoosePathString
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: locked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8029,6 +8061,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2124851355901087354, guid: e659517771621ea4090f875b75a80dbe, type: 3}
   m_PrefabInstance: {fileID: 422474218}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &422474220 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+  m_PrefabInstance: {fileID: 422474218}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c11c03d302aac8448055e99da5f1195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &424813567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6255888950009317798, guid: 1bc6c7a70a0ea6d419dd57e4d0aa5e63, type: 3}
@@ -8852,6 +8895,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bc6c7a70a0ea6d419dd57e4d0aa5e63, type: 3}
+--- !u!4 &466524605 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6255888950009317798, guid: 1bc6c7a70a0ea6d419dd57e4d0aa5e63, type: 3}
+  m_PrefabInstance: {fileID: 466524604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &470384127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8450104360506160470, guid: 0bbb7bf5cae084d47b887f7d3358e676, type: 3}
@@ -23407,7 +23455,6 @@ Transform:
   - {fileID: 1944216934}
   - {fileID: 492436067}
   - {fileID: 525360271}
-  - {fileID: 1651358907}
   - {fileID: 485361236}
   - {fileID: 1572068115}
   - {fileID: 79347664}
@@ -23418,6 +23465,7 @@ Transform:
   - {fileID: 4559885}
   - {fileID: 192740812}
   - {fileID: 1521312099}
+  - {fileID: 466524605}
   m_Father: {fileID: 4567627356145099624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1308286669
@@ -24498,6 +24546,11 @@ MonoBehaviour:
   infoPannelPrefab: {fileID: 6645276890318459487, guid: 51b4f4206bcc56c49a44f5ce7b98b561, type: 3}
   choiceParentPrefab: {fileID: 4045703632978157169, guid: 2ff43316bce107744b16a302560809d6, type: 3}
   eventSystem: {fileID: 8051805830699530865}
+  autopsyValue: 0
+  villageDoors:
+  - {fileID: 422474220}
+  - {fileID: 2131623558}
+  - {fileID: 1948764821}
 --- !u!4 &1373018628
 Transform:
   m_ObjectHideFlags: 0
@@ -35755,6 +35808,38 @@ PrefabInstance:
       propertyPath: sceneToLoad
       value: VillageHouse3
       objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8051805830699530867}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChoosePathString
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: locked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35765,6 +35850,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2124851355901087354, guid: e659517771621ea4090f875b75a80dbe, type: 3}
   m_PrefabInstance: {fileID: 1948764819}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1948764821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+  m_PrefabInstance: {fileID: 1948764819}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c11c03d302aac8448055e99da5f1195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1949468493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39128,6 +39224,38 @@ PrefabInstance:
       propertyPath: sceneToLoad
       value: VillageHouse1
       objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8051805830699530867}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChoosePathString
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: locked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+      propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39138,6 +39266,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2124851355901087354, guid: e659517771621ea4090f875b75a80dbe, type: 3}
   m_PrefabInstance: {fileID: 2131623556}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2131623558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
+  m_PrefabInstance: {fileID: 2131623556}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c11c03d302aac8448055e99da5f1195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2132768157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6255888950009317798, guid: 1bc6c7a70a0ea6d419dd57e4d0aa5e63, type: 3}
@@ -40167,7 +40306,4 @@ SceneRoots:
   - {fileID: 1027474420}
   - {fileID: 1850895196}
   - {fileID: 660852563}
-  - {fileID: 3499845436486107089}
-  - {fileID: 1638102888}
-  - {fileID: 1676228965}
   - {fileID: 1650301967}
