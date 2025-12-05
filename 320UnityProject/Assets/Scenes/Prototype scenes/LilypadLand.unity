@@ -650,13 +650,104 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4630956371808317239, guid: 1bc6c7a70a0ea6d419dd57e4d0aa5e63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 19969588}
+    - targetCorrespondingSourceObject: {fileID: 4630956371808317239, guid: 1bc6c7a70a0ea6d419dd57e4d0aa5e63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 19969587}
+    - targetCorrespondingSourceObject: {fileID: 4630956371808317239, guid: 1bc6c7a70a0ea6d419dd57e4d0aa5e63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 19969586}
   m_SourcePrefab: {fileID: 100100000, guid: 1bc6c7a70a0ea6d419dd57e4d0aa5e63, type: 3}
 --- !u!4 &19969584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6255888950009317798, guid: 1bc6c7a70a0ea6d419dd57e4d0aa5e63, type: 3}
   m_PrefabInstance: {fileID: 19969583}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &19969585 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4630956371808317239, guid: 1bc6c7a70a0ea6d419dd57e4d0aa5e63, type: 3}
+  m_PrefabInstance: {fileID: 19969583}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &19969586
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19969585}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &19969587
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19969585}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.99, y: 3.0300004, z: 0.20000018}
+  m_Center: {x: 0, y: 1.5150002, z: -0.000000090301036}
+--- !u!114 &19969588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19969585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e987e0ccd85ba44a5a26f454bd83e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canPickup: 1
+  destroyOnPickup: 0
+  isEndpoint: 0
+  endpointDialogue: 
+  isDialogue: 1
+  dialogue: You found a bloody shirt on one of the highest branches
+  isEvent: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  isEndpointEvent: 0
+  onEndpoint:
+    m_PersistentCalls:
+      m_Calls: []
+  wasInteracted: 0
+  id: 5
+  sprite: {fileID: 21300000, guid: 83ce7e65c20e2eb4396e34f67a55eb3a, type: 3}
 --- !u!1 &20141451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,6 +3058,10 @@ PrefabInstance:
     - target: {fileID: 2164431342311767458, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3568061142327584762, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
       propertyPath: sprite
