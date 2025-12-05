@@ -16,24 +16,24 @@ public class MultiBlockPuzzleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void updatePuzzle(int x)
     {
         orderSelect[numberInteracted] = x;
         numberInteracted++;
-        if(numberInteracted == 3)
+        if (numberInteracted == 3)
         {
             if (correctNumbers[0] == orderSelect[0] && correctNumbers[1] == orderSelect[1] && correctNumbers[2] == orderSelect[2])
             {
                 Debug.Log("yay");
-                if(item)
+                if (item)
                 {
                     Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
                     if (player != null)
@@ -41,11 +41,11 @@ public class MultiBlockPuzzleManager : MonoBehaviour
                         player.AddToInventory(objectGiven);
                     }
                 }
-                if(destroy)
+                if (destroy)
                 {
                     Destroy(objectDestroy);
                 }
-                
+
             }
             else
             {
@@ -56,10 +56,14 @@ public class MultiBlockPuzzleManager : MonoBehaviour
 
 
         }
-        
+
 
 
 
     }
-
+    public void Interacted()
+    {
+        Debug.Log(dialogueString);
+        numberInteracted = 0;
+    }
 }

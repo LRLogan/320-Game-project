@@ -1211,8 +1211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3734104532394616777, guid: ba4270657503ae04d9dc6ac23effd479, type: 3}
       propertyPath: dialogue
-      value: 'You find a time sheet of people leaving and entering the house. Time
-        left: 8:45, Time returned 9:15.'
+      value: You find a note that says top of the rock south west of the bridge
       objectReference: {fileID: 0}
     - target: {fileID: 5501809385040362943, guid: ba4270657503ae04d9dc6ac23effd479, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
