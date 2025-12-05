@@ -232,11 +232,11 @@ namespace FischlWorks_FogWar
 
         [BigHeader("Scan Properties")]
         [SerializeField]
-        [Range(1, 128)]
+        [Range(1, 200)]
         [Tooltip("If you need more than 128 units, consider using raycasting-based fog modules instead.")]
         private int levelDimensionX = 11;
         [SerializeField]
-        [Range(1, 128)]
+        [Range(1, 200)]
         [Tooltip("If you need more than 128 units, consider using raycasting-based fog modules instead.")]
         private int levelDimensionY = 11;
         [SerializeField]
