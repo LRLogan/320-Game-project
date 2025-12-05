@@ -11,7 +11,7 @@ Well, nobody's home, so I might as well <i>investigate</i> a bit...
 YOU>>"Hop 'n' Shop"? Is that some kind of shopping site...?
 And I guess "Petro" is the name of the frog that was using it, huh...
 
->>1x Foam Headband
+>>1x No-Sweat Headband
 1x Splendid Super Glue
 5x Buff & Brawny Dumbbells
 2x Door Repair Kit
