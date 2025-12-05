@@ -118,8 +118,10 @@ public class interactArea : MonoBehaviour
         
         if (other.gameObject.GetComponent<MultiBlockPuzzle>() != null)
         {
-           
-            other.gameObject.GetComponent<MultiBlockPuzzle>().Interacted();
+            MultiBlockPuzzle script = other.GetComponent<MultiBlockPuzzle>();
+            if (script.dialogue)
+                dialogueDisplay.InfoText(script.dialogueString);
+            script.Interacted();
         }
         if (other.gameObject.GetComponent<findAllPuzzle>() != null)
         {
@@ -133,8 +135,10 @@ public class interactArea : MonoBehaviour
         }
         if (other.gameObject.GetComponent<MultiBlockPuzzleManager>() != null)
         {
-
-            other.gameObject.GetComponent<MultiBlockPuzzleManager>().Interacted();
+            MultiBlockPuzzleManager script = other.GetComponent<MultiBlockPuzzleManager>();
+            if (script.dialogue)
+                dialogueDisplay.InfoText(script.dialogueString);
+            script.Interacted();
         }
 
     }

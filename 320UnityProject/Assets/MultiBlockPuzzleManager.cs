@@ -7,8 +7,8 @@ public class MultiBlockPuzzleManager : MonoBehaviour
     public int numberInteracted = 0;
     [SerializeField] int[] correctNumbers = new int[3];
     public int[] orderSelect = new int[3];
-    [SerializeField] bool dialogue;
-    [SerializeField] string dialogueString;
+    [SerializeField] public bool dialogue;
+    [SerializeField] public string dialogueString;
     [SerializeField] bool item;
     [SerializeField] GameObject objectGiven;
     [SerializeField] bool destroy;

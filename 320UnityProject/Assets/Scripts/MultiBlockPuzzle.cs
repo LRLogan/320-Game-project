@@ -7,6 +7,8 @@ public class MultiBlockPuzzle : MonoBehaviour
     [SerializeField] int blockNumber;
     public bool hasPressed;
     [SerializeField]  MultiBlockPuzzleManager manager;
+    [SerializeField] public bool dialogue;
+    [SerializeField] public string dialogueString;
 
     // Start is called before the first frame update
     void Start()
