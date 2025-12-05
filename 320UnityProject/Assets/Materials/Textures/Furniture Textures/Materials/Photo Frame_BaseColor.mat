@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Square Table Material
+  m_Name: Photo Frame_BaseColor
   m_Shader: {fileID: 4800000, guid: 38c9e527161a51148ae3523b75e18dec, type: 3}
-  m_Parent: {fileID: 2100000, guid: 3b0fbecd3a154be4182e3030777644f5, type: 2}
+  m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -18,32 +18,24 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses:
-  - MOTIONVECTORS
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _ColorMap:
-        m_Texture: {fileID: 2800000, guid: 758e3399ad4989b49979de2953b60ec2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 571505f198158874ea76d757d2349d23, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _OutlineThickness: 0.02
+    - _RimSharpness: 16
+    - _Smoothness: 16
     m_Colors:
-    - _Color: {r: 0.6179246, g: 0.5304824, b: 0.5304824, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _WorldColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &917066354407216267
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 9
