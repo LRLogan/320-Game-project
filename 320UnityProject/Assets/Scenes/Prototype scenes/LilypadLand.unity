@@ -24215,12 +24215,84 @@ MonoBehaviour:
     sightRange: 30
     updateOnlyOnMove: 0
     lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 1484399989}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 2108674400}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 388956022}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 1216524592}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 855020696}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 76188473}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 777717002}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 654559328}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 1512857260}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 1425885231}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 187046775}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 1149731319}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 4279681}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 1825430161}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 412279473}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 2051090586}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 1680750752}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
+  - revealerTransform: {fileID: 1140016101}
+    sightRange: 30
+    updateOnlyOnMove: 0
+    lastSeenAt: {x: 0, y: 0}
   levelMidPoint: {fileID: 1400479673}
   FogRefreshRate: 18.3
   fogPlaneHeight: 0
   fogPlaneMaterial: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
   fogColor: {r: 0.06563896, g: 0.07924521, b: 0.07244208, a: 1}
-  fogPlaneAlpha: 0.787
+  fogPlaneAlpha: 0.856
   fogLerpSpeed: 5
   keepRevealedTiles: 1
   revealedTileOpacity: 0
@@ -24229,8 +24301,8 @@ MonoBehaviour:
   LevelDataToLoad: {fileID: 0}
   saveDataOnScan: 1
   levelNameToSave: LillyPadFog
-  levelDimensionX: 174
-  levelDimensionY: 161
+  levelDimensionX: 158
+  levelDimensionY: 179
   unitScale: 1
   scanSpacingPerUnit: 0.05
   rayStartHeight: 5

@@ -690,7 +690,28 @@ MonoBehaviour:
   fadeStartDistance: 4.5
   fadeEndDistance: 2
   maxAlpha: 1
-  minAlpha: 0.4
+  minAlpha: 0.3
+--- !u!1 &300326824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 706959982149442844, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
+  m_PrefabInstance: {fileID: 5230282303517892947}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &300326831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300326824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d8a5183d6fd5eb41b8bad8d1c18e893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeStartDistance: 4.5
+  fadeEndDistance: 2
+  maxAlpha: 1
+  minAlpha: 0.3
 --- !u!1 &307263064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,7 +2002,7 @@ MonoBehaviour:
   fadeStartDistance: 4.5
   fadeEndDistance: 2
   maxAlpha: 1
-  minAlpha: 0.4
+  minAlpha: 0.3
 --- !u!1 &736501996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,32 +2517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6be16025ec88e4c88efb60e6a61e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowOverlap: 0
-  offsetPosition: {x: 0, y: 0, z: 0}
-  rotationStep: {x: 0, y: 90, z: 0}
-  paintAreaStretch: 0
-  placementRaycast:
-    useRaycast: 0
-    direction: 1
-    startOffset: {x: 0, y: 0, z: 0}
-  randomizer:
-    useRandomizer: 1
-    allowReplacement: 0
-    replacementID: 0
-    replacementWeight: 0
-    allowSequentialRepeat: 0
-    rotateMin: {x: 0, y: -180, z: 0}
-    rotateMax: {x: 0, y: 180, z: 0}
-    rotateStep: {x: 1, y: 1, z: 1}
-    scaleMin: {x: 1, y: 1, z: 1}
-    scaleMax: {x: 1, y: 1, z: 1}
-    scaleLock: 1
-    flipX: 0
-    flipY: 0
-    flipZ: 0
-    posMin: {x: 0, y: 0, z: 0}
-    posMax: {x: 0, y: 0, z: 0}
-  includeInMerge: 0
 --- !u!4 &798221886
 Transform:
   m_ObjectHideFlags: 1
@@ -5205,7 +5200,7 @@ MonoBehaviour:
   fadeStartDistance: 4.5
   fadeEndDistance: 2
   maxAlpha: 1
-  minAlpha: 0.4
+  minAlpha: 0.3
 --- !u!1 &1653983940
 GameObject:
   m_ObjectHideFlags: 0
@@ -7890,7 +7885,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 706959982149442844, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 300326831}
   m_SourcePrefab: {fileID: 100100000, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
 --- !u!1001 &6210520198944489747
 PrefabInstance:
