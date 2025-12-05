@@ -284,6 +284,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5bc33532-1f30-4d60-aca1-2bdf91760489
     m_ActionName: 'Gameplay/OpenMenu[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7956713884062744753}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnSkipDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9f5a6bc6-b65e-4138-9baf-df6c33d92a29
+    m_ActionName: 'Gameplay/SkipDialogue[/Keyboard/m]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

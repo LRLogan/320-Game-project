@@ -27,8 +27,10 @@ public class FrogVilleSceneController : MonoBehaviour
     [SerializeField] private csFogWar fogWar;
 
     private const int autopsyValue = 0;
+    [SerializeField] private TextAsset autopsyScript;
     private const int letterValue = 1;
     [SerializeField] private TextAsset letterScript;
+    [SerializeField] private interactableObject autopsyObject;
     [SerializeField] private SceneWarpTrigger[] villageDoors;
 
     private void Awake()
@@ -112,16 +114,25 @@ public class FrogVilleSceneController : MonoBehaviour
             playerInstance.transform.GetChild(0).GetComponent<interactArea>().dialogueDisplay = dpDisplay;
 
             // Check if doors need to be locked
-            if (gameManager.ContainsDialogue(dpDisplay.inkScript) < autopsyValue)
+            if (gameManager.ContainsDialogue(autopsyScript) < autopsyValue)
             {
                 foreach (SceneWarpTrigger door in villageDoors)
                     door.locked = true;
             }
 
             if (gameManager.ContainsDialogue(letterScript) < letterValue)
+            {
                 dpDisplay.pathChoice = 0;
+                //autopsyObject.isDialogue = false;
+                autopsyObject.dialogue = "The trash can is full";
+                autopsyObject.isEvent = false;
+            }
             else
+            {
                 dpDisplay.pathChoice = 1;
+                autopsyObject.isDialogue = true;
+                autopsyObject.isEvent = true;
+            }
         }
 
         interactArea.playerScript = playerInstance.GetComponent<Player>();
@@ -139,4 +150,13 @@ public class FrogVilleSceneController : MonoBehaviour
         playerInstance.GetComponent<Player>().rotateControls = false;
     }
 
+    public void UnlockDoors()
+    {
+        if (gameManager.ContainsDialogue(autopsyScript) >= autopsyValue)
+            return;
+
+        foreach (SceneWarpTrigger door in villageDoors)
+            door.locked = false;
+        eventSystem.GetComponent<DialogueDisplay>().pathChoice = -1;
+    }
 }

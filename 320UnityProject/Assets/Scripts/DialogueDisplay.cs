@@ -171,7 +171,19 @@ public class DialogueDisplay : MonoBehaviour
             NextLine();
     }
 
-    void NextLine()
+    public void SkipDialogue(InputAction.CallbackContext context)
+    {
+        if (!dialoguePanel.activeSelf || inkStory.currentChoices.Count > 0)
+            return;
+
+        inkStory.ContinueMaximally();
+        string line = null;
+        if (inkStory.currentChoices.Count > 0)
+            line = inkStory.currentText;
+        NextLine(line);
+    }
+
+    void NextLine(string lineText = null)
     {
         if (seeing >= 0 && alreadySeen >= seeing)
         {
@@ -179,6 +191,8 @@ public class DialogueDisplay : MonoBehaviour
             return;
         }
         string line = "-1";
+        if (lineText != null)
+            line = lineText;
         //Debug.Log("seeing: " + seeing);
         if (seeing < 0)
         {
@@ -335,9 +349,21 @@ public class DialogueDisplay : MonoBehaviour
         for (int i = choiceParent.childCount - 1; i >= 0; i--)
             Destroy(choiceParent.GetChild(i).gameObject);
         inkStory.ChoosePathString(path);
-        if (pathChoice >= 0 && inkStory.currentChoices.Count > 0)
-            inkStory.ChooseChoiceIndex(pathChoice);
-        NextLine();
+
+        string line = null;
+        if (pathChoice >= 0)
+        {
+            if (inkStory.canContinue)
+                line = inkStory.Continue();
+            if (line == "0\n")
+            {
+                line = null;
+                inkStory.ContinueMaximally();
+                inkStory.ChooseChoiceIndex(pathChoice);
+            }
+        }
+
+        NextLine(line);
     }
 
     public void InfoSetup(GameObject infoPanelInstance)

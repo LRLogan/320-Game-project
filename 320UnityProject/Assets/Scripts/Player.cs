@@ -186,6 +186,13 @@ public class Player : MonoBehaviour
         dialogueDisplay.NextLine(context);
     }
 
+    public void OnSkipDialogue(InputAction.CallbackContext context)
+    {
+        if (!dialogueDisplay)
+            return;
+        dialogueDisplay.SkipDialogue(context);
+    }
+
     public void OnSetRun(InputAction.CallbackContext context)
     {
         if(context.started || context.performed)

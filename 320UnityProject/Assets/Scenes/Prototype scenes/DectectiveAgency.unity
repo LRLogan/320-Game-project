@@ -468,6 +468,7 @@ MonoBehaviour:
   lines: []
   gameManager: {fileID: 0}
   alreadySeen: -1
+  pathChoice: -1
   playerScript: {fileID: 0}
   infoPanel: {fileID: 0}
 --- !u!114 &64336018 stripped
@@ -7509,7 +7510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2783402992089816728, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10.9236
+      value: 11.9236
       objectReference: {fileID: 0}
     - target: {fileID: 2783402992089816728, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
       propertyPath: m_LocalScale.y
