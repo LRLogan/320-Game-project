@@ -453,7 +453,11 @@ MonoBehaviour:
   - me>>hi
   - You>>can you hear me
   - HAPPY PERSON>>yippee
+  gameManager: {fileID: 0}
+  alreadySeen: -1
+  pathChoice: -1
   playerScript: {fileID: 0}
+  infoPanel: {fileID: 0}
 --- !u!114 &761199860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +519,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5bc33532-1f30-4d60-aca1-2bdf91760489
     m_ActionName: 'Gameplay/OpenMenu[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f5a6bc6-b65e-4138-9baf-df6c33d92a29
+    m_ActionName: 'Gameplay/SkipDialogue[/Keyboard/m]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -625,6 +633,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 272001104}
     m_Modifications:
+    - target: {fileID: 2569320565043662944, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7134911e10d77f34dae802def749c6d7, type: 3}
     - target: {fileID: 4093843948648021414, guid: 25357f13f39a025438a8bcba440e103b, type: 3}
       propertyPath: m_Name
       value: DialoguePanel
