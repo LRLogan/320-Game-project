@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MultiBlockPuzzleManager : MonoBehaviour
 {
+    Player player;
+
     public int numberInteracted = 0;
     [SerializeField] int[] correctNumbers = new int[3];
     public int[] orderSelect = new int[3];
@@ -16,7 +18,7 @@ public class MultiBlockPuzzleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -35,7 +37,6 @@ public class MultiBlockPuzzleManager : MonoBehaviour
                 Debug.Log("yay");
                 if (item)
                 {
-                    Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
                     if (player != null)
                     {
                         player.AddToInventory(objectGiven);
@@ -51,7 +52,7 @@ public class MultiBlockPuzzleManager : MonoBehaviour
             {
                 numberInteracted = 0;
                 Debug.Log("no");
-
+                player.dialogueDisplay.InfoText("You hear locks reactivating. Did you do something wrong...?");
             }
 
 
