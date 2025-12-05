@@ -210,6 +210,7 @@ public class Player : MonoBehaviour
         if (!canMove)
         {
             moveInput = Vector3.zero;
+            audioSource.Stop();
             return;
         }
 
@@ -234,8 +235,11 @@ public class Player : MonoBehaviour
         moveInput = offsetRot * localInput;
         if(moveInput != Vector3.zero)
         {
-            
+            if(isGrounded)
+            {
                 audioSource.Play();
+            }
+               
          
             moveInput.Normalize();
             direction = moveInput;
