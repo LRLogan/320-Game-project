@@ -279,6 +279,26 @@ namespace FischlWorks_FogWar
 
         private void Start()
         {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                // Configure these values as you like
+                int playerSightRange = 30;      
+                bool updateOnlyOnMove = true;
+
+                FogRevealer playerRevealer = new FogRevealer(
+                    player.transform,
+                    playerSightRange,
+                    updateOnlyOnMove
+                );
+
+                AddFogRevealer(playerRevealer);
+            }
+            else
+            {
+                Debug.LogWarning("csFogWar: No GameObject with tag 'Player' found.");
+            }
+
             CheckProperties();
 
             InitializeVariables();
