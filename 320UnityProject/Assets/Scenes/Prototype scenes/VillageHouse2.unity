@@ -3963,10 +3963,11 @@ MonoBehaviour:
   onEnd:
     m_PersistentCalls:
       m_Calls: []
-  inkScript: {fileID: 0}
+  inkScript: {fileID: 4900000, guid: aa174c61e7007c649a4432f3e80f2f22, type: 3}
   lines: []
   gameManager: {fileID: 0}
   alreadySeen: -1
+  pathChoice: -1
   playerScript: {fileID: 0}
   infoPanel: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

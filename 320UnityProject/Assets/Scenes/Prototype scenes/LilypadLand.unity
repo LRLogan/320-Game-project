@@ -7571,6 +7571,18 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1373018627}
+        m_TargetAssemblyTypeName: FrogVilleSceneController, Assembly-CSharp
+        m_MethodName: UnlockDoors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 0autopsy
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8051805830699530867}
         m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
         m_MethodName: ChoosePathString
@@ -7580,7 +7592,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: autopsy
+          m_StringArgument: 0autopsy
           m_BoolArgument: 0
         m_CallState: 2
   isEndpointEvent: 0
@@ -8057,7 +8069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
       propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: n1locked
+      value: locked
       objectReference: {fileID: 0}
     - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
       propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -24498,7 +24510,9 @@ MonoBehaviour:
   choiceParentPrefab: {fileID: 4045703632978157169, guid: 2ff43316bce107744b16a302560809d6, type: 3}
   eventSystem: {fileID: 8051805830699530865}
   fogWar: {fileID: 1351261697}
+  autopsyScript: {fileID: 4900000, guid: 8a8d0b20cb235094e92e95810b84e855, type: 3}
   letterScript: {fileID: 4900000, guid: f1663b04fbd74a64bb7738cfba602f9f, type: 3}
+  autopsyObject: {fileID: 405296139}
   villageDoors:
   - {fileID: 422474220}
   - {fileID: 2131623558}
@@ -35781,7 +35795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
       propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: n1locked
+      value: locked
       objectReference: {fileID: 0}
     - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
       propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -39197,7 +39211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
       propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: n1locked
+      value: locked
       objectReference: {fileID: 0}
     - target: {fileID: 7914486489613220404, guid: e659517771621ea4090f875b75a80dbe, type: 3}
       propertyPath: lockedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
