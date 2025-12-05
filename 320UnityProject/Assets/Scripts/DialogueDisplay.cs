@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Ink.Runtime;
@@ -308,7 +309,8 @@ public class DialogueDisplay : MonoBehaviour
             HideDialogue();
 
             alreadySeen = Mathf.Max(alreadySeen, seeing);
-            gameManager.RegisterDialogue(inkScript, seeing);
+            if (gameManager != null)
+                gameManager.RegisterDialogue(inkScript, seeing);
             onEnd.Invoke();
         }
 

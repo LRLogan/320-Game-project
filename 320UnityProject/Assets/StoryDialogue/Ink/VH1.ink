@@ -20,12 +20,12 @@ YOU>><i>Two</i> door repair kits?
 Why would he need <i>two</i> of them...?
 
 >>10x Resistance Band
->>1x Burglar Mask
+>>1x Ski Mask
 >>1x Razor-Sharp Knife
 >>3x Party Balloons (set of 5)
 
 YOU>>Whoa, whoa, whoa, hang on...
-A burglar mask? And a <i>knife</i>?
+A mask? And a <i>knife</i>?
 I might be on to something...
 
 >><i>*stomp stomp*</i>

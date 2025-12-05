@@ -29,6 +29,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prototype scenes/LilypadLand.unity
     guid: 4430189593de6794b97ba5c7602ab145
+  - enabled: 1
+    path: Assets/Scenes/Prototype scenes/EndingPetro.unity
+    guid: 078dc3bc681f10740a973fbc16902aac
+  - enabled: 1
+    path: Assets/Scenes/Prototype scenes/EndingKayla.unity
+    guid: 760f8c5d53c591141a572c6fa5fa863f
+  - enabled: 1
+    path: Assets/Scenes/Prototype scenes/EndingBale.unity
+    guid: 9d3041e12bc3646499ef13487520c37a
+  - enabled: 1
+    path: Assets/Scenes/Prototype scenes/EndingBuffFrog.unity
+    guid: 5c2f66bc80bf73048bc0fed38727ed28
+  - enabled: 1
+    path: Assets/Scenes/Prototype scenes/EndCredits.unity
+    guid: 8bb257075b64cf14aaf47bd1f9fe4feb
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a8a322fdd25554042990753969f6e462, type: 2}
   m_UseUCBPForAssetBundles: 0

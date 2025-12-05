@@ -30,6 +30,10 @@ public class FrogVilleSceneController : MonoBehaviour
     [SerializeField] private TextAsset autopsyScript;
     private const int letterValue = 1;
     [SerializeField] private TextAsset letterScript;
+    private const int doneValue = 1;
+    [SerializeField] private TextAsset doneScript;
+    private const int houseValue = 0;
+    [SerializeField] private TextAsset[] houseScripts;
     [SerializeField] private interactableObject autopsyObject;
     [SerializeField] private SceneWarpTrigger[] villageDoors;
 
@@ -114,8 +118,11 @@ public class FrogVilleSceneController : MonoBehaviour
             playerInstance.transform.GetChild(0).GetComponent<interactArea>().dialogueDisplay = dpDisplay;
 
             // Check if doors need to be locked
-            if (gameManager.ContainsDialogue(autopsyScript) < autopsyValue)
+            if (gameManager.ContainsDialogue(autopsyScript) < autopsyValue
+                || gameManager.ContainsDialogue(doneScript) >= doneValue)
             {
+                if (gameManager.ContainsDialogue(doneScript) >= doneValue)
+                    dpDisplay.pathChoice = 2;
                 foreach (SceneWarpTrigger door in villageDoors)
                     door.locked = true;
             }
@@ -158,5 +165,29 @@ public class FrogVilleSceneController : MonoBehaviour
         foreach (SceneWarpTrigger door in villageDoors)
             door.locked = false;
         eventSystem.GetComponent<DialogueDisplay>().pathChoice = -1;
+    }
+
+    public void HouseCounter()
+    {
+        int counter = 0;
+        foreach (TextAsset house in houseScripts)
+        {
+            if (gameManager.ContainsDialogue(house) >= houseValue)
+                counter++;
+        }
+        if (counter >= houseScripts.Length)
+            LockDoors();
+    }
+
+    private void LockDoors()
+    {
+        if (gameManager.ContainsDialogue(doneScript) >= doneValue)
+            return;
+
+        DialogueDisplay dpDisplay = eventSystem.GetComponent<DialogueDisplay>();
+        dpDisplay.pathChoice = 2;
+        foreach (SceneWarpTrigger door in villageDoors)
+            door.locked = true;
+        dpDisplay.ChoosePathString("1finish");
     }
 }
