@@ -133,7 +133,10 @@ public class DialogueDisplay : MonoBehaviour
         size0 = dialogueBox.fontSize;
         autoSize0 = dialogueBox.enableAutoSizing;
 
-        if (gameManager.nextScenePath.Length > 0)
+        if (gameManager == null)
+            gameManager = FindAnyObjectByType<GameManager>();
+
+        if (gameManager != null && gameManager.nextScenePath.Length > 0)
             ChooseNextScenePath();
         else if (onStart)
             NextLine();
@@ -345,6 +348,8 @@ public class DialogueDisplay : MonoBehaviour
         paused = false;
         for (int i = choiceParent.childCount - 1; i >= 0; i--)
             Destroy(choiceParent.GetChild(i).gameObject);
+        if (inkStory.currentChoices[index].text == "Erica")
+            gameManager.nextScenePath = "true_ending";
         inkStory.ChooseChoiceIndex(index);
         NextLine();
     }
