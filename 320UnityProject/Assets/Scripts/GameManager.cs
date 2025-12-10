@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private Puzzle curPuzzle;
     private PuzzleTracker puzzleTracker;    // Attach to this game object 
     private Dictionary<TextAsset, int> seenDialogue;
+    public string nextScenePath;
     private string filePath;
 
     public GameObject pauseMenu;

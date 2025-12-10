@@ -737,10 +737,22 @@ MonoBehaviour:
   endpointDialogue: 
   isDialogue: 1
   dialogue: You found a bloody shirt on one of the highest branches
-  isEvent: 0
+  isEvent: 1
   onInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8051805830699530867}
+        m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
+        m_MethodName: ChoosePathString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 1red_tree
+          m_BoolArgument: 0
+        m_CallState: 2
   isEndpointEvent: 0
   onEndpoint:
     m_PersistentCalls:
@@ -3068,6 +3080,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: aa631a896644aca48a2cb744e2725f16, type: 3}
     - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: isEvent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
       propertyPath: dialogue
       value: its an empty bottle of poison
       objectReference: {fileID: 0}
@@ -3078,6 +3094,70 @@ PrefabInstance:
     - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
       propertyPath: destroyOnPickup
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8051805830699530867}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8051805830699530867}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChoosePathString
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RegisterDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DialogueDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 1poison
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 4900000, guid: aa174c61e7007c649a4432f3e80f2f22, type: 3}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 1poison
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
+      propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.TextAsset, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7356486725916629054, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
       propertyPath: m_Name
@@ -8571,6 +8651,10 @@ PrefabInstance:
     - target: {fileID: 4884254766270712396, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
       propertyPath: m_Name
       value: Interact Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884254766270712396, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4906939340352541852, guid: 964ceca8c5086224a92e89ea6339cec6, type: 3}
       propertyPath: playerScript
@@ -24689,6 +24773,12 @@ MonoBehaviour:
   fogWar: {fileID: 1351261697}
   autopsyScript: {fileID: 4900000, guid: 8a8d0b20cb235094e92e95810b84e855, type: 3}
   letterScript: {fileID: 4900000, guid: f1663b04fbd74a64bb7738cfba602f9f, type: 3}
+  doneScript: {fileID: 0}
+  houseScripts:
+  - {fileID: 4900000, guid: 5c807ef23a7ee144b820dc163a1dc041, type: 3}
+  - {fileID: 4900000, guid: aa174c61e7007c649a4432f3e80f2f22, type: 3}
+  - {fileID: 4900000, guid: 677aa31123d1a384ea0b2fcbbfb57373, type: 3}
+  houseIds: 
   autopsyObject: {fileID: 405296139}
   villageDoors:
   - {fileID: 422474220}
@@ -40374,15 +40464,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 0}
   speakerBox: {fileID: 0}
-  speakerSprite: {fileID: 21300000, guid: 3c60a14a6931c1d4e9e7aaa94dc2cadd, type: 3}
-  noSpeakerSprite: {fileID: 21300000, guid: 4783cd083fe4bda4fbfdb3d26bf2fa17, type: 3}
+  speakerSprite: {fileID: 21300000, guid: 7134911e10d77f34dae802def749c6d7, type: 3}
+  noSpeakerSprite: {fileID: 21300000, guid: 5b408f19fc5c6ab4c863090742969cc9, type: 3}
   choiceParent: {fileID: 0}
   choicePrefab: {fileID: 3856283038282802624, guid: 677ba264c0e591f46822e829268723f2, type: 3}
   onStart: 0
   lockMovement: 1
   onEnd:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1373018627}
+        m_TargetAssemblyTypeName: FrogVilleSceneController, Assembly-CSharp
+        m_MethodName: HouseCounter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   inkScript: {fileID: 4900000, guid: 8a8d0b20cb235094e92e95810b84e855, type: 3}
   lines: []
   gameManager: {fileID: 0}

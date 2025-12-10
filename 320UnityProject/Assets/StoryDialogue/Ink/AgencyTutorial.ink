@@ -1,5 +1,6 @@
 TOADSHOE>>Welcome, new detective!
-Since we're known for our reliability, naturally we must ask...
+We're excited to have you here at the Forest Regional Organization of Gumshoes!
+But since we're known for our reliability, naturally we must ask...
 Are you up for the job?
 
 YOU>>Yes, of course!
@@ -90,5 +91,12 @@ TOADSHOE>>There is no proof that this is a case of murder.
 But who knows, maybe you'll find something that we couldn't?
 
 YOU>>Hmmmm, <i>okay......</i>
+
+TOADSHOE>>And remember: why do we do our work here at FROG?
+
+YOU>>For the safety of the Forest!
+
+TOADSHOE>>That's right!
+Now hurry along. You have a job to do, after all.
 
 -> END

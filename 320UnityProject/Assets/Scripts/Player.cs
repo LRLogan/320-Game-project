@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -77,6 +78,8 @@ public class Player : MonoBehaviour
         jumpAction = playerInput.actions["Jump"];
        
         audioSource.clip = footsteps;
+
+        SceneManager.sceneLoaded += DisableRotateControls;
     }
 
     void Start()
@@ -192,6 +195,8 @@ public class Player : MonoBehaviour
             return;
         dialogueDisplay.SkipDialogue(context);
     }
+
+    void DisableRotateControls(Scene scene, LoadSceneMode mode) => rotateControls = false;
 
     public void OnSetRun(InputAction.CallbackContext context)
     {

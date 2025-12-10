@@ -16,6 +16,9 @@ public class VH1SceneController : MonoBehaviour
     private Canvas canvas;
     private InventoryManager inventoryUI;
 
+    [SerializeField] int ownedId = -1;
+    [SerializeField] List<GameObject> disableIfOwned;
+
     private void Awake()
     {
         gameManager = FindAnyObjectByType<GameManager>();
@@ -61,6 +64,19 @@ public class VH1SceneController : MonoBehaviour
         player.dialogueDisplay = dpDisplay;
         player.transform.GetChild(0).GetComponent<interactArea>().dialogueDisplay = dpDisplay;
         player.transform.position = playerSpawnPoint.transform.position;
+
+        if (ownedId >= 0 && disableIfOwned.Count > 0)
+        {
+            List<GameObject> inventory = player.GetInventory();
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                if (inventory[i].GetComponent<interactableObject>().id == ownedId)
+                {
+                    foreach (GameObject obj in disableIfOwned)
+                        obj.SetActive(false);
+                }
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -70,4 +86,10 @@ public class VH1SceneController : MonoBehaviour
         inventoryUI.RefreshUI();
     }
 
+    public void SetNextScenePath(string path)
+    {
+        if (eventSystem.GetComponent<DialogueDisplay>().alreadySeen >= 0)
+            return;
+        gameManager.nextScenePath = path;
+    }
 }

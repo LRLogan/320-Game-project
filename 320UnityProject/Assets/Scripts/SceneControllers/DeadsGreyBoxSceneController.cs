@@ -17,6 +17,11 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
     private Canvas canvas;
     private InventoryManager inventoryUI;
 
+    [SerializeField] private GameObject deadBody;
+
+    private int ending = -1;
+    [SerializeField] private string[] endingScenes;
+
     private void Awake()
     {
         gameManager = FindAnyObjectByType<GameManager>();
@@ -69,11 +74,21 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
         //player.transform.GetChild(0).GetComponent<interactArea>().InfoSetup(infoPannelInstance);
         //infoPannelInstance.SetActive(false);
 
+        if (gameManager.nextScenePath == "2report")
+            deadBody.SetActive(false);
     }
 
     private void Start()
     {
         inventoryUI = FindFirstObjectByType<InventoryManager>();
         inventoryUI.RefreshUI();
+    }
+
+    public void SetEnding(int index) => ending = index;
+
+    public void GoToEnding()
+    {
+        if (ending >= 0)
+            eventSystem.GetComponent<DialogueDisplay>().LoadScene(endingScenes[ending]);
     }
 }
