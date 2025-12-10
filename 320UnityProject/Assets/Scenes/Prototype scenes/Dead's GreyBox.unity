@@ -775,7 +775,7 @@ MonoBehaviour:
   isEndpoint: 0
   endpointDialogue: 
   isDialogue: 1
-  dialogue: A couple coins, and a empty wrapper.
+  dialogue: A couple of coins, and an empty wrapper
   isEvent: 0
   onInteract:
     m_PersistentCalls:
@@ -1540,7 +1540,7 @@ MonoBehaviour:
   isEndpoint: 0
   endpointDialogue: 
   isDialogue: 1
-  dialogue: Theres a couple interesting books, but no key
+  dialogue: There are a couple of interesting books, but no key
   isEvent: 0
   onInteract:
     m_PersistentCalls:
@@ -1978,7 +1978,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
       propertyPath: endpointDialogue
-      value: used the key. Found a letter
+      value: One letter says the autopsy has gone missing, and another is from "Buff
+        Frog" to "Pelo"
       objectReference: {fileID: 0}
     - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
       propertyPath: onEndpoint.m_PersistentCalls.m_Calls.Array.size
@@ -2083,7 +2084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
       propertyPath: dialogue
-      value: Hey theres a key in here. Obtained key.
+      value: Hey theres a key in here! Obtained key.
       objectReference: {fileID: 0}
     - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
       propertyPath: isDialogue
@@ -2438,7 +2439,7 @@ MonoBehaviour:
   isEndpoint: 0
   endpointDialogue: 
   isDialogue: 1
-  dialogue: A couple coins, and a empty wrapper.
+  dialogue: A book called "Eternal Rest" rests on the armrest. How...interesting
   isEvent: 0
   onInteract:
     m_PersistentCalls:

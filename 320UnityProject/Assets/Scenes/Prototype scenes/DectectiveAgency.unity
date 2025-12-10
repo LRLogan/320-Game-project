@@ -966,8 +966,8 @@ MonoBehaviour:
   destroyOnPickup: 1
   isEndpoint: 0
   endpointDialogue: 
-  isDialogue: 0
-  dialogue: hi
+  isDialogue: 1
+  dialogue: A large gray coat is hanging on the rack
   isEvent: 0
   onInteract:
     m_PersistentCalls:
@@ -1539,14 +1539,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 64336015}
         m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
-        m_MethodName: ChooseChoiceIndex
-        m_Mode: 3
+        m_MethodName: ChoosePathString
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: retrieved
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!54 &635303422
@@ -1791,7 +1791,7 @@ MonoBehaviour:
   isEndpoint: 0
   endpointDialogue: 
   isDialogue: 1
-  dialogue: Some old cartoon is playing
+  dialogue: Some old cartoon is playing on the TV
   isEvent: 0
   onInteract:
     m_PersistentCalls:
@@ -2657,7 +2657,7 @@ MonoBehaviour:
   isEndpoint: 0
   endpointDialogue: 
   isDialogue: 1
-  dialogue: After Everything Its still you
+  dialogue: A photo of a garden
   isEvent: 0
   onInteract:
     m_PersistentCalls:
@@ -3526,7 +3526,7 @@ MonoBehaviour:
   isEndpoint: 0
   endpointDialogue: 
   isDialogue: 1
-  dialogue: Theres nothing there
+  dialogue: Just a couch. What, did you think there was money or something in there?
   isEvent: 0
   onInteract:
     m_PersistentCalls:
@@ -3852,7 +3852,7 @@ MonoBehaviour:
   isEndpoint: 0
   endpointDialogue: 
   isDialogue: 1
-  dialogue: nothing
+  dialogue: The drawers are empty
   isEvent: 0
   onInteract:
     m_PersistentCalls:
@@ -7621,7 +7621,7 @@ MonoBehaviour:
   isEndpoint: 0
   endpointDialogue: 
   isDialogue: 1
-  dialogue: hey there
+  dialogue: A surprisingly tidy desk. It doesn't even have anything on it!
   isEvent: 0
   onInteract:
     m_PersistentCalls:

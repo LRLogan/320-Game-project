@@ -88,7 +88,10 @@ public class DeadsGreyBoxSceneController : MonoBehaviour
 
     public void GoToEnding()
     {
-        if (ending >= 0)
-            eventSystem.GetComponent<DialogueDisplay>().LoadScene(endingScenes[ending]);
+        if (ending < 0)
+            return;
+
+        gameManager.DestroyObjects();
+        eventSystem.GetComponent<DialogueDisplay>().LoadScene(endingScenes[ending]);
     }
 }

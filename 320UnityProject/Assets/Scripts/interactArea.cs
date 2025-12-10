@@ -122,7 +122,7 @@ public class interactArea : MonoBehaviour
         if (other.gameObject.GetComponent<MultiBlockPuzzle>() != null)
         {
             MultiBlockPuzzle script = other.GetComponent<MultiBlockPuzzle>();
-            if (script.dialogue)
+            if (script.manager.started && script.dialogue)
                 dialogueDisplay.InfoText(script.dialogueString);
             script.Interacted();
         }

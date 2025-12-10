@@ -1257,8 +1257,8 @@ MonoBehaviour:
   canPickup: 0
   destroyOnPickup: 0
   isEndpoint: 1
-  endpointDialogue: You see a pair of bloody pants and a note that reads, got a real
-    bad bloody nose, can you wash these for me later
+  endpointDialogue: There is a birthday letter from "Erica" to "Bale", and shirts
+    of the same design as the bloodied one in your inventory
   isDialogue: 0
   dialogue: 
   isEvent: 0
