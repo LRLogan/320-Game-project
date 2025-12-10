@@ -1897,8 +1897,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
       propertyPath: dialogue
-      value: There a shopping list from amazoon, it includes things like a ski mask
-        and a swiss army knife
+      value: There's a shopping list from Hop 'n' Shop, it includes things like a
+        ski mask and a knife
       objectReference: {fileID: 0}
     - target: {fileID: 3128096821334287213, guid: 31d4563691855eb4b87918050a68da59, type: 3}
       propertyPath: isDialogue

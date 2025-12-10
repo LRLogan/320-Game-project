@@ -6,6 +6,7 @@ public class MultiBlockPuzzleManager : MonoBehaviour
 {
     Player player;
 
+    public bool started = false;
     public int numberInteracted = 0;
     [SerializeField] int[] correctNumbers = new int[3];
     public int[] orderSelect = new int[3];
@@ -65,6 +66,7 @@ public class MultiBlockPuzzleManager : MonoBehaviour
     public void Interacted()
     {
         Debug.Log(dialogueString);
+        started = true;
         numberInteracted = 0;
     }
 }

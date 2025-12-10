@@ -210,6 +210,12 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(pauseMenuActive);
     }
 
+    public void DestroyObjects()
+    {
+        Destroy(player.gameObject);
+        Destroy(GameObject.Find("Canvas"));
+    }
+
     #region Not used for scene transition atm
 
     public void EnterIndoorScene(string sceneName)

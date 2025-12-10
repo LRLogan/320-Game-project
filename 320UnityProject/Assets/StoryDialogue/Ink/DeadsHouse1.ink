@@ -126,6 +126,54 @@ TOADSHOE>>So who is it? What's the name of the frog we have to arrest?
 === bale ===
 YOU>>It's Bale. It's gotta be.
 
+TOADSHOE>>Bale?
+
+YOU>>He lives in a big house in the north.
+In his house was a note indicating a "red tree near a sign".
+So I went out to find this tree, and <i>this</i> was on it.
+
+TOADSHOE>>!!
+Is that...what I think it is?
+
+{ erica:
+    YOU>>I think it is.
+    Now that you've told me about Erica and the tree...
+    ...I think I've solved this mystery.
+    Grieving Erica's death, Bale struck out against a fellow neighbor.
+    And it just so happened to be Pelo.
+    
+    TOADSHOE>>But...Pelo was the one who reported her death...
+    So why him, of all frogs?
+    
+    YOU>>I'm not sure, but I did find this letter when I first got to his house.
+    
+    TOADSHOE>>A letter from Buff Frog, huh?
+    ...
+    !!
+    The date...
+    It's...
+    ...the day Erica died...!
+    
+    YOU>>...!
+    But...why would...
+    
+    TOADSHOE>>I don't know, but it has to be him.
+    I'll issue out the order as soon as possible.
+    For the safety of the Forest!
+    
+    YOU>>For the safety of the Forest!
+}
+
+{ not erica:
+    YOU>>A bloodied shirt, yes.
+    The design on it was the same as many of the other clothes in his dresser.
+    I'm not quite sure what exactly it has to do with the murder, but it's suspicious alright.
+    
+    TOADSHOE>>...
+    Well, if you say so, I guess...
+    For the safety of the Forest, right?
+}
+
 -> END
 
 === erica ===

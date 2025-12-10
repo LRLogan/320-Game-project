@@ -3085,7 +3085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
       propertyPath: dialogue
-      value: its an empty bottle of poison
+      value: It's an empty bottle of poison
       objectReference: {fileID: 0}
     - target: {fileID: 6292790909786744360, guid: 1ceb29632ee7ff94c830286566827d1c, type: 3}
       propertyPath: canPickup

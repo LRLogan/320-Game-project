@@ -1351,7 +1351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3734104532394616777, guid: ba4270657503ae04d9dc6ac23effd479, type: 3}
       propertyPath: dialogue
-      value: You find a note that says top of the rock south west of the bridge
+      value: '"...Hylox Hill...on top...bridge...southwest..."'
       objectReference: {fileID: 0}
     - target: {fileID: 3734104532394616777, guid: ba4270657503ae04d9dc6ac23effd479, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.size
@@ -4052,6 +4052,8 @@ MonoBehaviour:
   choiceParentPrefab: {fileID: 4045703632978157169, guid: 2ff43316bce107744b16a302560809d6, type: 3}
   playerSpawnPoint: {fileID: 1927056968}
   eventSystem: {fileID: 2102242981}
+  ownedId: -1
+  disableIfOwned: []
 --- !u!4 &1934069517
 Transform:
   m_ObjectHideFlags: 0
