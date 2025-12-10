@@ -117,6 +117,8 @@ public class DialogueDisplay : MonoBehaviour
     float size0;
     bool autoSize0;
 
+    [SerializeField] TextAsset lilypadLanding;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -186,6 +188,7 @@ public class DialogueDisplay : MonoBehaviour
         if (inkStory.currentChoices.Count > 0)
             line = inkStory.currentText;
         NextLine(line);
+        gameManager.RegisterDialogue(inkScript, seeing);
     }
 
     void NextLine(string lineText = null)
@@ -443,6 +446,10 @@ public class DialogueDisplay : MonoBehaviour
         TextAsset registerScript = script;
         if (script == null)
             registerScript = inkScript;
-        gameManager.RegisterDialogue(registerScript, gameManager.ContainsDialogue(registerScript) + 1);
+
+        if (script == lilypadLanding)
+            return;
+
+        gameManager.RegisterDialogue(registerScript, 1);
     }
 }

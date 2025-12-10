@@ -3,7 +3,18 @@ guid: 662c9669254b92140b6ffec2e5ec6198
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - dialogueBox: {instanceID: 0}
+  - speakerBox: {instanceID: 0}
+  - speakerSprite: {instanceID: 0}
+  - noSpeakerSprite: {instanceID: 0}
+  - choiceParent: {instanceID: 0}
+  - choicePrefab: {instanceID: 0}
+  - inkScript: {instanceID: 0}
+  - gameManager: {instanceID: 0}
+  - playerScript: {instanceID: 0}
+  - infoPanel: {instanceID: 0}
+  - lilypadLanding: {fileID: 4900000, guid: 8a8d0b20cb235094e92e95810b84e855, type: 3}
   executionOrder: 200
   icon: {instanceID: 0}
   userData: 

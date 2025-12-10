@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     private bool pauseMenuActive = false;
 
+    public bool gotClothes = false;
+
     private void Awake()
     {
         if (instance == null)
