@@ -68,7 +68,8 @@ public class FrogVilleSceneController : MonoBehaviour
             }
         }
         inventoryUI = FindAnyObjectByType<InventoryManager>();
-        playerInstance.GetComponent<Player>().inventoryUI = inventoryUI;
+        if (inventoryUI != null)
+            playerInstance.GetComponent<Player>().inventoryUI = inventoryUI;
         Debug.Log(playerInstance.name);
         if (camera.GetComponent<sCameraInterior>() != null)
         {
@@ -170,12 +171,15 @@ public class FrogVilleSceneController : MonoBehaviour
 
     public void HouseCounter()
     {
+        Debug.Log("checking houses");
+
         int counter = 0;
         foreach (TextAsset house in houseScripts)
         {
             if (gameManager.ContainsDialogue(house) >= houseValue)
                 counter++;
         }
+        Debug.Log("counter: " + counter);
         if (counter >= houseScripts.Length)
             LockDoors();
         /* List<GameObject> inventory = playerInstance.GetComponent<Player>().GetInventory();
@@ -190,8 +194,11 @@ public class FrogVilleSceneController : MonoBehaviour
 
     private void LockDoors()
     {
+        Debug.Log("checking to lock doors");
         if (gameManager.ContainsDialogue(doneScript) >= doneValue)
             return;
+
+        Debug.Log("locking doors");
 
         gameManager.nextScenePath = "2report";
         DialogueDisplay dpDisplay = eventSystem.GetComponent<DialogueDisplay>();
@@ -200,4 +207,6 @@ public class FrogVilleSceneController : MonoBehaviour
             door.locked = true;
         dpDisplay.ChoosePathString("1finish");
     }
+
+    public void GetClothes() => gameManager.gotClothes = true;
 }

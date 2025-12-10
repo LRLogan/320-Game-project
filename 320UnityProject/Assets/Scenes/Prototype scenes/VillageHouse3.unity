@@ -1256,15 +1256,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPickup: 0
   destroyOnPickup: 0
-  isEndpoint: 1
+  isEndpoint: 0
   endpointDialogue: There is a birthday letter from "Erica" to "Bale", and shirts
     of the same design as the bloodied one in your inventory
   isDialogue: 0
   dialogue: 
-  isEvent: 0
+  isEvent: 1
   onInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1647768958}
+        m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
+        m_MethodName: ChoosePathString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 1clothes
+          m_BoolArgument: 0
+        m_CallState: 2
   isEndpointEvent: 1
   onEndpoint:
     m_PersistentCalls:

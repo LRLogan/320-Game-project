@@ -65,7 +65,7 @@ public class VH1SceneController : MonoBehaviour
         player.transform.GetChild(0).GetComponent<interactArea>().dialogueDisplay = dpDisplay;
         player.transform.position = playerSpawnPoint.transform.position;
 
-        if (ownedId >= 0 && disableIfOwned.Count > 0)
+        /* if (ownedId >= 0 && disableIfOwned.Count > 0)
         {
             List<GameObject> inventory = player.GetInventory();
             for (int i = 0; i < inventory.Count; i++)
@@ -76,6 +76,11 @@ public class VH1SceneController : MonoBehaviour
                         obj.SetActive(false);
                 }
             }
+        } */
+        if (disableIfOwned.Count > 0 && gameManager.gotClothes)
+        {
+            foreach (GameObject obj in disableIfOwned)
+                obj.SetActive(false);
         }
     }
 

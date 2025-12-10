@@ -54,6 +54,7 @@ public class AgencySceneController : MonoBehaviour
             camera.GetComponent<sSimpleCamera>().player = playerInstance.transform;
         }
 
+        gameManager.player = playerInstance.GetComponent<Player>();
         
         // Find the persistent canvas
         canvas = GameObject.Find("Canvas")?.GetComponent<Canvas>();
