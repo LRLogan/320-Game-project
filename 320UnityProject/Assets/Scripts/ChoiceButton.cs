@@ -6,6 +6,7 @@ public class ChoiceButton : MonoBehaviour
 {
     public DialogueDisplay dialogueDisplay;
     public int choiceIndex;
+    public int ending = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -19,5 +20,9 @@ public class ChoiceButton : MonoBehaviour
         
     }
 
-    public void ChooseChoiceIndex() => dialogueDisplay.ChooseChoiceIndex(choiceIndex);
+    public void ChooseChoiceIndex()
+    {
+        GameObject.FindWithTag("SceneController").GetComponent<DeadsGreyBoxSceneController>().SetEnding(ending);
+        dialogueDisplay.ChooseChoiceIndex(choiceIndex);
+    }
 }

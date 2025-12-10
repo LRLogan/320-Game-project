@@ -1,4 +1,5 @@
 + [0] -> 0tree
++ [1] -> 1clothes
 
 === 0tree ===
 YOU>>What's this...?
@@ -11,15 +12,16 @@ A red tree near a sign, I guess...?
 Did I pass by one at some point...?
 Better go outside and check...
 
-+ [0] -> 0clothes
+-> END
 
-=== 0clothes ===
+=== 1clothes ===
 YOU>>I've gotta hurry before anyone sees me here...
 Let's see this letter here...
 
 >>“Happy birthday Bale!
 “My trip took a little longer than expected, so I won't make it back until tomorrow sadly.
 “When I am back though, you'd better be prepared because I've got some plans to celebrate!
+“Until then, here's a Buff Frog charm as a gift from me!
 “Can't wait to see you soon!
 “- Erica”
 

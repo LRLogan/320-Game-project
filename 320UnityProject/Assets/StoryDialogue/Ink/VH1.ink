@@ -1,6 +1,6 @@
-+ [0] -> 0shopping_list
++ [0] -> 1shopping_list
 
-=== 0shopping_list ===
+=== 1shopping_list ===
 YOU>>Interesting...
 Someone left their laptop open...
 I guess they were in a rush to leave?
@@ -19,10 +19,14 @@ And I guess "Petro" is the name of the frog that was using it, huh...
 YOU>><i>Two</i> door repair kits?
 Why would he need <i>two</i> of them...?
 
+>>10x Buff Frog Sticker Sheet
+
+YOU>>That's a <i>lot</i> of sticker sheets...
+
 >>10x Resistance Band
->>1x Ski Mask
->>1x Razor-Sharp Knife
->>3x Party Balloons (set of 5)
+1x Ski Mask
+1x Razor-Sharp Knife
+3x Party Balloons (set of 5)
 
 YOU>>Whoa, whoa, whoa, hang on...
 A mask? And a <i>knife</i>?

@@ -81,8 +81,11 @@ public class interactArea : MonoBehaviour
                     interactableObject scriptTwo = playerScript.GetInventory()[i].GetComponent<interactableObject>();
                     if (scriptTwo.id == idNeeded)
                     {
-                        dialogueDisplay.InfoText(script.endpointDialogue);
-                        Debug.Log(script.endpointDialogue);
+                        if (script.endpointDialogue.Length > 0)
+                        {
+                            dialogueDisplay.InfoText(script.endpointDialogue);
+                            Debug.Log(script.endpointDialogue);
+                        }
                         GameObject temp = playerScript.GetInventory()[i];
                         playerScript.RemoveFromInventoryAtIndex(i);
                         Debug.Log($"Destroying {temp.name} in inventory at slot: " + i);

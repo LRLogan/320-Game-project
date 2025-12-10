@@ -1013,6 +1013,10 @@ MonoBehaviour:
   choiceParentPrefab: {fileID: 4045703632978157169, guid: 2ff43316bce107744b16a302560809d6, type: 3}
   playerSpawnPoint: {fileID: 1231128527}
   eventSystem: {fileID: 1647768956}
+  ownedId: 5
+  disableIfOwned:
+  - {fileID: 897838346}
+  - {fileID: 511443289}
 --- !u!4 &469519506
 Transform:
   m_ObjectHideFlags: 0
@@ -1261,10 +1265,22 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
-  isEndpointEvent: 0
+  isEndpointEvent: 1
   onEndpoint:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1647768958}
+        m_TargetAssemblyTypeName: DialogueDisplay, Assembly-CSharp
+        m_MethodName: ChoosePathString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 1clothes
+          m_BoolArgument: 0
+        m_CallState: 2
   wasInteracted: 0
   id: 5
   sprite: {fileID: 0}
@@ -1279,6 +1295,14 @@ PrefabInstance:
     - target: {fileID: 706959982149442844, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
       propertyPath: m_Name
       value: Door1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 799228954589078042, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
+      propertyPath: isEndpoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 799228954589078042, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
+      propertyPath: isEndpointEvent
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5444824671652310955, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
       propertyPath: m_LocalScale.x
@@ -1344,6 +1368,11 @@ PrefabInstance:
 --- !u!4 &511443288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5444824671652310955, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
+  m_PrefabInstance: {fileID: 511443287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &511443289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 706959982149442844, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
   m_PrefabInstance: {fileID: 511443287}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &554682306 stripped
@@ -1743,6 +1772,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5444824671652310955, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
   m_PrefabInstance: {fileID: 897838344}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &897838346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 706959982149442844, guid: 4a4221006aae5854b88e58edca5f0a1b, type: 3}
+  m_PrefabInstance: {fileID: 897838344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1002211117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1830,6 +1864,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1454289653}
     m_Modifications:
+    - target: {fileID: 689097347558772711, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2783402992089816728, guid: 75815bf93aa5bc349b917dff8f9f5c04, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2
@@ -3321,8 +3359,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 0}
   speakerBox: {fileID: 0}
-  speakerSprite: {fileID: 21300000, guid: 3c60a14a6931c1d4e9e7aaa94dc2cadd, type: 3}
-  noSpeakerSprite: {fileID: 21300000, guid: 4783cd083fe4bda4fbfdb3d26bf2fa17, type: 3}
+  speakerSprite: {fileID: 21300000, guid: 7134911e10d77f34dae802def749c6d7, type: 3}
+  noSpeakerSprite: {fileID: 21300000, guid: 5b408f19fc5c6ab4c863090742969cc9, type: 3}
   choiceParent: {fileID: 0}
   choicePrefab: {fileID: 3856283038282802624, guid: 677ba264c0e591f46822e829268723f2, type: 3}
   onStart: 0

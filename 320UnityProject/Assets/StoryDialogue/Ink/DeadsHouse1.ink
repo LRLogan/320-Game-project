@@ -145,7 +145,7 @@ YOU>>What?! Why not?
 TOADSHOE>>We know which Erica you're talking about.
 She's dead.
 
-YOU>>She's...WHAT...?!?!
+YOU>>She's...<i>WHAT</i>...?!?!
 
 TOADSHOE>>Died in a horrible accident as she was returning home from a trip...
 According to the report, she was stabbed by...
@@ -167,15 +167,107 @@ Who's the frog we've got to arrest?
 === kayla ===
 YOU>>I'm pretty sure it's Kayla.
 
+TOADSHOE>>Kayla?
+
+YOU>>Her house is in the southeast, by Pelo's.
+When I was looking around inside, I came across this sticky note.
+
+TOADSHOE>>"Hylox Hill"..."on top"...?
+
+YOU>>I went to the top of Hylox Hill, and there was an empty bottle of poison.
+And Pelo's autopsy said that he died from <i>an unknown poison</i>.
+
+TOADSHOE>>So you think this "Kayla" is the one responsible for Pelo's death?
+
+YOU>>She has to be. Why else would she have had that note in there?
+She was probably keeping track of where the bottle was so that she could retrieve it later.
+
+TOADSHOE>>Hmm, if you say so...
+For the safety of the Forest, right?
+
 -> END
 
 === petro ===
 YOU>>It has to be Petro.
 
+TOADSHOE>>Petro?
+
+YOU>>He lives in a little house in the northeast.
+It was kinda bizarre being in there...
+For some reason, there was this big crate I had to push to open a door...
+
+TOADSHOE>>Your point...?
+
+YOU>>Right. Yeah, so I managed to find a recent shopping order on his laptop.
+There were all sorts of weird things on it, but two items in particular stood out to me:
+A ski mask, and a knife.
+
+TOADSHOE>>Interesting...
+You think the ski mask could have been to cover his face?
+
+YOU>>It's gotta be. Why else would he have bought it <i>with</i> the knife?
+And right before the day of the murder?
+
+TOADSHOE>>Good point...
+So he's the one you want to arrest?
+
+YOU>>Yep. No doubt about it.
+
+TOADSHOE>>Alright, then.
+For the safety of the Forest, right?
+
 -> END
 
 === buff_frog ===
 YOU>>Buff Frog, maybe...?
+
+TOADSHOE>>Buff Frog...?
+You're not being serious, right?
+
+YOU>>...
+
+TOADSHOE>>...
+You're actually serious?
+Buff Frog's been such a huge help to FROG.
+He always reports incidents to us, and he does such a good job cleaning up the scene afterward.
+Why would he...?
+
+YOU>>"Cleaning up the scene", you say?
+
+TOADSHOE>>Surely...
+Surely not...
+
+YOU>>Each of the residents of this town seem to have some connection to him.
+Pelo received a letter from him...
+Erica gave Bale a Buff Frog charm for his birthday...
+
+TOADSHOE>>...
+
+YOU>>Is something wrong?
+
+TOADSHOE>>No, it's nothing... Continue.
+
+YOU>>Oh, uh...
+Well, Kayla had a drawing of Buff Frog in her notebook...
+And I saw something about Buff Frog sticker sheets on Petro's laptop screen.
+
+TOADSHOE>>Huh, interesting...
+You see, Buff Frog's something of a celebrity here in the Forest...
+...but I wouldn't have expected such a small town like Lilypad Landing to know about him.
+
+YOU>>Really?
+
+TOADSHOE>>I mean, it's only got four houses, right?
+How do you think word would have spread in a place like that?
+
+YOU>>Now that I think about it, you have a point...
+
+TOADSHOE>>So you think it's Buff Frog, huh?
+
+YOU>>Yes.
+
+TOADSHOE>>Alright, then. I'll send out the order.
+For the safety of the Forest, right?
 
 -> END
 

@@ -45,7 +45,7 @@ It's gotta be outside somewhere, right?
 
 -> 0search
 
-=== footsteps ===
+=== 1footsteps ===
 YOU>>Weird...
 I could've sworn I heard footsteps, but...
 ...there's no one out here...?
@@ -53,7 +53,7 @@ Well if that shopping list is something to go off of, I'd better be careful of a
 
 -> 1investigate
 
-=== poison ===
+=== 1poison ===
 YOU>>Okay, so I've found a rock...
 Southwest of the bridge...
 Surely <i>this</i> isn't "Hylox Hill", is it?
@@ -71,7 +71,7 @@ I wonder what <i>that's</i> about...
 
 -> 1investigate
 
-=== red_tree ===
+=== 1red_tree ===
 YOU>>A red tree!
 But why is it...bloody?
 Wait, there's something in the branches!

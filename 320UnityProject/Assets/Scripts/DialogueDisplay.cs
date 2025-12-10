@@ -58,9 +58,8 @@ public class DialogueDisplay : MonoBehaviour
 
     /// <summary>
     /// JSON file containing the lines to display.
-    /// Format as such: [Speaker]>>[Sprite]>>[Dialogue]
-    /// If there is no speaker, simply format as: >>[Sprite]>>[Dialogue]
-    /// If there is no sprite, enter "[Sprite]" as "0"
+    /// Format as such: [Speaker]>>[Dialogue]
+    /// If there is no speaker, simply format as: >>[Dialogue]
     /// </summary>
     [SerializeField] public TextAsset inkScript;
 
@@ -134,7 +133,9 @@ public class DialogueDisplay : MonoBehaviour
         size0 = dialogueBox.fontSize;
         autoSize0 = dialogueBox.enableAutoSizing;
 
-        if (onStart)
+        if (gameManager.nextScenePath.Length > 0)
+            ChooseNextScenePath();
+        else if (onStart)
             NextLine();
         else if (dialoguePanel.activeSelf)
             dialoguePanel.SetActive(false);
@@ -300,6 +301,15 @@ public class DialogueDisplay : MonoBehaviour
                     ChoiceButton choiceData = choice.GetComponent<ChoiceButton>();
                     choiceData.dialogueDisplay = this;
                     choiceData.choiceIndex = i;
+
+                    if (choices[i].text == "Bale")
+                        choiceData.ending = 0;
+                    else if (choices[i].text == "Kayla")
+                        choiceData.ending = 1;
+                    else if (choices[i].text == "Petro")
+                        choiceData.ending = 2;
+                    else if (choices[i].text == "Buff Frog")
+                        choiceData.ending = 3;
                 }
                 choosing = true;
             }
@@ -403,5 +413,31 @@ public class DialogueDisplay : MonoBehaviour
             Destroy(choiceParent.gameObject);
     }
 
-    public void LoadScene(string sceneName) => SceneManager.LoadScene(sceneName);
+    public void LoadScene(string sceneName)
+    {
+        DestroyPanels();
+        SceneManager.LoadScene(sceneName);
+    }
+
+    void ChooseNextScenePath()
+    {
+        try
+        {
+            ChoosePathString(gameManager.nextScenePath);
+        }
+        catch (Exception ex)
+        {
+            return;
+        }
+        
+        gameManager.nextScenePath = "";
+    }
+
+    public void RegisterDialogue(TextAsset script = null)
+    {
+        TextAsset registerScript = script;
+        if (script == null)
+            registerScript = inkScript;
+        gameManager.RegisterDialogue(registerScript, gameManager.ContainsDialogue(registerScript) + 1);
+    }
 }
